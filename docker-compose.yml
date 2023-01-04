@@ -1,0 +1,30 @@
+version: '3'
+services:
+  web:
+    # platform: linux/x86_64 # For Mac M1
+    build:
+      dockerfile: docker/app/Dockerfile
+      context: .
+    command: sh ./docker/app/entrypoint.sh
+    volumes:
+      - .:/app
+      - bundle:/usr/local/bundle
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mailcatcher
+      - redis
+    tty: true
+    stdin_open: true
+
+  redis:
+    image: redis
+
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - '1080:1080'
+      - '1025:1025'
+
+volumes:
+  bundle:
