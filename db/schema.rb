@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_31_084531) do
+ActiveRecord::Schema.define(version: 2023_01_08_154210) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 2022_12_31_084531) do
     t.string "yamakyu"
     t.string "neos"
     t.string "body"
-    t.index ["estimate_id"], name: "index_comments_on_estimate_id", unique: true
+    t.index ["estimate_id"], name: "index_comments_on_estimate_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(version: 2022_12_31_084531) do
     t.string "remarks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
   end
 
   create_table "estimates", force: :cascade do |t|
@@ -141,6 +142,15 @@ ActiveRecord::Schema.define(version: 2022_12_31_084531) do
     t.string "vender"
     t.string "other"
     t.string "word"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.integer "company_id"
+    t.string "title"
+    t.string "picture"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_images_on_company_id"
   end
 
   create_table "messages", force: :cascade do |t|

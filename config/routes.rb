@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   get 'kirin' => 'top#kirin'
 
   get 'question' => 'top#question'
-  get 'company' => 'top#company'  #会社概要
+  get 'corporation' => 'top#corporation'  #会社概要
   get 'privacy' => 'top#privacy' #プライバシーポリシー
 
   resources :columns
@@ -53,6 +53,11 @@ Rails.application.routes.draw do
 
   #企業側アカウント
   resources :companies do
+    resources :images, only: [:create, :destroy, :update, :download, :edit] 
+      member do
+        get 'images/view'
+        get 'images/download/:id' => 'images#download' ,as: :images_pdf
+      end
     collection do
       get :pay
       post :get_point
@@ -60,6 +65,7 @@ Rails.application.routes.draw do
       post :thanks
     end
   end
+
 
   #get '*path', controller: 'application', action: 'render_404'
 end

@@ -69,8 +69,6 @@ gem 'devise'
 gem 'omniauth-twitter'
 #パンくずリスト
 gem 'breadcrumbs_on_rails'
-#画像アップロード
-gem 'carrierwave'
 #ページネート
 gem 'kaminari'
 #Slim
@@ -94,3 +92,6 @@ gem 'jquery-rails'
 gem 'bootstrap-sass'
 
 gem 'pry-rails'
+
+gem 'carrierwave'
+gem 'mini_magick'

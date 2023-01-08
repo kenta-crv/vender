@@ -25,11 +25,11 @@ before_action :authenticate_admin!, only: :index
   end
 
   def edit
-    @company = Company.find_by(company_params)
+    @company = Company.find(params[:id])
   end
 
   def update
-    @company = Company.find_by(company_params)
+    @company = Company.find(params[:id])
     if @company.update(company_params)
         redirect_to companies_path
     else
@@ -51,7 +51,8 @@ private
     :tel,
     :address,
     :mail, #URL
-    :remarks #備考
+    :remarks, #備考
+    :image
   )
   end
 end

@@ -48,3 +48,35 @@ br
        td.arrow_box
          | 備考
        td = @company.remarks
+
+
+table.company
+ = form_for([@company, @company.images.build]) do |f|
+  tr
+   th
+    | ファイルアップロード
+   td
+     = f.text_field :title
+   td
+    = f.file_field :picture
+   td
+    = f.submit "送信"
+
+table.company
+ colgroup
+  col width="55%"
+  col width="15%"
+  col width="15%"
+  col width="15%"
+ - if @company.images.any?
+  - @company.images.all.reverse_order.each do |image|
+   - if image.picture.present?
+   tr
+    th
+     = image.title
+    td.center
+     = link_to 'delete', company_image_path(company_id: @company.id, id: image.id), method: :delete, class: 'btn btn-primary', data: { confirm: '本当に削除しますか？' }
+    td.center
+     = link_to 'view', images_view_company_path(image), {action: "view", id: image.id, :class => 'btn btn-primary'}
+    td.center
+     = link_to 'download',images_pdf_company_path(image), :class => 'btn btn-primary'

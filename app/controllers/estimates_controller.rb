@@ -2,8 +2,7 @@ class EstimatesController < ApplicationController
   before_action :authenticate_admin!, only: [:index, :show, :edit, :update, :destroy, :send_mail]
 
   def index
-    @estimates = Estimate.order(created_at: "DESC").page(params[:page]).per(50)
-
+    @estimates = Estimate.order(created_at: "DESC").page(params[:page]).per(100)
     #respond_to do |format|
     #  format.html
     #  format.csv do

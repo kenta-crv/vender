@@ -5,7 +5,7 @@ class TopController < ApplicationController
   def faq
   end
 
-  def co
+  def corporation
   end
 
   def question
