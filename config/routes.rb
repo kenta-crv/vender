@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
 
+  devise_for :clients, controllers: {
+    registrations: 'clients/registrations',
+    sessions: 'clients/sessions'
+  }
+  resources :clients, only: [:show]
   #管理者アカウント
   devise_for :admins, controllers: {
     registrations: 'admins/registrations',
     sessions: 'admins/sessions'
   }
-
   resources :admins, only: [:show]
 
   root to: 'top#index' #トップページ
@@ -53,7 +57,7 @@ Rails.application.routes.draw do
 
   #企業側アカウント
   resources :companies do
-    resources :images, only: [:create, :destroy, :update, :download, :edit] 
+    resources :images, only: [:create, :destroy, :update, :download, :edit]
       member do
         get 'images/view'
         get 'images/download/:id' => 'images#download' ,as: :images_pdf

@@ -29,17 +29,20 @@ private
   def after_sign_in_path_for(resource)
     case resource
     when Admin
-      "/" #先々一覧を見れるアナリティクスへ
+      "/estimates"
+    when Client
+      "/"
     else
       "/"
     end
   end
 
-  #UserとStaffがありログアウト画面に推移
   def after_sign_out_path_for(resource)
     case resource
     when Admin, :admin, :admins
       "/"
+    when Client, :client, :clients
+      "/companies/new"
     else
        super
     end

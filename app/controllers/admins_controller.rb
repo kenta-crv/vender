@@ -3,6 +3,5 @@ class AdminsController < ApplicationController
 
   def show
     @admin = Admin.find(params[:id])
-    @rooms = Room.active
   end
 end
