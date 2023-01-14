@@ -34,10 +34,7 @@
      td = link_to estimate.co, estimate_path(estimate), clsss:"store"
      td = estimate.name
      td = estimate.tel
-     td = estimate.address
-     td = estimate.created_at.strftime("%Y年%m月%d日")
-     td = estimate.created_at.strftime("%-H時%-M分%-S秒")
-     td = estimate.created_at.strftime("%a")
+     td = estimate.created_at.strftime("%Y年%m月%d日 %-H時%-M分%-S秒 %a")
      td = estimate.comment ? estimate.comment.asahi : nil
      td = estimate.comment ? estimate.comment.cocacola : nil
      td = estimate.comment ? estimate.comment.itoen : nil
