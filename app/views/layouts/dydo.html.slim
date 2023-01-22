@@ -7,15 +7,7 @@ html
       = csrf_meta_tags
       = stylesheet_link_tag 'dydo', media: 'all', 'data-turbolinks-track': 'reload'
       = stylesheet_link_tag rel="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-      script[src="https://ajax.googleapis.com/js/jquery-3.3.1/slim.min.js"]
-      script[src="https://ajax.googleapis.com/js/bootstrap.bundle.min.js"]
       script[src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"]
-
-      link[href="node_modules/froala-editor/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css"]
-      script[type="text/javascript" src="node_modules/froala-editor/js/froala_editor.pkgd.min.js"]
-      link[href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css"]
-      script[type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"]
-      link[href="../css/froala_style.min.css" rel="stylesheet" type="text/css"]
 
       = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
       = display_meta_tags(default_meta_tags)
@@ -113,6 +105,10 @@ html
 
 
   body
+    /! Google Tag Manager (noscript)
+    noscript
+    iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-TVV7GHQ" style="display:none;visibility:hidden" width="0"
+    /! End Google Tag Manager (noscript)
     p.notice
       = notice
     p.alert
