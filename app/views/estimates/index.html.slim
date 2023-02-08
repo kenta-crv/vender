@@ -51,6 +51,40 @@
     br
     = paginate(@estimates)
 
+= search_form_for @q do |f|
+ table.company[width="90%"]
+            col[width="20%"]
+            col[width="30%"]
+            col[width="20%"]
+            col[width="30%"]
+            tbody
+              tr
+                th[colspan="4"]
+                  | 検索
+              tr
+                th
+                  | 会社名
+                td
+                  = f.search_field :co_cont, type: "text"
+                th
+                  | 担当者
+                td
+                  = f.search_field :name_cont, type: "text"
+              tr
+                th
+                  | 電話番号
+                td
+                  = f.search_field :tel_cont, type: "text"
+                th
+                  | 住所
+                td
+                  = f.search_field :address_cont, type: "text"
+              tr
+                td.center[colspan="4"]
+                  = f.submit "検索する"
+
+
+
 
 table.company
     tbody

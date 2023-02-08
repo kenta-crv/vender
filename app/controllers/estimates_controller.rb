@@ -2,7 +2,8 @@ class EstimatesController < ApplicationController
   before_action :authenticate_admin!, only: [:index, :show, :edit, :update, :destroy, :send_mail]
 
   def index
-    @estimates = Estimate.order(created_at: "DESC").page(params[:page]).per(100)
+    @q = Estimate.ransack(params[:q])
+    @estimates = @q.result.page(params[:page]).per(100).order(created_at: :desc)
     #respond_to do |format|
     #  format.html
     #  format.csv do
