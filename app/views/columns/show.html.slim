@@ -1,125 +1,274 @@
 - set_meta_tags  title: @column.title
 - set_meta_tags  description: @column.description
-br
-br
-.columns-wrapper
-  .fr-view
-    h1.headline-first  = @column.title
-    = @column.display_heading_1.html_safe
-    - if @column.file_1?
+
+#review-detail
+  .row
+   .col-sm-4= link_to "自販機記事一覧に戻る", columns_path, class:"btn btn-primary"
+   .col-sm-4
+   .col-sm-4
+  h1.headline-first.center
+       = @column.title
+  br
+    .center
+     - if @column.file_1?
       .image_column  = image_tag @column.file_1.url, width:"600px", alt: @column.title
-	p#book_content  = @column.display_content_1.html_safe
 
-  .fr-view
-    = @column.display_heading_2.html_safe
-    - if @column.file_2?
-      .image_column  = image_tag @column.file_2.url, width:"450px";
-	p#book_content  = @column.display_content_2.html_safe
+#review-detail
+  .body-base
+      = @column.display_content_1.html_safe
 
-  .fr-view
-    = @column.display_heading_3.html_safe
-    - if @column.file_3?
-      .image_column  = image_tag @column.file_3.url, width:"450px";
-	p#book_content  = @column.display_content_3.html_safe
+  br
+  h2 目次
+  br
+.main-left
+ br
+ ul
+    - if @column.heading_2?
+     li
+      = link_to  @column.display_heading_2.html_safe, "#display_heading_2"
+    - if @column.heading_3?
+     li
+      = link_to  @column.display_heading_3.html_safe, "#display_heading_3"
+    - if @column.heading_4?
+     li
+      = link_to  @column.display_heading_4.html_safe, "#display_heading_4"
+    - if @column.heading_5?
+     li
+      = link_to  @column.display_heading_5.html_safe, "#display_heading_5"
+    - if @column.heading_6?
+     li
+      = link_to  @column.display_heading_6.html_safe, "#display_heading_6"
+    - if @column.heading_7?
+     li
+      = link_to  @column.display_heading_7.html_safe, "#display_heading_7"
+    - if @column.heading_8?
+     li
+      = link_to  @column.display_heading_8.html_safe, "#display_heading_8"
+    - if @column.heading_9?
+     li
+      = link_to  @column.display_heading_9.html_safe, "#display_heading_9"
+    - if @column.heading_10?
+     li
+      = link_to  @column.display_heading_10.html_safe, "#display_heading_10"
+    - if @column.heading_11?
+     li
+      = link_to  @column.display_heading_11.html_safe, "#display_heading_11"
+    - if @column.heading_12?
+     li
+      = link_to  @column.display_heading_12.html_safe, "#display_heading_12"
+    - if @column.heading_13?
+     li
+      = link_to  @column.display_heading_13.html_safe, "#display_heading_13"
+    - if @column.heading_14?
+     li
+      = link_to  @column.display_heading_14.html_safe, "#display_heading_14"
+    - if @column.heading_15?
+     li
+      = link_to  @column.display_heading_15.html_safe, "#display_heading_15"
+    - if @column.heading_16?
+     li
+      = link_to  @column.display_heading_16.html_safe, "#display_heading_16"
+    - if @column.heading_17?
+     li
+      = link_to  @column.display_heading_17.html_safe, "#display_heading_17"
+    - if @column.heading_18?
+     li
+      = link_to  @column.display_heading_18.html_safe, "#display_heading_18"
+    - if @column.heading_19?
+     li
+      = link_to  @column.display_heading_19.html_safe, "#display_heading_19"
+    - if @column.heading_20?
+     li
+      = link_to  @column.display_heading_20.html_safe, "#display_heading_20"
+br
+br
+#review-detail
 
-  .fr-view
-    = @column.display_heading_4.html_safe
-    - if @column.file_4?
-      .image_column  = image_tag @column.file_4.url, width:"450px";
-	p#book_content  = @column.display_content_4.html_safe
+  .headline-first.center#display_heading_2
+       = @column.display_heading_2.html_safe
+  br
+    .center
+     - if @column.file_2?
+      .image_column  = image_tag @column.file_2.url, width:"600px", alt: @column.title
+  .body-base
+      = @column.display_content_2.html_safe
 
-  .fr-view
-    = @column.display_heading_5.html_safe
-    - if @column.file_5?
-      .image_column  = image_tag @column.file_5.url, width:"450px";
-  p#book_content  = @column.display_content_5.html_safe
 
-  .fr-view
-    = @column.display_heading_6.html_safe
-    - if @column.file_6?
-      .image_column  = image_tag @column.file_6.url, width:"450px";
-	p#book_content  = @column.display_content_6.html_safe
+  .headline-first.center#display_heading_3
+       = @column.display_heading_3.html_safe
+  br
+    .center
+     - if @column.file_3?
+      .image_column  = image_tag @column.file_3.url, width:"600px", alt: @column.title
+  .body-base
+      = @column.display_content_3.html_safe
 
-  .fr-view
-    = @column.display_heading_7.html_safe
-    - if @column.file_7?
-      .image_column  = image_tag @column.file_7.url, width:"450px";
-	p#book_content  = @column.display_content_7.html_safe
 
-  .fr-view
-    = @column.display_heading_8.html_safe
-    - if @column.file_8?
-      .image_column  = image_tag @column.file_8.url, width:"450px";
-	p#book_content  = @column.display_content_8.html_safe
+  .headline-first.center#display_heading_4
+       = @column.display_heading_4.html_safe
+  br
+    .center
+     - if @column.file_4?
+      .image_column  = image_tag @column.file_4.url, width:"600px", alt: @column.title
+  .body-base
+      = @column.display_content_4.html_safe
 
-  .fr-view
-    = @column.display_heading_9.html_safe
-    - if @column.file_9?
-      .image_column  = image_tag @column.file_9.url, width:"450px";
-	p#book_content  = @column.display_content_9.html_safe
 
-  .fr-view
-    = @column.display_heading_10.html_safe
-    - if @column.file_10?
-      .image_column  = image_tag @column.file_10.url, width:"450px";
-  p#book_content  = @column.display_content_10.html_safe
+  .headline-first.center#display_heading_5
+       = @column.display_heading_5.html_safe
+  br
+    .center
+     - if @column.file_5?
+      .image_column  = image_tag @column.file_5.url, width:"600px", alt: @column.title
+  .body-base
+      = @column.display_content_5.html_safe
 
-  .fr-view
-    = @column.display_heading_11.html_safe
-    - if @column.file_11?
-      .image_column  = image_tag @column.file_11.url, width:"450px";
-  p#book_content  = @column.display_content_11.html_safe
 
-  .fr-view
-    = @column.display_heading_12.html_safe
-    - if @column.file_12?
-      .image_column  = image_tag @column.file_12.url, width:"450px";
-  p#book_content  = @column.display_content_12.html_safe
+  .headline-first.center#display_heading_6
+       = @column.display_heading_6.html_safe
+  br
+    .center
+     - if @column.file_6?
+      .image_column  = image_tag @column.file_6.url, width:"600px", alt: @column.title
+  .body-base
+      = @column.display_content_6.html_safe
 
-  .fr-view
-    = @column.display_heading_13.html_safe
-    - if @column.file_13?
-      .image_column  = image_tag @column.file_13.url, width:"450px";
-  p#book_content  = @column.display_content_13.html_safe
 
-  .fr-view
-    = @column.display_heading_14.html_safe
-    - if @column.file_14?
-      .image_column  = image_tag @column.file_14.url, width:"450px";
-  p#book_content  = @column.display_content_14.html_safe
+  .headline-first.center#display_heading_7
+       = @column.display_heading_7.html_safe
+  br
+    .center
+     - if @column.file_7?
+      .image_column  = image_tag @column.file_7.url, width:"600px", alt: @column.title
+  .body-base
+      = @column.display_content_7.html_safe
 
-  .fr-view
-    = @column.display_heading_15.html_safe
-    - if @column.file_15?
-      .image_column  = image_tag @column.file_15.url, width:"450px";
-  p#book_content  = @column.display_content_15.html_safe
 
-  .fr-view
-    = @column.display_heading_16.html_safe
-    - if @column.file_16?
-      .image_column  = image_tag @column.file_16.url, width:"450px";
-  p#book_content  = @column.display_content_16.html_safe
+  .headline-first.center#display_heading_8
+       = @column.display_heading_8.html_safe
+  br
+    .center
+     - if @column.file_8?
+      .image_column  = image_tag @column.file_8.url, width:"600px", alt: @column.title
+  .body-base
+      = @column.display_content_8.html_safe
 
-  .fr-view
-    = @column.display_heading_17.html_safe
-    - if @column.file_17?
-      .image_column  = image_tag @column.file_17.url, width:"450px";
-  p#book_content  = @column.display_content_17.html_safe
 
-  .fr-view
-    = @column.display_heading_18.html_safe
-    - if @column.file_18?
-      .image_column  = image_tag @column.file_18.url, width:"450px";
-  p#book_content  = @column.display_content_18.html_safe
+  .headline-first.center#display_heading_9
+       = @column.display_heading_9.html_safe
+  br
+    .center
+     - if @column.file_9?
+      .image_column  = image_tag @column.file_9.url, width:"600px", alt: @column.title
+  .body-base
+      = @column.display_content_9.html_safe
 
-  .fr-view
-    = @column.display_heading_19.html_safe
-    - if @column.file_19?
-      .image_column  = image_tag @column.file_19.url, width:"450px";
-  p#book_content  = @column.display_content_19.html_safe
 
-  .fr-view
-    = @column.display_heading_20.html_safe
-    - if @column.file_20?
-      .image_column  = image_tag @column.file_20.url, width:"450px";
-  p#book_content  = @column.display_content_20.html_safe
+  .headline-first.center#display_heading_10
+       = @column.display_heading_10.html_safe
+  br
+    .center
+     - if @column.file_10?
+      .image_column  = image_tag @column.file_10.url, width:"600px", alt: @column.title
+  .body-base
+      = @column.display_content_10.html_safe
+
+
+  .headline-first.center#display_heading_11
+       = @column.display_heading_11.html_safe
+  br
+    .center
+     - if @column.file_11?
+      .image_column  = image_tag @column.file_11.url, width:"600px", alt: @column.title
+  .body-base
+      = @column.display_content_11.html_safe
+
+
+  .headline-first.center#display_heading_12
+       = @column.display_heading_12.html_safe
+  br
+    .center
+     - if @column.file_12?
+      .image_column  = image_tag @column.file_12.url, width:"600px", alt: @column.title
+  .body-base
+      = @column.display_content_12.html_safe
+
+
+  .headline-first.center#display_heading_13
+       = @column.display_heading_13.html_safe
+  br
+    .center
+     - if @column.file_13?
+      .image_column  = image_tag @column.file_13.url, width:"600px", alt: @column.title
+  .body-base
+      = @column.display_content_13.html_safe
+
+
+  .headline-first.center#display_heading_14
+       = @column.display_heading_14.html_safe
+  br
+    .center
+     - if @column.file_14?
+      .image_column  = image_tag @column.file_14.url, width:"600px", alt: @column.title
+  .body-base
+      = @column.display_content_14.html_safe
+
+
+  .headline-first.center#display_heading_15
+       = @column.display_heading_15.html_safe
+  br
+    .center
+     - if @column.file_15?
+      .image_column  = image_tag @column.file_15.url, width:"600px", alt: @column.title
+  .body-base
+      = @column.display_content_15.html_safe
+
+
+  .headline-first.center#display_heading_16
+       = @column.display_heading_16.html_safe
+  br
+    .center
+     - if @column.file_16?
+      .image_column  = image_tag @column.file_16.url, width:"600px", alt: @column.title
+  .body-base
+      = @column.display_content_16.html_safe
+
+
+  .headline-first.center#display_heading_17
+       = @column.display_heading_17.html_safe
+  br
+    .center
+     - if @column.file_17?
+      .image_column  = image_tag @column.file_17.url, width:"600px", alt: @column.title
+  .body-base
+      = @column.display_content_17.html_safe
+
+
+  .headline-first.center#display_heading_18
+       = @column.display_heading_18.html_safe
+  br
+    .center
+     - if @column.file_18?
+      .image_column  = image_tag @column.file_18.url, width:"600px", alt: @column.title
+  .body-base
+      = @column.display_content_18.html_safe
+
+
+  .headline-first.center#display_heading_19
+       = @column.display_heading_19.html_safe
+  br
+    .center
+     - if @column.file_19?
+      .image_column  = image_tag @column.file_19.url, width:"600px", alt: @column.title
+  .body-base
+      = @column.display_content_19.html_safe
+
+
+  .headline-first.center#display_heading_20
+       = @column.display_heading_20.html_safe
+  br
+    .center
+     - if @column.file_20?
+      .image_column  = image_tag @column.file_20.url, width:"600px", alt: @column.title
+  .body-base
+      = @column.display_content_20.html_safe

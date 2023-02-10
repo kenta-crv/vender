@@ -1,27 +1,28 @@
 - set_meta_tags  title: '自動販売機のコラムなら『自販機ねっと』'
 - set_meta_tags  description: '自販機ねっとでは、自動販売機に関する記事を執筆しています。'
 
-.tops-wrapper
-  .row
-    .col-sm-12
+.index-wrapper
       h1.headline
-        | 新着記事
-      - @columns.each do |column|
-        .row
-          .col-sm-5
-            = image_tag column.file_1.to_s, width:"100%", class:"column-space"
-          .col-sm-7.column-base
+        | 自販機設置記事一覧
+      .row.all-width
+       - @columns.each do |column|
+        .col-sm-6
+         .each-width
+            .put
+             p.prefecture
+              = column.created_at.strftime("%Y年%m月%d日")
+            = image_tag column&.file_1&.to_s, class:"index-image"
             .column-title
-              = link_to column.title, column_path(column)
-            .column-description
-              = column.description.html_safe
+              = link_to column.title, column_path(column.id), class:"store"
+            br
+            .description
+              = column.description.to_s.html_safe
+
               - if admin_signed_in?
-                = link_to '編集  ', edit_column_path(column), class: 'command'
-                = link_to '  削除',
-                 			            	column_path(column),
-                 			            	method: :delete,
-                 			            	class: 'command',
-                 			            	data: { confirm: '本当に削除しますか？'}
-        br
-        hr
-      = paginate @columns
+               = link_to '編集  ', edit_column_path(column.id)
+               = link_to '削除',
+                column_path(column),
+                method: :delete,
+                data: { confirm: '本当に削除しますか？'}
+      br
+= paginate(@columns)

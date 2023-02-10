@@ -1,0 +1,53 @@
+doctype html
+html
+  head
+      meta[charset="uft-8"]
+      meta[http-equiv="X^UA-Compatible" content="IE=edge"]
+      meta[name="viewport" content="width=device-width, initial-scale=1,0, initial-scale=1, shrink-to-fit=no"]
+      = csrf_meta_tags
+      = stylesheet_link_tag 'columns', media: 'all', 'data-turbolinks-track': 'reload'
+      = stylesheet_link_tag rel="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+      script[src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"]
+
+      = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+      = display_meta_tags(default_meta_tags)
+      = favicon_link_tag('favicon.ico')
+      javascript:
+        | fbq('track', 'ViewContent');
+      script[async src="https://www.googletagmanager.com/gtag/js?id=UA-180301125-11"]
+      script
+        |  window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-180301125-11');
+
+.colacola
+  header
+      .row
+        .col-xs-3
+           = link_to "/"
+            =image_tag "rogo.webp", class:"header-image", alt:"自動販売機の設置なら一括見積もりの自販機ねっと"
+        .col-xs-7
+         h1.header 自動販売機の設置なら一括見積もりの自販機ねっと
+        .col-xs-2
+                .navToggle
+                  span
+                  span
+                  span
+                  span menu
+      .row.navi
+        .col-xs-12.center.hidden-xs
+
+
+  body
+
+    p.notice
+      = notice
+    p.alert
+      = alert
+    main
+      .bread
+        = render_breadcrumbs separator: ' > '
+      = yield
+
+  br
+  br
+  footer
+   = render template: 'layouts/_footer.html.slim'

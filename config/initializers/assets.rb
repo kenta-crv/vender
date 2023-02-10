@@ -15,7 +15,7 @@ Rails.application.config.assets.precompile += %w( otsuka.scss )
 Rails.application.config.assets.precompile += %w( itoen.scss )
 Rails.application.config.assets.precompile += %w( dydo.scss )
 Rails.application.config.assets.precompile += %w( kirin.scss )
-Rails.application.config.assets.precompile += %w( top.scss )
+
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.

@@ -1,0 +1,254 @@
+// Place all the styles related to the messages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+@import "bootstrap";
+
+$main_color: #327BEE;
+$sub_color: #327BEE;
+$asort_color: #327BEE;
+
+body {
+  width:100%;
+  margin:0 auto;
+}
+
+
+                                /*ヘッダーのベース設定*/
+header {
+width:100%;
+background-color:white;
+position: sticky;
+top: 0;
+z-index:150;
+@media only screen and (max-width: 767px){
+  img{
+    width: 150px;
+    z-index:100;
+    height: auto;
+  }
+}
+/* pc　768px以上 */
+@media only screen and (min-width: 768px), print {
+  img{
+    width: 250px;
+    height: auto;
+  }
+}
+  .navi {
+    background-color:$main_color;
+    line-height:middle;
+    height:40px;
+    a {
+      text-decoration: none;
+      color:white;
+      text-shadow: 1px 1px 1px #000;
+      margin-top:auto;
+      margin-top:8px;
+      a:hover {
+        background-color: rgba(255,255,255,0.1);
+      }
+    }
+
+  }
+    #dropmenu{
+     list-style-type: none;
+     width: 100%;
+     height: 40px;
+     margin: 0 auto;
+     background: $main_color;
+    }
+    #dropmenu li{
+     position: relative;
+     width: 13.5%;
+     float: left;
+     text-align: center;
+    }
+    #dropmenu li a{
+     display: block;
+     margin: 0;
+     padding: 10px 0px 15px;
+     color: #fff;
+     font-size: 100%;
+     text-shadow: 1px 1px 1px #000;
+     line-height: 1;
+     text-decoration: none;
+    }
+    #dropmenu li ul{
+     list-style: none;
+     position: absolute;
+     top: 100%;
+     left: 0;
+     margin: 0;
+     padding: 0;
+     border-radius: 0 0 3px 3px;
+    }
+    #dropmenu li:last-child ul{
+     left: -100%;
+     width: 100%
+    }
+    #dropmenu li ul li{
+     overflow: hidden;
+     width: 300%;
+     height: 0;
+     color: #fff;
+     -moz-transition: .2s;
+     -webkit-transition: .2s;
+     -o-transition: .2s;
+     -ms-transition: .2s;
+     transition: .2s;
+    }
+    #dropmenu li ul li a{
+     padding: 13px 15px;
+     background: $main_color;
+     text-align: left;
+     font-size: 12px;
+     font-weight: normal;
+    }
+    #dropmenu li:hover > a{
+    background-color:$sub_color;
+     color: #fff;
+    }
+
+    #dropmenu li:hover ul li{
+     overflow: visible;
+     height: 38px;
+     border-top: 1px solid #fff;
+     border-bottom: 1px solid #fff;
+    }
+    #dropmenu li:hover ul li:first-child{
+     border-top: 0;
+    }
+    #dropmenu li:hover ul li:last-child{
+     border-bottom: 0;
+    }
+    #dropmenu li:hover ul li:last-child a{
+     border-radius: 0 0 3px 3px;
+    }
+}
+main {
+  margin-top:-80px;
+}
+
+
+/*検索窓*/
+.window {
+  width:50%;
+  padding:5px;
+  margin:3px;}
+
+.index-wrapper{
+  margin-top:-50px;
+  .all-width {
+    margin-right:40px;
+  }
+  .each-width {
+    padding-left:20px;
+    width:"80%";
+  }
+  .column-title {
+    font-size:18px;
+    margin-top:8px;
+    margin-left:5px;
+
+    * {box-sizing: border-box;}
+    a {text-decoration: none;}
+    .none {display: none;}
+    a:link, a:visited, a:hover, a:active {
+      color: #444;
+      font-weight:bold;
+    }
+  }
+  .description{
+    margin-top:-5px;
+    margin-left:5px;
+    @media screen and ( max-width:479px ){font-size:1.2rem;}
+  }
+}
+
+
+/*posts show*/
+#review-detail{
+  margin:-10px 20px;
+   .headline-first {
+       color:black;
+       font-weight:bold;
+       font-size:3.0rem;
+       @media screen and ( max-width:479px ){font-size:2.0rem;}
+      }
+   .headline-first:first-letter {
+       color:$main_color;
+       font-size:3.5rem;
+       @media screen and (max-width:479px ){fint-size:1.8rem;}
+       }
+
+    h2 {
+    padding: 0.6em 0.6em;/*文字の上下 左右の余白*/
+    color: #494949;/*文字色*/
+    background: #f4f4f4;/*背景色*/
+    border-left: solid 5px $main_color;/*左線*/
+    border-bottom: solid 3px #d7d7d7;/*下線*/
+    text-align:left;
+    padding-left:30px;
+    margin:0px auto;
+    width:95%;
+    font-size:21px;
+    font-weight:bold;
+    }
+
+    h3 {
+    padding: 0.6em 0.6em;/*文字の上下 左右の余白*/
+    color: #494949;/*文字色*/
+    background: #f4f4f4;/*背景色*/
+    border-left: solid 5px $main_color;/*左線*/
+    border-bottom: solid 3px #d7d7d7;/*下線*/
+    text-align:left;
+    padding-left:30px;
+    margin:0px auto;
+    width:95%;
+    font-size:21px;
+    font-weight:bold;
+    }
+     h4 {
+        position: relative;
+        display: inline-block;
+        padding: 0 55px;
+        font-size:20px;
+        font-weight:bold;
+        text-align:left;
+        padding-left:70px;
+       }
+     h4:before, h4:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        display: inline-block;
+        width: 45px;
+        height: 2px;
+        border-top: solid 2px $main_color;
+        border-bottom: solid 2px $main_color;
+        }
+     h4:before {
+       left:0;
+        }
+     h4:after {
+        right: 0;
+        }
+    h5 {
+       color: $main_color;
+       margin-left:60px;
+       border: dotted $main_color 2px;/*ドット 色 太さ*/
+       padding: 0.5em 0.5em 0.5em 2em;
+       line-height: 1.5;
+       width:60%;
+       text-align:left;
+         }
+    .body-base {
+      padding:20px 30px 0;
+      line-height:1.7vem;
+      text-align:left;
+      font-size:16px;
+    }
+
+ }

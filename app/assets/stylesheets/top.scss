@@ -132,6 +132,146 @@ main {
 }
 
 
+/*検索窓*/
+.window {
+  width:50%;
+  padding:5px;
+  margin:3px;}
+
+.index-wrapper{
+  margin-top:-50px;
+  .all-width {
+    margin-right:40px;
+  }
+  .each-width {
+    padding-left:20px;
+    width:"80%";
+  }
+  .column-title {
+    font-size:18px;
+    margin-top:8px;
+    margin-left:5px;
+
+    * {box-sizing: border-box;}
+    a {text-decoration: none;}
+    .none {display: none;}
+    a:link, a:visited, a:hover, a:active {
+      color: #444;
+      font-weight:bold;
+    }
+  }
+  .description{
+    margin-top:-5px;
+    margin-left:5px;
+    @media screen and ( max-width:479px ){font-size:1.2rem;}
+  }
+}
+
+
+/*posts show*/
+#review-detail{
+  margin:-10px 20px;
+   .headline-first {
+       color:black;
+       font-weight:bold;
+       font-size:3.0rem;
+       @media screen and ( max-width:479px ){font-size:2.0rem;}
+      }
+   .headline-first:first-letter {
+       color:$main_color;
+       font-size:3.5rem;
+       @media screen and (max-width:479px ){fint-size:1.8rem;}
+       }
+
+    h2 {
+    padding: 0.6em 0.6em;/*文字の上下 左右の余白*/
+    color: #494949;/*文字色*/
+    background: #f4f4f4;/*背景色*/
+    border-left: solid 5px $main_color;/*左線*/
+    border-bottom: solid 3px #d7d7d7;/*下線*/
+    text-align:left;
+    padding-left:30px;
+    margin:0px auto;
+    width:95%;
+    font-size:21px;
+    font-weight:bold;
+    }
+
+    h3 {
+    padding: 0.6em 0.6em;/*文字の上下 左右の余白*/
+    color: #494949;/*文字色*/
+    background: #f4f4f4;/*背景色*/
+    border-left: solid 5px $main_color;/*左線*/
+    border-bottom: solid 3px #d7d7d7;/*下線*/
+    text-align:left;
+    padding-left:30px;
+    margin:0px auto;
+    width:95%;
+    font-size:21px;
+    font-weight:bold;
+    }
+     h4 {
+        position: relative;
+        display: inline-block;
+        padding: 0 55px;
+        font-size:20px;
+        font-weight:bold;
+        text-align:left;
+        padding-left:70px;
+       }
+     h4:before, h4:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        display: inline-block;
+        width: 45px;
+        height: 2px;
+        border-top: solid 2px $main_color;
+        border-bottom: solid 2px $main_color;
+        }
+     h4:before {
+       left:0;
+        }
+     h4:after {
+        right: 0;
+        }
+    h5 {
+       color: $main_color;
+       margin-left:60px;
+       border: dotted $main_color 2px;/*ドット 色 太さ*/
+       padding: 0.5em 0.5em 0.5em 2em;
+       line-height: 1.5;
+       width:60%;
+       text-align:left;
+         }
+    .body-base {
+      padding:20px 30px 0;
+      line-height:1.7vem;
+      text-align:left;
+      font-size:16px;
+    }
+
+ }
+
+ .put {/*親div*/
+  position: relative;/*相対配置*/
+  }
+
+.put p.prefecture {
+  position: absolute;/*絶対配置*/
+  color: white;/*文字は白に*/
+  font-weight: bold;
+  top: 0;
+  left: 0;
+  background-color:$main_color;
+  padding:2px 10px;
+  @media screen and ( max-width:479px ){
+        margin-top: 15px;
+        margin-left: 44px;}
+  }
+
+
+
 
                                   /*  メイン画像  */
  .cocacola-image-top {
@@ -715,16 +855,16 @@ background-color:$sub_color;
 
 /* ボックス */
 .mybox{
- border: 3px solid $main_color;	/* 線の太さ・種類・色 */
+ border: 3px solid $main_color; /* 線の太さ・種類・色 */
  border-radius: 8px;
- padding: 45px 10px 10px 10px;	/* 内側の余白 上・右・左・下 */
+ padding: 45px 10px 10px 10px;  /* 内側の余白 上・右・左・下 */
  position: relative;
  margin-bottom:40px;
 .title{
- background-color: $main_color;	/* タイトル部分背景色 */
+ background-color: $main_color; /* タイトル部分背景色 */
  border-radius: 5px 5px 0px 0px;
- color: #fff;	/* タイトル部分文字色 */
- height: 25px;	/* タイトル部分高さ */
+ color: #fff; /* タイトル部分文字色 */
+ height: 25px;  /* タイトル部分高さ */
  padding: 5px 10px;
  position: absolute;
  top: 0;
