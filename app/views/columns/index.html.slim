@@ -1,6 +1,8 @@
 - set_meta_tags  title: '自動販売機のコラムなら『自販機ねっと』'
 - set_meta_tags  description: '自販機ねっとでは、自動販売機に関する記事を執筆しています。'
-
+br
+br
+br
 .index-wrapper
       h1.headline
         | 自販機設置記事一覧
@@ -11,7 +13,7 @@
             .put
              p.prefecture
               = column.created_at.strftime("%Y年%m月%d日")
-            = image_tag column&.file_1&.to_s, class:"index-image"
+            = image_tag column&.file_1&.to_s, width:"100%"
             .column-title
               = link_to column.title, column_path(column.id), class:"store"
             br
@@ -24,5 +26,6 @@
                 column_path(column),
                 method: :delete,
                 data: { confirm: '本当に削除しますか？'}
-      br
+         hr.line
+            
 = paginate(@columns)
