@@ -27,6 +27,10 @@ class EstimatesController < ApplicationController
     EstimateMailer.send_email(@estimate).deliver # 送信者に通知
   end
 
+  def contract
+    @estimates = Estimate.where.not(assumed_number: nil)
+  end
+
   def create
     @estimate = Estimate.new(estimate_params)
     @estimate.save
@@ -108,7 +112,10 @@ class EstimatesController < ApplicationController
       :change_before, #交換前自販機
       :period, #設置希望時期
       :remarks, #要望
-      :word
+      :word, #社内情報
+      :percentage_i, #パーセンテージ
+      :percentage_other, #パーセンテージ
+      :assumed_number, #想定本数
     )
   end
 end

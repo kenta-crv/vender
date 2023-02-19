@@ -46,6 +46,7 @@ Rails.application.routes.draw do
       post :apply
     end
   end
+  get 'contract' => 'estimates#contract'
 
   # メッセージ
   resources :messages, only: [:create] do

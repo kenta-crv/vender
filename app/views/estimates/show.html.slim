@@ -105,6 +105,35 @@ br
            | 要望
          td
            = @estimate.remarks
+       -if admin_signed_in?
+        tr
+         td
+          strong.label.label-blue 任意
+         td.arrow_box
+          | 社内メモ
+         td
+          = @estimate.word
+        tr
+         td
+          strong.label.label-blue 任意
+         td.arrow_box
+          | 先方パーセンテージ
+         td
+          = @estimate.percentage_other
+        tr
+         td
+          strong.label.label-blue 任意
+         td.arrow_box
+          | 弊社パーセンテージ
+         td
+          = @estimate.percentage_i
+        tr
+         td
+          strong.label.label-blue 任意
+         td.arrow_box
+          | 想定本数
+         td
+          = @estimate.assumed_number
 .actions_container style="text-align: center; margin-bottom: 30px;"
   = link_to "編集する", edit_estimate_path(@estimate), class: "btn btn-danger"
   - if @estimate.blank?

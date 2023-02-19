@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_14_085323) do
+ActiveRecord::Schema.define(version: 2023_02_19_120050) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -154,6 +154,9 @@ ActiveRecord::Schema.define(version: 2023_01_14_085323) do
     t.string "vender"
     t.string "other"
     t.string "word"
+    t.string "percentage_i"
+    t.string "percentage_other"
+    t.string "assumed_number"
   end
 
   create_table "images", force: :cascade do |t|

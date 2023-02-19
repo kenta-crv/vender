@@ -16,6 +16,11 @@ class Estimate < ApplicationRecord
       end
     end
   end
+
+  def assumed_total
+    percentage_i.to_i * assumed_number.to_i
+  end
+
   def self.csv_attributes
     [
     "co", #会社名

@@ -11,6 +11,7 @@ add "/dydo" , changefreq: 'daily', priority: 0.8
 add "/itoen" , changefreq: 'daily', priority: 0.8
 add "/kirin" , changefreq: 'daily', priority: 0.8
 add "/otsuka" , changefreq: 'daily', priority: 0.8
+add "/suntory" , changefreq: 'daily', priority: 0.8
 
   add columns_path, :priority => 1.0, :changefreq => 'daily'
   Column.find_each do |column|

@@ -278,6 +278,35 @@ table.company
           | 要望
         td
           = f.text_area :remarks
+      -if admin_signed_in?
+       tr
+        td
+          strong.label.label-blue 任意
+        td.arrow_box
+          | 社内メモ
+        td
+          = f.text_area :word
+       tr
+        td
+          strong.label.label-blue 任意
+        td.arrow_box
+          | 先方パーセンテージ
+        td
+          = f.text_field :percentage_other
+       tr
+        td
+          strong.label.label-blue 任意
+        td.arrow_box
+          | 弊社パーセンテージ
+        td
+          = f.text_field :percentage_i
+       tr
+        td
+          strong.label.label-blue 任意
+        td.arrow_box
+          | 想定本数
+        td
+          = f.text_field :assumed_number
       tr
         td colspan="3"
           = f.submit "確認画面"

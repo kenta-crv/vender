@@ -1,0 +1,32 @@
+.row
+  br
+  br
+  table.company
+   tr
+     th 契約者名
+     th 取引者名
+     th パーセンテージ
+     th 想定本数
+     th 想定人数
+   - @estimates.each do |estimate|
+     td 
+      = estimate.co
+     td 
+      -if estimate.comment.cocacola == "契約"
+       | コカコーラ
+      -elsif estimate.comment.asahi == "契約"
+       | アサヒ
+      -elsif estimate.comment.伊藤園 == "契約"
+       | 伊藤園
+      -elsif estimate.comment.dydo == "契約"
+       | ダイドー
+      -elsif estimate.comment.yamakyu== "契約"
+       | 山久
+      -elsif estimate.comment.neos == "契約"
+       | ネオス
+     td  
+      = estimate.percentage_i 
+     td 
+      = estimate.assumed_number 
+     td 
+      = estimate.assumed_total
