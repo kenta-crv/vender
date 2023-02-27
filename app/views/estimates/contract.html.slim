@@ -5,10 +5,12 @@
    tr
      th 契約者名
      th 取引者名
+     th 販売価格
      th パーセンテージ
      th 想定本数
-     th 想定人数
+     th 合計
    - @estimates.each do |estimate|
+    tr
      td 
       = estimate.co
      td 
@@ -16,7 +18,7 @@
        | コカコーラ
       -elsif estimate.comment.asahi == "契約"
        | アサヒ
-      -elsif estimate.comment.伊藤園 == "契約"
+      -elsif estimate.comment.itoen == "契約"
        | 伊藤園
       -elsif estimate.comment.dydo == "契約"
        | ダイドー
@@ -25,8 +27,18 @@
       -elsif estimate.comment.neos == "契約"
        | ネオス
      td  
+      = estimate.sales_price
+     td  
       = estimate.percentage_i 
      td 
       = estimate.assumed_number 
-     td 
+     td.red
       = estimate.assumed_total
+   tr 
+     td
+     td
+     td
+     td
+     td
+     td.red.bold
+       = @estimete.assumed_total

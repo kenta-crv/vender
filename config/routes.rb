@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get 'kirin' => 'top#kirin'
 
   get 'question' => 'top#question'
+  get 'business' => 'top#business'
   get 'corporation' => 'top#corporation'  #会社概要
   get 'privacy' => 'top#privacy' #プライバシーポリシー
 

@@ -29,6 +29,7 @@ class EstimatesController < ApplicationController
 
   def contract
     @estimates = Estimate.where.not(assumed_number: nil)
+    @estimates.assumed_total = (@estimates.sales_price.to_i * @estimates.percentage_i.to_i * @estimates.assumed_number.to_i)
   end
 
   def create
@@ -116,7 +117,8 @@ class EstimatesController < ApplicationController
       :percentage_i, #パーセンテージ
       :percentage_other, #パーセンテージ
       :assumed_number, #想定本数
-      :sales_price #販売価格
+      :sales_price, #販売価格
+      :assumed_total
     )
   end
 end

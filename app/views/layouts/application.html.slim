@@ -17,7 +17,44 @@ html
                   span
                   span menu
       .row.navi
-        .col-xs-12.center.hidden-xs
+        .col-xs-12.center
+          /ul#dropmenu
+           li
+             = link_to  'トップ', '/' , class: "col-md"
+           li
+             = link_to  '事業内容',"/business" , :class=>"col-md"
+           li
+             = link_to "料金案内","/price",class:"white"
+           li
+             = link_to "自販機設置の流れ","/flow",class:"white"
+           li
+             = link_to  'コラム一覧', '/columns' , :class=>"col-md"
+           li
+             = link_to  '会社概要', '/corporation' , :class=>"col-md"
+           li
+             = link_to  'プライバシーポリシー', '/privacy' , :class=>"col-md"
+           li
+            = link_to  '問い合わせ', '/contact' , :class=>"col-md"
+
+
+        nav.globalMenuSp
+          ul
+           li
+             = link_to  'トップ', '/' , class: "col-md"
+           li
+             = link_to  '事業内容',"/business" , :class=>"col-md"
+           li
+             = link_to "料金案内","/price", :class=>"col-md"
+           li
+             = link_to "自販機設置の流れ","/flow", :class=>"col-md"
+           li
+             = link_to  'コラム一覧', '/columns' , :class=>"col-md"
+           li
+             = link_to  '会社概要', '/corporation' , :class=>"col-md"
+           li
+             = link_to  'プライバシーポリシー', '/privacy' , :class=>"col-md"
+           li
+            = link_to  '問い合わせ', '/contact' , :class=>"col-md"
 
 
 

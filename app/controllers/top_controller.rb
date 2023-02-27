@@ -2,10 +2,19 @@ class TopController < ApplicationController
   def index
   end
 
-  def faq
+  def business
   end
 
+  def price
+  end
+
+  def flow
+  end
+  
   def corporation
+  end
+
+  def privacy
   end
 
   def question

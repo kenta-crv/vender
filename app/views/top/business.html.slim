@@ -1,0 +1,79 @@
+- set_meta_tags  title: '合同会社ファクトル 事業一覧ページ'
+- set_meta_tags  description: '合同会社ファクトルの事業一覧を記載しております。'
+br
+.tops-wrapper
+   h1.headline 事業内容
+.row
+ .business-wrapper
+   .col-sm-8
+    =link_to '/' do
+     h3 自動販売機総合代理店
+    p
+      | 自動販売機の新規設置・交換における総合代理店を行っております。日本全国での設置・交換を承っており、以下のメーカーのご案内が可能です。
+      br
+      br
+   .col-sm-4
+    =link_to '/' do
+     = image_tag "zihanki.jpg", width:"250px", class:"post-space"
+br
+hr
+br
+.row
+ .business-wrapper
+   .col-sm-8
+    =link_to '/' do
+     h3 一括見積サイトの運営
+    p
+      | 広告運用・マーケティングを得意としている当社では、一括見積サイトの運営を行っております。自動販売機事業については『自販機ねっと』にて一括で見積比較を取得いただけます。
+      br
+      br
+   .col-sm-4
+    =link_to '/' do
+     = image_tag "rogo.webp", width:"250px", class:"post-space"
+br
+hr
+br
+h2.headline 取引メーカー一覧
+.top-wrapper
+ br
+ .row.center
+   .col-sm-4
+     h3.head 
+      = link_to "アサヒ自販機", "/asahi", class:"white"
+     = link_to "/asahi" do
+      =image_tag 'asahi-v.webp', width: '150px', class: 'center', alt:"アサヒ自動販売機"
+     br
+   .col-sm-4
+     h3.head 
+      = link_to "キリン自販機", "/kirin", class:"white"
+     = link_to "/kirin" do
+      =image_tag 'kirin-v.webp', width: '150px', class: 'center', alt:"キリン自動販売機"
+     br
+   .col-sm-4
+     h3.head 
+      = link_to "コカコーラ自販機", "/cocacola", class:"white"
+     = link_to "/cocacola" do
+      =image_tag 'cocacola-v.webp', width: '150px', class: 'center', alt:"コカコーラ自動販売機"
+     br
+ .row.center
+   .col-sm-4
+     h3.head 
+      = link_to "大塚自販機", "/otsuka", class:"white"
+     = link_to "/otsuka" do
+      =image_tag 'otsuka-v.webp', width: '150px', class: 'center', alt:"大塚自動販売機"
+     br
+   .col-sm-4
+     h3.head 
+      = link_to "ダイドー自販機", "/dydo", class:"white"
+     = link_to "/dydo" do
+      =image_tag 'dydo-v.webp', width: '150px', class: 'center', alt:"ダイドードリンコ自動販売機"
+     br
+   .col-sm-4
+     h3.head  
+      = link_to "伊藤園自販機", "/itoen", class:"white"
+     = link_to "/itoen" do
+      =image_tag 'itoen-v.webp', width: '150px', class: 'center', alt:"伊藤園自動販売機"
+     br
+
+br
+br
