@@ -28,7 +28,7 @@ class EstimatesController < ApplicationController
   end
 
   def contract
-    @estimates = Estimate.where.not(assumed_number: nil)
+    @estimates = Estimate.where.not(sales_price: nil)
     #@estimates.assumed_total = (@estimates.sales_price.to_i * @estimates.percentage_i.to_i * @estimates.assumed_number.to_i)
   end
 
