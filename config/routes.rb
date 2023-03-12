@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get 'co' => 'top#co'
   get 'question' => 'top#question'
 
+  get 'lp' => 'top#lp'
+
   get 'cocacola' => 'top#cocacola'
   get 'suntory' => 'top#suntory'
   get 'asahi' => 'top#asahi'

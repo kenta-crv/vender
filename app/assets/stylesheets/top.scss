@@ -262,7 +262,7 @@ main {
          }
     .body-base {
       padding:20px 30px 0;
-      line-height:1.7vem;
+      line-height:2.5;
       text-align:left;
       font-size:16px;
     }
@@ -296,8 +296,11 @@ main {
     background: #f1f8ff; /*背景色*/
     padding: 0.5em 0.5em 0.5em 2em;
     margin-left:40px;
-  
+    @media screen and (max-width: 480px) {
+      margin-left:0px;
+    }
     ul li {
+      width:90%;
       line-height: 2.5;
       padding: 0.5em 0;
     }
