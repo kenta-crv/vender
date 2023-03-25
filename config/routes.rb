@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  #販売機企業用アカウント
+  devise_for :companies, controllers: {
+    registrations: 'companies/registrations',
+    sessions: 'companies/sessions'
+  }
+  resources :companies, only: [:show]
+
+  #自販機オーナーアカウント
   devise_for :clients, controllers: {
     registrations: 'clients/registrations',
     sessions: 'clients/sessions'
@@ -44,7 +52,9 @@ Rails.application.routes.draw do
     end
     member do
       get :apply
+      post :send_mail_cfsl
       post :send_mail
+      get :select_sent
       get :confirm_point
       post :apply
     end

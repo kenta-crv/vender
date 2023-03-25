@@ -1,0 +1,33 @@
+.labeler{
+    display: flex;
+    flex-flow: column;
+    width: 700px;
+    margin: auto;
+    color: #333; /* 文字色を黒に */
+    font-size: 16px; /* 文字サイズを14pxに */
+    border-radius: 20px; /* 角丸を入れて、左右が丸いボタンにする */
+    width: 250px;
+    text-align: left;
+}
+
+input[type="checkbox"] {
+    display: inline; /* デフォルトのinputは非表示にする */
+    width: 30px;
+}
+
+input[type="checkbox"]:checked + label{
+    color: #FFF; /* 文字色を白に */
+    background: rgb(0, 157, 255); 
+    border: 1px solid rgb(0, 187, 255); 
+}
+
+label:hover{
+    background: rgb(147, 197, 255); /* 背景色を薄い赤に */
+    border: 1px solid rgb(0, 238, 255); /* 淵の線を薄い赤に */
+    cursor: pointer;
+    color: #333;
+}
+
+.submit{
+    margin-top: 40px;
+}

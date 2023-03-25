@@ -43,9 +43,9 @@
      td = estimate.comment ? estimate.comment.neos : nil
      td = estimate.comment ? estimate.comment.body : nil
      - if estimate.send_mail_flag == true
-      td style="color: green" class="btn btn-success" 送信済
+      td = link_to "送信済", "#selectingModal" , style: "color: fff" ,class: "btn btn-success"
      - else
-      td style="color: red" class="btn btn-danger" 未送信
+      td = link_to "未送信", "/estimates/#{estimate.id}/select_sent" , style: "color: fff" ,class: "btn btn-danger unsent"
   br
     hr.line
     br
@@ -94,3 +94,31 @@ table.company
 
         td.center
           = link_to 'エクスポート', estimates_path(format: :csv), class: 'btn btn-primary'
+
+
+javascript: 
+  function modalfadein(coname){
+    $(function() {
+     $('.unsent').click(function() {
+        $('#selectingModal').fadeIn()
+        console.log(coname)
+        $('.dialogs').text('送信する企業を選択('+coname+')')
+     })
+    })
+  }
+
+  function modalout(){
+    $(function() {
+     $('.close').click(function() {
+        $('#selectingModal').fadeOut()
+     })
+    });
+  }
+
+  function sent_mail(){
+    console.log('clicked')
+
+    var colors = []
+
+    //すべてのチェック済みvalue値を取得する
+  }

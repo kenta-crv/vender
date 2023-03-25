@@ -16,7 +16,7 @@ class EstimateMailer < ActionMailer::Base
     end
   end
 
-  def client_email(estimate)
+  def client_email(estimate,customer_id)
     @estimate = estimate
     mail bcc: Company.all.map{|company| company.mail}
     mail(subject: '自販機お見積もり依頼') do |format|
@@ -24,4 +24,11 @@ class EstimateMailer < ActionMailer::Base
     end
   end
 
+  def client_email_select(estimate,customer_email)
+    @estimate = estimate
+    mail bcc: customer_email
+    mail(subject: '自販機お見積もり依頼') do |format|
+      format.text
+    end
+  end
 end
