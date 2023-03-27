@@ -109,7 +109,7 @@ class EstimatesController < ApplicationController
         @comment.update(body:"依頼中")
       end
     end
-    #EstimateMailer.client_email(@estimate,customer_email).deliver
+    EstimateMailer.client_email(@estimate,customer_email).deliver
     redirect_to "/estimates", alert: "#{@estimate.co}が指定した企業へ送信しました。"
   end
 
