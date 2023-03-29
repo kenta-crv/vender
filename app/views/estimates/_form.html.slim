@@ -15,7 +15,7 @@ table.company
         td.arrow_box
           | 会社名
         td
-          = f.text_field :co
+          = f.text_field :co, placeholder:"※個人の場合は担当者名"
       tr
         td
           strong.label 必須
@@ -29,14 +29,7 @@ table.company
         td.arrow_box
           | 電話番号
         td
-          = f.text_field :tel
-      tr
-        td
-          strong.label 必須
-        td.arrow_box
-          | 郵便番号
-        td
-          = f.text_field :postnumber
+          = f.telephone_field :tel
       tr
         td
           strong.label 必須
@@ -51,6 +44,13 @@ table.company
           | メールアドレス
         td
           = f.email_field :email
+      tr
+        td
+          strong.label.label-blue 任意
+        td.arrow_box
+          | 設置先業種
+        td
+          = f.text_field :industry
       - if request.referer&.include?("/cocacola")
        tr
          td
@@ -224,19 +224,20 @@ table.company
           strong.label.label-blue 任意
         td.arrow_box
           | 設置箇所
-          br
-          |（※ex.屋内・駐車場等）
         td
-          = f.text_field :installation
+          = f.select(:installation,[\
+          ["屋内（調査入室可能）","屋内（調査入室可能）"],
+          ["屋内（入室前連絡希望）","屋内（入室前連絡希望）"],
+          ["屋外（設置予定場所に電源あり）","屋外（設置予定場所に電源なし）"],
+          ["未定","未定"],
+          ],include_blank: "選択してください")
       tr
         td
           strong.label.label-blue 任意
         td.arrow_box
           | 想定される利用人数
-          br
-          |(※屋内の場合)
         td
-         = f.text_field :people
+         = f.text_field :people, placeholder:"※事務所の場合はスタッフ総数・店舗の場合は平均来店人数"
       tr
         td
           strong.label 必須
@@ -244,20 +245,40 @@ table.company
           | 自販機について
         td
           = f.select(:chenge,[\
-            ["選択してください","選択してください"],\
             ["新規設置","新規設置"],\
-            ["交換","交換"],\
+            ["交換（メーカーによる撤去依頼あり）","交換（メーカーによる撤去依頼あり）"],\
+            ["交換（上記以外の理由による交換）","交換（上記以外の理由による交換）"],\
             ["追加","追加"],\
-           ])
+           ],include_blank: "選択してください")
       tr
         td
-          strong.label.label-blue 必須
+          strong.label.label-blue 任意
         td.arrow_box
-          | 交換前自販機会社
-          br
-          |（※交換・追加の場合）
+          | （交換・追加）設置中のメーカー
         td
           = f.text_field :change_before
+      tr
+        td
+          strong.label.label-blue 任意
+        td.arrow_box
+          | （交換・追加）売上本数の明細を頂くことは可能ですか？
+        td
+          = f.select(:chagnge_remarks,[\
+            ["すぐに準備可能","すぐに準備可能"],\
+            ["メーカーに取り寄せ依頼可能","メーカーに取り寄せ依頼可能"],\
+            ["取り寄せ不可","取り寄せ不可"],\
+           ],include_blank: "選択してください")
+      tr
+        td
+          strong.label.label-blue 任意
+        td.arrow_box
+          | 設置目的
+        td
+          = f.select(:aim,[\
+            ["副収入目的","副収入目的"],\
+            ["福利厚生や周辺の方のサービス","福利厚生や周辺の方のサービス"],\
+            ["どちらも希望","どちらも希望"],\
+           ],include_blank: "選択してください")
       tr
         td
           strong.label 必須
@@ -265,19 +286,17 @@ table.company
           | 設置希望時期
         td
           = f.select(:period,[\
-            ["選択してください","選択してください"],\
             ["すぐにでも","すぐにでも"],\
             ["１ヶ月以内","３ヶ月以内"],\
             ["３ヶ月以内","３ヶ月以内"],\
-            ["その他","その他"],\
-           ])
+           ],include_blank: "選択してください")
       tr
         td
           strong.label.label-blue 任意
         td.arrow_box
-          | 要望
+          | 要望・備考
         td
-          = f.text_area :remarks
+          = f.text_area :remarks, placeholder:"※周辺に高校がある・駅が近い等、周辺状況等明記・その他要望等"
       -if admin_signed_in?
        tr
         td

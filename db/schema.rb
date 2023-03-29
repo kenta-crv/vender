@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_23_083656) do
+ActiveRecord::Schema.define(version: 2023_03_28_074147) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -159,6 +159,10 @@ ActiveRecord::Schema.define(version: 2023_02_23_083656) do
     t.string "assumed_number"
     t.string "sales_price"
     t.string "assumed_total"
+    t.string "aim"
+    t.string "attracting"
+    t.string "chagnge_remarks"
+    t.string "industry"
   end
 
   create_table "images", force: :cascade do |t|

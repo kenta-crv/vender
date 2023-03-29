@@ -118,7 +118,11 @@ class EstimatesController < ApplicationController
       :percentage_other, #パーセンテージ
       :assumed_number, #想定本数
       :sales_price, #販売価格
-      :assumed_total
+      :assumed_total,
+      :aim, #目的
+      :attracting, #集客
+      :chagnge_remarks, #交換詳細
+      :industry, #業種
     )
   end
 end

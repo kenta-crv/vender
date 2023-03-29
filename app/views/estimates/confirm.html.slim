@@ -37,14 +37,6 @@
         td
           strong.label 必須
         td.arrow_box
-          | 郵便番号
-        td
-          = f.hidden_field :postnumber
-          = @estimate.postnumber
-      tr
-        td
-          strong.label 必須
-        td.arrow_box
           | 設置先住所
         td
           = f.hidden_field :address
@@ -57,6 +49,14 @@
         td
           = f.hidden_field :email
           = @estimate.email
+      tr
+        td
+          strong.label 必須
+        td.arrow_box
+          | 設置先業種
+        td
+          = f.hidden_field :industry
+          = @estimate.industry
       tr
         td
           strong.label.label-blue 任意
@@ -103,10 +103,26 @@
         td
           strong.label.label-blue 任意
         td.arrow_box
-          | 交換前自販機会社
+          | （交換・追加）設置中のメーカー
         td
           = f.hidden_field :change_before
           = @estimate.change_before
+      tr
+        td
+          strong.label.label-blue 任意
+        td.arrow_box
+          | （交換・追加）売上本数の明細を頂くことは可能ですか？
+        td
+          = f.hidden_field :chagnge_remarks
+          = @estimate.chagnge_remarks
+      tr
+        td
+          strong.label.label-blue 任意
+        td.arrow_box
+          | 設置目的
+        td
+          = f.hidden_field :aim
+          = @estimate.aim
       tr
         td
           strong.label 必須
@@ -119,7 +135,7 @@
         td
           strong.label.label-blue 任意
         td.arrow_box
-          | 要望
+          | 要望・備考
         td
           = f.hidden_field :remarks
           = @estimate.remarks
