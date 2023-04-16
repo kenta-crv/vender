@@ -1,24 +1,7 @@
 doctype html
 html
   head
-      meta[charset="uft-8"]
-      meta[http-equiv="X^UA-Compatible" content="IE=edge"]
-      meta[name="viewport" content="width=device-width, initial-scale=1,0, initial-scale=1, shrink-to-fit=no"]
-      = csrf_meta_tags
-      = stylesheet_link_tag 'dydo', media: 'all', 'data-turbolinks-track': 'reload'
-      = stylesheet_link_tag rel="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-      script[src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"]
-
-      = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-      = display_meta_tags(default_meta_tags)
-      = favicon_link_tag('favicon.ico')
-      javascript:
-        | fbq('track', 'ViewContent');
-      script[async src="https://www.googletagmanager.com/gtag/js?id=UA-180301125-11"]
-      script
-        |  window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-180301125-11');
-
-.colacola
+   = render template: 'layouts/_head.html.slim'
   header
       .row
         .col-xs-3

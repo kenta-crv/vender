@@ -293,6 +293,7 @@ GEM
       nokogiri (~> 1.8)
 
 PLATFORMS
+  ruby
   x86_64-darwin-19
 
 DEPENDENCIES
@@ -336,7 +337,7 @@ DEPENDENCIES
   wysiwyg-rails
 
 RUBY VERSION
-   ruby 2.6.1p33
+   ruby 2.7.7p221
 
 BUNDLED WITH
    2.3.6

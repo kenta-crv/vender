@@ -226,9 +226,9 @@ table.company
           | 設置箇所
         td
           = f.select(:installation,[\
-          ["屋内（調査入室可能）","屋内（調査入室可能）"],
-          ["屋内（入室前連絡希望）","屋内（入室前連絡希望）"],
-          ["屋外（設置予定場所に電源あり）","屋外（設置予定場所に電源なし）"],
+          ["屋内","屋内"],
+          ["屋外","屋外"],
+          ["屋外","屋外"],
           ["未定","未定"],
           ],include_blank: "選択してください")
       tr
@@ -246,18 +246,17 @@ table.company
         td
           = f.select(:chenge,[\
             ["新規設置","新規設置"],\
-            ["交換（メーカーによる撤去依頼あり）","交換（メーカーによる撤去依頼あり）"],\
-            ["交換（上記以外の理由による交換）","交換（上記以外の理由による交換）"],\
+            ["交換","交換"],\
             ["追加","追加"],\
            ],include_blank: "選択してください")
       tr
         td
           strong.label.label-blue 任意
         td.arrow_box
-          | （交換・追加）設置中のメーカー
+          | （交換）設置中のメーカー
         td
           = f.text_field :change_before
-      tr
+      /tr
         td
           strong.label.label-blue 任意
         td.arrow_box

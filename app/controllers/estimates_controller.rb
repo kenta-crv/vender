@@ -10,6 +10,7 @@ class EstimatesController < ApplicationController
     #    send_data @estimates.generate_csv, filename: "estimates-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"
     #  end
     #end
+    @company = Company.all
   end
 
   def new
@@ -29,7 +30,11 @@ class EstimatesController < ApplicationController
 
   def contract
     @estimates = Estimate.where.not(sales_price: nil)
-    #@estimates.assumed_total = (@estimates.sales_price.to_i * @estimates.percentage_i.to_i * @estimates.assumed_number.to_i)
+    sum = 0
+    @estimates.each do |estimate|
+      sum += (estimate.sales_price.to_i * estimate.percentage_i.to_i * estimate.assumed_number.to_i)
+    end
+    @estimates.assumed_total = sum
   end
 
   def create
@@ -46,6 +51,11 @@ class EstimatesController < ApplicationController
 
   def edit
     @estimate = Estimate.find(params[:id])
+  end
+
+  def select_sent
+    @company = Company.all
+    render "selectcomp"
   end
 
   def destroy
@@ -68,6 +78,39 @@ class EstimatesController < ApplicationController
     @estimate.update(send_mail_flag: true)
     EstimateMailer.client_email(@estimate).deliver # 全企業に送信
     redirect_to estimate_path(@estimate), alert: "送信しました"
+  end
+
+  def send_mail_cfsl
+    @estimate = Estimate.find(params[:id])
+    @comment = Comment.where(estimate_id:params[:id]).first
+    customer_email = []
+    customer_target = []
+    params[:companies].each do |prms|
+      prms[1].each do |prms|
+        if prms != ""
+          Rails.logger.info("set by #{prms}")
+          comp = Company.find(prms)
+          customer_email << comp.mail
+          customer_target << comp.company
+        end
+      end
+    end
+    Rails.logger.info("set by #{customer_target}")
+    customer_target.each do |target|
+      if target == "ASAHI"
+        @comment.update(asahi:"依頼中")
+      elsif target == "コカ・コーラ"
+        @comment.update(cocacola:"依頼中")
+      elsif target == "伊藤園"
+        @comment.update(itoen:"依頼中")
+      elsif target == "ダイドードリンコ"
+        @comment.update(dydo:"依頼中")
+      else
+        @comment.update(body:"依頼中")
+      end
+    end
+    EstimateMailer.client_email(@estimate,customer_email).deliver
+    redirect_to "/estimates", alert: "#{@estimate.co}が指定した企業へ送信しました。"
   end
 
   def apply
