@@ -8,11 +8,6 @@
       = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
       = display_meta_tags(default_meta_tags)
       = favicon_link_tag('favicon.ico')
-      javascript:
-        | fbq('track', 'ViewContent');
-      script[async src="https://www.googletagmanager.com/gtag/js?id=UA-180301125-11"]
-      script
-        |  window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-180301125-11');
       style 
        | :root {
        |   --main-color: #{main_color};

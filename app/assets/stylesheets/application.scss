@@ -600,10 +600,8 @@ table.company {
    margin: 0 auto;
    border-collapse: separate;
    border-spacing: 0px 15px;
-   font-size: 1.0vw;
-
+   font-size: 1.3vw;
    th, td { padding: 10px; }
-
    th {
       background: var(--main-color);
       vertical-align: middle;
@@ -612,7 +610,6 @@ table.company {
       position: relative;
       color: #fff;
       font-weight: bold;
-
       :after {
          left: 100%;
          top: 50%;
@@ -632,11 +629,60 @@ table.company {
    td {
       background: #f4f4f4;
 
+      
       }
-      .lp-small {
-        font-size:12px;
-      }
+      
 }
+
+.input-container {
+  word-wrap: break-word;
+}
+
+.company-wrapper {
+  overflow-x: auto;
+}
+
+.company {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.label-cell {
+  width: 10%;
+}
+
+.arrow-box-cell {
+  width: 20%;
+}
+
+.responsive-cell {
+  width: 70%;
+}
+
+@media screen and (max-width: 767px) {
+  .label-cell,
+  .arrow-box-cell {
+    display: inline-block;
+    width: 50%;
+    box-sizing: border-box;
+  }
+
+  .label-cell {
+    background-color: #f0f0f0 !important; /* 任意の背景色に変更 */
+  }
+
+  .responsive-cell {
+    display: block;
+    width: 100%;
+    background-color: #e0e0e0 !important; /* 任意の背景色に変更 */
+  }
+
+  .input-container {
+    display: block;
+    width: 100%;
+  }
+}
+
 
 
 /* firefox */
