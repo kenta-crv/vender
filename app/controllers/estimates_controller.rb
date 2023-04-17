@@ -82,7 +82,7 @@ class EstimatesController < ApplicationController
 
   def send_mail_cfsl
     @estimate = Estimate.find(params[:id])
-    @comment = Comment.where(estimate_id:params[:id]).first
+    @comment = Comment.find_or_initialize_by(estimate_id: params[:id])
     customer_email = []
     customer_target = []
     params[:companies].each do |prms|
@@ -109,7 +109,11 @@ class EstimatesController < ApplicationController
         @comment.update(body:"依頼中")
       end
     end
-    EstimateMailer.client_email(@estimate,customer_email).deliver
+    select_companies = []
+    customer_target.each do |target|
+      select_companies << Company.find_by(company: target)
+    end
+    EstimateMailer.client_email_select(@estimate, select_companies).deliver
     redirect_to "/estimates", alert: "#{@estimate.co}が指定した企業へ送信しました。"
   end
 
