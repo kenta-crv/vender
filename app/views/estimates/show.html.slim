@@ -33,13 +33,6 @@ br
          td
            strong.label 必須
          td.arrow_box
-           | 郵便番号
-         td
-           = @estimate.postnumber
-       tr
-         td
-           strong.label 必須
-         td.arrow_box
            | 設置先住所
          td
            = @estimate.address
@@ -52,11 +45,25 @@ br
            = @estimate.email
        tr
          td
+           strong.label 必須
+         td.arrow_box
+           | 設置先業種
+         td
+           = @estimate.industry
+       tr
+         td
            strong.label 任意
          td.arrow_box
            | 希望ベンダー
          td
            = @estimate.vender
+       tr
+         td
+           strong.label 任意
+         td.arrow_box
+           | その他の自販機見積もりを希望しますか？
+         td
+           = @estimate.other
        tr
          td
            strong.label.label-blue 任意
@@ -86,11 +93,20 @@ br
          td
            strong.label.label-blue 必須
          td.arrow_box
-           | 交換前自販機会社
+           | （交換）設置中のメーカー
            br
            |（※交換・追加の場合）
          td
            = @estimate.change_before
+       tr
+         td
+           strong.label.label-blue 必須
+         td.arrow_box
+           | 設置目的
+           br
+           |（※交換・追加の場合）
+         td
+           = @estimate.aim
        tr
          td
            strong.label 必須
@@ -102,7 +118,7 @@ br
          td
            strong.label.label-blue 任意
          td.arrow_box
-           | 要望
+           | 要望・備考
          td
            = @estimate.remarks
        -if admin_signed_in?

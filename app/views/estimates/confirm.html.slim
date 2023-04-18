@@ -4,141 +4,143 @@
   .tops-wrapper
     h2.headline
       | お見積もり確認フォーム
-    table.company
+  .company-wrapper
+    table.company.responsive-table
       colgroup
-        col width="10%"
-        col width="20%"
-        col width="70%"
+        col.col-1
+        col.col-2
+        col.col-3
       tr
-        td
+        td.label-cell
           strong.label 必須
-        td.arrow_box
+        td.arrow-box-cell
           | 会社名
-        td
+        td.responsive-cell
           = f.hidden_field :co
           = @estimate.co
       tr
-        td
+        td.label-cell
           strong.label 必須
-        td.arrow_box
+        td.arrow-box-cell
           | 担当者名
-        td
+        td.responsive-cell
          = f.hidden_field :name
          = @estimate.name
       tr
-        td
+        td.label-cell
           strong.label 必須
-        td.arrow_box
+        td.arrow-box-cell
           | 電話番号
-        td
+        td.responsive-cell
           = f.hidden_field :tel
           = @estimate.tel
       tr
-        td
+        td.label-cell
           strong.label 必須
-        td.arrow_box
+        td.arrow-box-cell
           | 設置先住所
-        td
+        td.responsive-cell
           = f.hidden_field :address
           = @estimate.address
       tr
-        td
+        td.label-cell
           strong.label 必須
-        td.arrow_box
+        td.arrow-box-cell
           | メールアドレス
-        td
+        td.responsive-cell
           = f.hidden_field :email
           = @estimate.email
       tr
-        td
+        td.label-cell
           strong.label 必須
-        td.arrow_box
+        td.arrow-box-cell
           | 設置先業種
-        td
+        td.responsive-cell
           = f.hidden_field :industry
           = @estimate.industry
       tr
-        td
+        td.label-cell
           strong.label.label-blue 任意
-        td.arrow_box
+        td.arrow-box-cell
           | 希望自販機
-        td
+        td.responsive-cell
           = f.hidden_field :vender
           = @estimate.vender
       tr
-        td
+        td.label-cell
           strong.label 必須
-        td.arrow_box
+        td.arrow-box-cell
           | その他の自販機見積もりを希望しますか？
           br
           |
-        td
+        td.responsive-cell
          = f.hidden_field :other
          = @estimate.other
       tr
-        td
+        td.label-cell
           strong.label.label-blue 任意
-        td.arrow_box
+        td.arrow-box-cell
           | 設置箇所
-        td
+        td.responsive-cell
           = f.hidden_field :installation
           = @estimate.installation
       tr
-        td
+        td.label-cell
           strong.label.label-blue 任意
-        td.arrow_box
+        td.arrow-box-cell
           | 想定される利用人数
-        td
+        td.responsive-cell
           = f.hidden_field :people
           = @estimate.people
       tr
-        td
+        td.label-cell
           strong.label 必須
-        td.arrow_box
+        td.arrow-box-cell
           | 自販機について
-        td
+        td.responsive-cell
           = f.hidden_field :chenge
           = @estimate.chenge
       tr
-        td
+        td.label-cell
           strong.label.label-blue 任意
-        td.arrow_box
+        td.arrow-box-cell
           | （交換・追加）設置中のメーカー
-        td
+        td.responsive-cell
           = f.hidden_field :change_before
           = @estimate.change_before
       /tr
         td
           strong.label.label-blue 任意
-        td.arrow_box
+        td.arrow-box-cell
           | （交換・追加）売上本数の明細を頂くことは可能ですか？
         td
           = f.hidden_field :chagnge_remarks
           = @estimate.chagnge_remarks
       tr
-        td
+        td.label-cell
           strong.label.label-blue 任意
-        td.arrow_box
+        td.arrow-box-cell
           | 設置目的
-        td
+        td.responsive-cell
           = f.hidden_field :aim
           = @estimate.aim
       tr
-        td
+        td.label-cell
           strong.label 必須
-        td.arrow_box
+        td.arrow-box-cell
           | 設置希望時期
-        td
+        td.responsive-cell
           = f.hidden_field :period
           = @estimate.period
       tr
-        td
+        td.label-cell
           strong.label.label-blue 任意
-        td.arrow_box
+        td.arrow-box-cell
           | 要望・備考
-        td
+        td.responsive-cell
           = f.hidden_field :remarks
           = @estimate.remarks
       tr
         td colspan="3"
-          = f.submit "送信"
+         .center
+          = f.submit "送信", class: "btn btn-primary"

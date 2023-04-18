@@ -250,7 +250,6 @@
           = f.select(:installation,[\
           ["屋内","屋内"],
           ["屋外","屋外"],
-          ["屋外","屋外"],
           ["未定","未定"],
           ],include_blank: "選択してください")
       tr
@@ -367,4 +366,5 @@
           = f.text_field :assumed_number
       tr
         td colspan="3"
-          = f.submit "確認画面"
+         .center
+          = f.submit "確認画面", class: "btn btn-primary"
