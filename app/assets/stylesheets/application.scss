@@ -190,6 +190,12 @@ main {
        font-size:4.0rem;
        @media screen and (max-width:479px ){fint-size:1.8rem;}
        }
+   .contents {
+    text-align:center;
+    font-size:26px;
+    font-weight:bold;
+    margin-top:20px;
+   }
 
    h2 {
        color:black;
@@ -268,12 +274,14 @@ main {
        text-align:left;
          }
     .body-base {
-      padding:20px 30px 0;
+      padding:0px 30px;
       line-height:2.5;
       text-align:left;
       font-size:16px;
     }
-
+    .inquiry {
+  
+    }
  }
 
  .put {/*親div*/
@@ -364,6 +372,10 @@ main {
    padding-bottom:50px;
    margin-top:-22px;
 }
+@media (max-width: 768px) {
+  .back-image-top{margin-top:0px;}
+}
+
 .back-image-base {background-image: url('base3.webp');}
 .back-image-asahi {background-image: url('asahi.webp');}
 .back-image-cocacola {background-image: url('cocacola.webp');}
@@ -646,6 +658,13 @@ table.company {
    font-size:21px;
    box-sizing: border-box;
  }
+
+ .company-cell{
+  background-color:var(--main-color);
+  display: inline-block;
+  font-size:21px;
+  width:100%;
+}
 
  .label-cell {
   font-size:21px;
@@ -1609,6 +1628,15 @@ footer {
    .height {
      margin-top:10px;
    }
+     .maker {
+    font-size:21px;
+    color:var(--main-color);
+    font-weight:bold;
+  }
+  .link {
+    font-size:18px;
+    color:var(--main-color);
+  }
 }
 
 .business-wrapper {

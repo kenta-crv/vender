@@ -8,6 +8,8 @@
    .col-sm-4= link_to "自販機記事一覧に戻る", columns_path, class:"btn btn-primary"
    .col-sm-4
    .col-sm-4
+  br
+  br
   h1.headline-first.center
        = @column.title
   br
@@ -20,7 +22,7 @@
       = @column.display_content_1.html_safe
 
   br
-  h2.center 目次
+  .contents 目次
   br
 .main-left
  br
@@ -85,208 +87,284 @@
 br
 br
 #review-detail
-
+ - if @column.display_heading_2.present? || @column.file_2? || @column.display_content_2.present?
   .headline-first.center#display_heading_2
-       = @column.display_heading_2.html_safe
-  br
+    - if @column.display_heading_2.present?
+      = @column.display_heading_2.html_safe
+  - if @column.file_2?
+    br
     .center
-     - if @column.file_2?
       = image_tag @column.file_2.url, class:"column-image", alt: @column.title
-  .body-base
+  - if @column.display_content_2.present?
+    .body-base
       = @column.display_content_2.html_safe
+ - else
+  - # No .body-base class applied
 
-
+ - if @column.display_heading_3.present? || @column.file_3? || @column.display_content_3.present?
   .headline-first.center#display_heading_3
-       = @column.display_heading_3.html_safe
-  br
+    - if @column.display_heading_3.present?
+      = @column.display_heading_3.html_safe
+  - if @column.file_3?
+    br
     .center
-     - if @column.file_3?
       = image_tag @column.file_3.url, class:"column-image", alt: @column.title
-  .body-base
+  - if @column.display_content_3.present?
+    .body-base
       = @column.display_content_3.html_safe
+ - else
+  - # No .body-base class applied
 
-
+ - if @column.display_heading_4.present? || @column.file_4? || @column.display_content_4.present?
   .headline-first.center#display_heading_4
-       = @column.display_heading_4.html_safe
-  br
+    - if @column.display_heading_4.present?
+      = @column.display_heading_4.html_safe
+  - if @column.file_4?
+    br
     .center
-     - if @column.file_4?
       = image_tag @column.file_4.url, class:"column-image", alt: @column.title
-  .body-base
+  - if @column.display_content_4.present?
+    .body-base
       = @column.display_content_4.html_safe
+ - else
+  - # No .body-base class applied
 
-
+ - if @column.display_heading_5.present? || @column.file_5? || @column.display_content_5.present?
   .headline-first.center#display_heading_5
-       = @column.display_heading_5.html_safe
-  br
+    - if @column.display_heading_5.present?
+      = @column.display_heading_5.html_safe
+  - if @column.file_5?
+    br
     .center
-     - if @column.file_5?
       = image_tag @column.file_5.url, class:"column-image", alt: @column.title
-  .body-base
+  - if @column.display_content_5.present?
+    .body-base
       = @column.display_content_5.html_safe
+ - else
+  - # No .body-base class applied  
 
-
+ - if @column.display_heading_6.present? || @column.file_6? || @column.display_content_6.present?
   .headline-first.center#display_heading_6
-       = @column.display_heading_6.html_safe
-  br
+    - if @column.display_heading_6.present?
+      = @column.display_heading_6.html_safe
+  - if @column.file_6?
+    br
     .center
-     - if @column.file_6?
       = image_tag @column.file_6.url, class:"column-image", alt: @column.title
-  .body-base
+  - if @column.display_content_6.present?
+    .body-base
       = @column.display_content_6.html_safe
+ - else
+  - # No .body-base class applied
 
-
+ - if @column.display_heading_7.present? || @column.file_7? || @column.display_content_7.present?
   .headline-first.center#display_heading_7
-       = @column.display_heading_7.html_safe
-  br
+    - if @column.display_heading_7.present?
+      = @column.display_heading_7.html_safe
+  - if @column.file_7?
+    br
     .center
-     - if @column.file_7?
       = image_tag @column.file_7.url, class:"column-image", alt: @column.title
-  .body-base
+  - if @column.display_content_7.present?
+    .body-base
       = @column.display_content_7.html_safe
+ - else
+  - # No .body-base class applied
 
-
+ - if @column.display_heading_8.present? || @column.file_8? || @column.display_content_8.present?
   .headline-first.center#display_heading_8
-       = @column.display_heading_8.html_safe
-  br
+    - if @column.display_heading_8.present?
+      = @column.display_heading_8.html_safe
+  - if @column.file_8?
+    br
     .center
-     - if @column.file_8?
       = image_tag @column.file_8.url, class:"column-image", alt: @column.title
-  .body-base
+  - if @column.display_content_8.present?
+    .body-base
       = @column.display_content_8.html_safe
+ - else
+  - # No .body-base class applied
 
-
+ - if @column.display_heading_9.present? || @column.file_9? || @column.display_content_9.present?
   .headline-first.center#display_heading_9
-       = @column.display_heading_9.html_safe
-  br
+    - if @column.display_heading_9.present?
+      = @column.display_heading_9.html_safe
+  - if @column.file_9?
+    br
     .center
-     - if @column.file_9?
       = image_tag @column.file_9.url, class:"column-image", alt: @column.title
-  .body-base
+  - if @column.display_content_9.present?
+    .body-base
       = @column.display_content_9.html_safe
+ - else
+  - # No .body-base class applied
 
-
+ - if @column.display_heading_10.present? || @column.file_10? || @column.display_content_10.present?
   .headline-first.center#display_heading_10
-       = @column.display_heading_10.html_safe
-  br
+    - if @column.display_heading_10.present?
+      = @column.display_heading_10.html_safe
+  - if @column.file_10?
+    br
     .center
-     - if @column.file_10?
       = image_tag @column.file_10.url, class:"column-image", alt: @column.title
-  .body-base
+  - if @column.display_content_10.present?
+    .body-base
       = @column.display_content_10.html_safe
+ - else
+  - # No .body-base class applied
 
-
+ - if @column.display_heading_11.present? || @column.file_11? || @column.display_content_11.present?
   .headline-first.center#display_heading_11
-       = @column.display_heading_11.html_safe
-  br
+    - if @column.display_heading_11.present?
+      = @column.display_heading_11.html_safe
+  - if @column.file_11?
+    br
     .center
-     - if @column.file_11?
       = image_tag @column.file_11.url, class:"column-image", alt: @column.title
-  .body-base
+  - if @column.display_content_11.present?
+    .body-base
       = @column.display_content_11.html_safe
+ - else
+  - # No .body-base class applied
 
-
+ - if @column.display_heading_12.present? || @column.file_12? || @column.display_content_12.present?
   .headline-first.center#display_heading_12
-       = @column.display_heading_12.html_safe
-  br
+    - if @column.display_heading_12.present?
+      = @column.display_heading_12.html_safe
+  - if @column.file_12?
+    br
     .center
-     - if @column.file_12?
       = image_tag @column.file_12.url, class:"column-image", alt: @column.title
-  .body-base
+  - if @column.display_content_12.present?
+    .body-base
       = @column.display_content_12.html_safe
+ - else
+  - # No .body-base class applied
 
-
+ - if @column.display_heading_13.present? || @column.file_13? || @column.display_content_13.present?
   .headline-first.center#display_heading_13
-       = @column.display_heading_13.html_safe
-  br
+    - if @column.display_heading_13.present?
+      = @column.display_heading_13.html_safe
+  - if @column.file_13?
+    br
     .center
-     - if @column.file_13?
       = image_tag @column.file_13.url, class:"column-image", alt: @column.title
-  .body-base
+  - if @column.display_content_13.present?
+    .body-base
       = @column.display_content_13.html_safe
+ - else
+  - # No .body-base class applied
 
-
+ - if @column.display_heading_14.present? || @column.file_14? || @column.display_content_14.present?
   .headline-first.center#display_heading_14
-       = @column.display_heading_14.html_safe
-  br
+    - if @column.display_heading_14.present?
+      = @column.display_heading_14.html_safe
+  - if @column.file_14?
+    br
     .center
-     - if @column.file_14?
       = image_tag @column.file_14.url, class:"column-image", alt: @column.title
-  .body-base
+  - if @column.display_content_14.present?
+    .body-base
       = @column.display_content_14.html_safe
+ - else
+  - # No .body-base class applied
 
-
+ - if @column.display_heading_15.present? || @column.file_15? || @column.display_content_15.present?
   .headline-first.center#display_heading_15
-       = @column.display_heading_15.html_safe
-  br
+    - if @column.display_heading_15.present?
+      = @column.display_heading_15.html_safe
+  - if @column.file_15?
+    br
     .center
-     - if @column.file_15?
       = image_tag @column.file_15.url, class:"column-image", alt: @column.title
-  .body-base
+  - if @column.display_content_15.present?
+    .body-base
       = @column.display_content_15.html_safe
+ - else
+  - # No .body-base class applied
 
-
+ - if @column.display_heading_16.present? || @column.file_16? || @column.display_content_16.present?
   .headline-first.center#display_heading_16
-       = @column.display_heading_16.html_safe
-  br
+    - if @column.display_heading_16.present?
+      = @column.display_heading_16.html_safe
+  - if @column.file_16?
+    br
     .center
-     - if @column.file_16?
       = image_tag @column.file_16.url, class:"column-image", alt: @column.title
-  .body-base
+  - if @column.display_content_16.present?
+    .body-base
       = @column.display_content_16.html_safe
+ - else
+  - # No .body-base class applied
 
-
+ - if @column.display_heading_17.present? || @column.file_17? || @column.display_content_17.present?
   .headline-first.center#display_heading_17
-       = @column.display_heading_17.html_safe
-  br
+    - if @column.display_heading_17.present?
+      = @column.display_heading_17.html_safe
+  - if @column.file_17?
+    br
     .center
-     - if @column.file_17?
       = image_tag @column.file_17.url, class:"column-image", alt: @column.title
-  .body-base
+  - if @column.display_content_17.present?
+    .body-base
       = @column.display_content_17.html_safe
+ - else
+  - # No .body-base class applied
 
-
+ - if @column.display_heading_18.present? || @column.file_18? || @column.display_content_18.present?
   .headline-first.center#display_heading_18
-       = @column.display_heading_18.html_safe
-  br
+    - if @column.display_heading_18.present?
+      = @column.display_heading_18.html_safe
+  - if @column.file_18?
+    br
     .center
-     - if @column.file_18?
       = image_tag @column.file_18.url, class:"column-image", alt: @column.title
-  .body-base
+  - if @column.display_content_18.present?
+    .body-base
       = @column.display_content_18.html_safe
+ - else
+  - # No .body-base class applied
 
-
+ - if @column.display_heading_19.present? || @column.file_19? || @column.display_content_19.present?
   .headline-first.center#display_heading_19
-       = @column.display_heading_19.html_safe
-  br
+    - if @column.display_heading_19.present?
+      = @column.display_heading_19.html_safe
+  - if @column.file_19?
+    br
     .center
-     - if @column.file_19?
       = image_tag @column.file_19.url, class:"column-image", alt: @column.title
-  .body-base
+  - if @column.display_content_19.present?
+    .body-base
       = @column.display_content_19.html_safe
+ - else
+  - # No .body-base class applied
 
-
+ - if @column.display_heading_20.present? || @column.file_20? || @column.display_content_20.present?
   .headline-first.center#display_heading_20
-       = @column.display_heading_20.html_safe
-  br
+    - if @column.display_heading_20.present?
+      = @column.display_heading_20.html_safe
+  - if @column.file_20?
+    br
     .center
-     - if @column.file_20?
       = image_tag @column.file_20.url, class:"column-image", alt: @column.title
-  .body-base
+  - if @column.display_content_20.present?
+    .body-base
       = @column.display_content_20.html_safe
-  
-  hr
-  br
-  p.push
+ - else
+  - # No .body-base class applied
+.inquiry
+ hr
+ br
+ p.push
          span
            | 自販機を簡単一括比較見積
            br
            br
            | 以下よりお問い合わせください
-  br
-  br
+ br
+ br
   .center 
    = link_to "/estimates/new", target:"_blank" do  
     = image_tag "click3.webp", width:"80%"
-  hr
-  br
+ hr
+ br
