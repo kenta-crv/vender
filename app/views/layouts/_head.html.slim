@@ -1,35 +1,27 @@
-      meta[charset="uft-8"]
-      meta[http-equiv="X^UA-Compatible" content="IE=edge"]
-      meta[name="viewport" content="width=device-width, initial-scale=1,0, initial-scale=1, shrink-to-fit=no"]
-      = csrf_meta_tags
-      = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-      script[src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"]
-      = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-      = display_meta_tags(default_meta_tags)
-      = favicon_link_tag('favicon.ico')
-      style 
-       | :root {
-       |   --main-color: #{main_color};
-       | }
-      javascript:
-        | (function() {
-        |   var script = document.createElement('script');
-        |   script.async = true;
-        |   script.src = 'https://www.googletagmanager.com/gtag/js?id=G-RLYCLP8415';
-        |   document.head.appendChild(script);
-        |   window.dataLayer = window.dataLayer || [];
-        |   function gtag() { dataLayer.push(arguments); }
-        |   gtag('js', new Date());
-        |   gtag('config', 'G-RLYCLP8415');
-        | })();
-      javascript:
-        | (function() {
-        |   var script = document.createElement('script');
-        |   script.async = true;
-        |   script.src = 'https://www.googletagmanager.com/gtag/js?id=AW-10998015402';
-        |   document.head.appendChild(script);
-        |   window.dataLayer = window.dataLayer || [];
-        |   function gtag() { dataLayer.push(arguments); }
-        |   gtag('js', new Date());
-        |   gtag('config', 'AW-10998015402');
-        | })();
+meta[charset="uft-8"]
+meta[http-equiv="X^UA-Compatible" content="IE=edge"]
+meta[name="viewport" content="width=device-width, initial-scale=1,0, initial-scale=1, shrink-to-fit=no"]
+= csrf_meta_tags
+= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+script[src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"]
+= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+= display_meta_tags(default_meta_tags)
+= favicon_link_tag('favicon.ico')
+style 
+ | :root {
+ |   --main-color: #{main_color};
+ | }
+<!-- Google tag (gtag.js) -->
+script[async src="https://www.googletagmanager.com/gtag/js?id=G-RLYCLP8415"]
+script
+ | window.dataLayer = window.dataLayer || [];
+ | function gtag(){dataLayer.push(arguments);}
+ | gtag('js', new Date());
+ | gtag('config', 'G-RLYCLP8415');
+<!-- Google tag (gtag.js) -->
+script[async src="https://www.googletagmanager.com/gtag/js?id=AW-10998015402"]
+script
+ | window.dataLayer = window.dataLayer || [];
+ | function gtag(){dataLayer.push(arguments);}
+ | gtag('js', new Date());
+ | gtag('config', 'AW-10998015402');
