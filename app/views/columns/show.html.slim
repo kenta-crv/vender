@@ -13,9 +13,9 @@
   h1.headline-first.center
        = @column.title
   br
-    .center
+    .center.column-image
      - if @column.file_1?
-      = image_tag @column.file_1.url, class:"column-image", alt: @column.title
+      = image_tag @column.file_1.url, alt: @column.title
 
 #review-detail
   .body-base
@@ -93,8 +93,8 @@ br
       = @column.display_heading_2.html_safe
   - if @column.file_2?
     br
-    .center
-      = image_tag @column.file_2.url, class:"column-image", alt: @column.title
+    .center.column-image
+      = image_tag @column.file_2.url, alt: @column.title
   - if @column.display_content_2.present?
     .body-base
       = @column.display_content_2.html_safe
@@ -107,8 +107,8 @@ br
       = @column.display_heading_3.html_safe
   - if @column.file_3?
     br
-    .center
-      = image_tag @column.file_3.url, class:"column-image", alt: @column.title
+    .center.column-image
+      = image_tag @column.file_3.url, alt: @column.title
   - if @column.display_content_3.present?
     .body-base
       = @column.display_content_3.html_safe
@@ -121,8 +121,8 @@ br
       = @column.display_heading_4.html_safe
   - if @column.file_4?
     br
-    .center
-      = image_tag @column.file_4.url, class:"column-image", alt: @column.title
+    .center.column-image
+      = image_tag @column.file_4.url, alt: @column.title
   - if @column.display_content_4.present?
     .body-base
       = @column.display_content_4.html_safe
@@ -135,8 +135,8 @@ br
       = @column.display_heading_5.html_safe
   - if @column.file_5?
     br
-    .center
-      = image_tag @column.file_5.url, class:"column-image", alt: @column.title
+    .center.column-image
+      = image_tag @column.file_5.url, alt: @column.title
   - if @column.display_content_5.present?
     .body-base
       = @column.display_content_5.html_safe
@@ -149,8 +149,8 @@ br
       = @column.display_heading_6.html_safe
   - if @column.file_6?
     br
-    .center
-      = image_tag @column.file_6.url, class:"column-image", alt: @column.title
+    .center.column-image
+      = image_tag @column.file_6.url, alt: @column.title
   - if @column.display_content_6.present?
     .body-base
       = @column.display_content_6.html_safe
@@ -163,8 +163,8 @@ br
       = @column.display_heading_7.html_safe
   - if @column.file_7?
     br
-    .center
-      = image_tag @column.file_7.url, class:"column-image", alt: @column.title
+    .center.column-image
+      = image_tag @column.file_7.url, alt: @column.title
   - if @column.display_content_7.present?
     .body-base
       = @column.display_content_7.html_safe
@@ -177,8 +177,8 @@ br
       = @column.display_heading_8.html_safe
   - if @column.file_8?
     br
-    .center
-      = image_tag @column.file_8.url, class:"column-image", alt: @column.title
+    .center.column-image
+      = image_tag @column.file_8.url, alt: @column.title
   - if @column.display_content_8.present?
     .body-base
       = @column.display_content_8.html_safe
@@ -191,8 +191,8 @@ br
       = @column.display_heading_9.html_safe
   - if @column.file_9?
     br
-    .center
-      = image_tag @column.file_9.url, class:"column-image", alt: @column.title
+    .center.column-image
+      = image_tag @column.file_9.url, alt: @column.title
   - if @column.display_content_9.present?
     .body-base
       = @column.display_content_9.html_safe
@@ -205,8 +205,8 @@ br
       = @column.display_heading_10.html_safe
   - if @column.file_10?
     br
-    .center
-      = image_tag @column.file_10.url, class:"column-image", alt: @column.title
+    .center.column-image
+      = image_tag @column.file_10.url, alt: @column.title
   - if @column.display_content_10.present?
     .body-base
       = @column.display_content_10.html_safe
@@ -219,8 +219,8 @@ br
       = @column.display_heading_11.html_safe
   - if @column.file_11?
     br
-    .center
-      = image_tag @column.file_11.url, class:"column-image", alt: @column.title
+    .center.column-image
+      = image_tag @column.file_11.url, alt: @column.title
   - if @column.display_content_11.present?
     .body-base
       = @column.display_content_11.html_safe
@@ -233,8 +233,8 @@ br
       = @column.display_heading_12.html_safe
   - if @column.file_12?
     br
-    .center
-      = image_tag @column.file_12.url, class:"column-image", alt: @column.title
+    .center.column-image
+      = image_tag @column.file_12.url, alt: @column.title
   - if @column.display_content_12.present?
     .body-base
       = @column.display_content_12.html_safe
@@ -247,8 +247,8 @@ br
       = @column.display_heading_13.html_safe
   - if @column.file_13?
     br
-    .center
-      = image_tag @column.file_13.url, class:"column-image", alt: @column.title
+    .center.column-image
+      = image_tag @column.file_13.url, alt: @column.title
   - if @column.display_content_13.present?
     .body-base
       = @column.display_content_13.html_safe
@@ -261,8 +261,8 @@ br
       = @column.display_heading_14.html_safe
   - if @column.file_14?
     br
-    .center
-      = image_tag @column.file_14.url, class:"column-image", alt: @column.title
+    .center.column-image
+      = image_tag @column.file_14.url, alt: @column.title
   - if @column.display_content_14.present?
     .body-base
       = @column.display_content_14.html_safe
@@ -275,8 +275,8 @@ br
       = @column.display_heading_15.html_safe
   - if @column.file_15?
     br
-    .center
-      = image_tag @column.file_15.url, class:"column-image", alt: @column.title
+    .center.column-image
+      = image_tag @column.file_15.url, alt: @column.title
   - if @column.display_content_15.present?
     .body-base
       = @column.display_content_15.html_safe
@@ -289,8 +289,8 @@ br
       = @column.display_heading_16.html_safe
   - if @column.file_16?
     br
-    .center
-      = image_tag @column.file_16.url, class:"column-image", alt: @column.title
+    .center.column-image
+      = image_tag @column.file_16.url, alt: @column.title
   - if @column.display_content_16.present?
     .body-base
       = @column.display_content_16.html_safe
@@ -303,8 +303,8 @@ br
       = @column.display_heading_17.html_safe
   - if @column.file_17?
     br
-    .center
-      = image_tag @column.file_17.url, class:"column-image", alt: @column.title
+    .center.column-image
+      = image_tag @column.file_17.url, alt: @column.title
   - if @column.display_content_17.present?
     .body-base
       = @column.display_content_17.html_safe
@@ -317,8 +317,8 @@ br
       = @column.display_heading_18.html_safe
   - if @column.file_18?
     br
-    .center
-      = image_tag @column.file_18.url, class:"column-image", alt: @column.title
+    .center.column-image
+      = image_tag @column.file_18.url, alt: @column.title
   - if @column.display_content_18.present?
     .body-base
       = @column.display_content_18.html_safe
@@ -331,8 +331,8 @@ br
       = @column.display_heading_19.html_safe
   - if @column.file_19?
     br
-    .center
-      = image_tag @column.file_19.url, class:"column-image", alt: @column.title
+    .center.column-image
+      = image_tag @column.file_19.url, alt: @column.title
   - if @column.display_content_19.present?
     .body-base
       = @column.display_content_19.html_safe
@@ -345,8 +345,8 @@ br
       = @column.display_heading_20.html_safe
   - if @column.file_20?
     br
-    .center
-      = image_tag @column.file_20.url, class:"column-image", alt: @column.title
+    .center.column-image
+      = image_tag @column.file_20.url, alt: @column.title
   - if @column.display_content_20.present?
     .body-base
       = @column.display_content_20.html_safe

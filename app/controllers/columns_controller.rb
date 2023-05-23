@@ -1,11 +1,14 @@
 class ColumnsController < ApplicationController
-before_action :authenticate_admin!, except: [:index, :show]
+  before_action :authenticate_admin!, except: [:index, :show]
+  add_breadcrumb "トップページ", :root_path
+  add_breadcrumb "記事一覧", :columns_path
   def index
     @columns = Column.order(created_at: "DESC").page(params[:page])
   end
 
   def show
     @column = Column.find(params[:id])
+    add_breadcrumb @column.title, column_path(@column)
   end
 
   def new

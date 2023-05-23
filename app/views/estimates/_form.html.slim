@@ -1,6 +1,7 @@
 - if @estimate.errors.any?
-  strong 入力内容にエラーがあります
-  ul
+  .title-error 入力内容にエラーがあります
+  br
+  .each-error
     - @estimate.errors.each do |attr, msg|
       li= msg
     br
@@ -52,9 +53,9 @@
           = f.email_field :email
       tr
         td.label-cell
-          strong.label.label-blue 任意
+          strong.label 必須
         td.arrow-box-cell
-          | 設置先業種
+          | 設置先業種（個人の場合『個人』と入力）
         td.responsive-cell
          .input-container
           = f.text_field :industry
@@ -242,7 +243,7 @@
             |（※相見積もり比較出来る点や、希望自販機が設置できない場合があるため『はい』がおすすめ）
       tr
         td.label-cell
-          strong.label.label-blue 任意
+          strong.label 必須
         td.arrow-box-cell
           | 設置箇所
         td.responsive-cell
@@ -254,7 +255,7 @@
           ],include_blank: "選択してください")
       tr
         td.label-cell
-          strong.label.label-blue 任意
+          strong.label 必須
         td.arrow-box-cell
           | 想定される利用人数
         td.responsive-cell
@@ -293,7 +294,7 @@
            ],include_blank: "選択してください")
       tr
         td.label-cell
-          strong.label.label-blue 任意
+          strong.label 必須
         td.arrow-box-cell
           | 設置目的
         td.responsive-cell
@@ -302,6 +303,7 @@
             ["副収入目的","副収入目的"],\
             ["福利厚生や周辺の方のサービス","福利厚生や周辺の方のサービス"],\
             ["どちらも希望","どちらも希望"],\
+            ["未定","未定"],\
            ],include_blank: "選択してください")
       tr
         td.label-cell

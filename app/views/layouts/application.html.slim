@@ -16,6 +16,8 @@ html
                   span
                   span menu
       .row.navi
+        .bread
+          = render_breadcrumbs separator: ' > '
         .col-xs-12.center
           /ul#dropmenu
            li
@@ -66,8 +68,6 @@ html
     p.alert
       = alert
     main
-      .bread
-        = render_breadcrumbs separator: ' > '
       = yield
   br
   br

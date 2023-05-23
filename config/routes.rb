@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-
-  #販売機企業用アカウント
-  devise_for :companies, controllers: {
-    registrations: 'companies/registrations',
-    sessions: 'companies/sessions'
-  }
-  resources :companies, only: [:show]
-
   #自販機オーナーアカウント
   devise_for :clients, controllers: {
     registrations: 'clients/registrations',

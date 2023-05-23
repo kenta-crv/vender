@@ -42,7 +42,7 @@ private
     when Admin, :admin, :admins
       "/"
     when Client, :client, :clients
-      "/companies/new"
+      "/"
     else
        super
     end

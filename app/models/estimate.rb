@@ -2,11 +2,17 @@ class Estimate < ApplicationRecord
   belongs_to :company, optional: true
   has_one :comment, dependent: :destroy
   has_many :progresses, dependent: :destroy
-  validates :co, {presence: true}
-  validates :name, {presence: true}  #名前
-  validates :tel, {presence: true} #電話番号
-  validates :email, {presence: true} #メールアドレス
-  validates :address, {presence: true} #住所
+  validates :co, presence: { message: '会社名が入力されていません。' }, on: :create
+  validates :name, presence: { message: '名前が入力されていません。' }, on: :create
+  validates :tel, presence: { message: '電話番号が入力されていません。' }, on: :create
+  validates :email, presence: { message: 'メールアドレスが入力されていません。' }, on: :create
+  validates :address, presence: { message: '住所が入力されていません。' }, on: :create
+  validates :industry, presence: { message: '設置先住所が入力されていません。' }, on: :create
+  validates :installation, presence: { message: '設置箇所が入力されていません。' }, on: :create
+  validates :people, presence: { message: '想定される利用人数が入力されていません。' }, on: :create
+  validates :chenge, presence: { message: '自販機についてが入力されていません。' }, on: :create
+  validates :aim, presence: { message: '設置目的が入力されていません。' }, on: :create
+  validates :period, presence: { message: '設置希望時期が入力されていません。' }, on: :create
 
   def self.generate_csv
     CSV.generate(headers:true) do |csv|

@@ -1,6 +1,6 @@
 class EstimatesController < ApplicationController
   before_action :authenticate_admin!, only: [:index, :show, :edit, :update, :destroy, :send_mail]
-
+  add_breadcrumb "フォーム入力ページ", :new_estimate_path, only: [:confirm]
   def index
     @q = Estimate.ransack(params[:q])
     @estimates = @q.result.page(params[:page]).per(100).order(created_at: :desc)
@@ -19,6 +19,12 @@ class EstimatesController < ApplicationController
 
   def confirm
     @estimate = Estimate.new(estimate_params)
+    add_breadcrumb "入力内容確認"
+    if @estimate.valid?
+      render :action =>  'confirm'
+    else
+      render :action => 'new'
+    end
   end
 
   def thanks
@@ -29,12 +35,7 @@ class EstimatesController < ApplicationController
   end
 
   def contract
-    @estimates = Estimate.where.not(sales_price: nil)
-    sum = 0
-    @estimates.each do |estimate|
-      sum += (estimate.sales_price.to_i * estimate.percentage_i.to_i * estimate.assumed_number.to_i)
-    end
-    @estimates.assumed_total = sum
+    @estimates = Estimate.joins(:comment).where.not(sales_price: nil).where("comments.cocacola = ? OR comments.asahi = ? OR comments.itoen = ? OR comments.dydo = ? OR comments.yamakyu = ? OR comments.neos = ?", "契約", "契約", "契約", "契約", "契約", "契約")
   end
 
   def create

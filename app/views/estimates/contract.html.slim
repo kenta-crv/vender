@@ -4,34 +4,67 @@
   table.company
    tr
      th 契約者名
-     th 取引者名
+     th 契約日
+     th 取引企業
      th 販売価格
      th パーセンテージ
      th 想定本数
      th 合計
+   - total_sum = 0
+   - count = 0
+   - total_estimates = Estimate.count
    - @estimates.each do |estimate|
-    tr
-     td 
-      = estimate.co
-     td 
-      -if estimate.comment.cocacola == "契約"
-       | コカコーラ
-      -elsif estimate.comment.asahi == "契約"
-       | アサヒ
-      -elsif estimate.comment.itoen == "契約"
-       | 伊藤園
-      -elsif estimate.comment.dydo == "契約"
-       | ダイドー
-      -elsif estimate.comment.yamakyu== "契約"
-       | 山久
-      -elsif estimate.comment.neos == "契約"
-       | ネオス
-     td  
-      = estimate.sales_price
-     td  
-      = estimate.percentage_i 
-     td 
-      = estimate.assumed_number 
-     td.red
-      = estimate.assumed_total
+      - assumed_total = calculate_assumed_total(estimate).to_i
+      - if assumed_total > 0
+        - total_sum += assumed_total
+        - count += 1
+        tr
+         td 
+          = estimate.co
+         td 
+          = estimate.comment.updated_at.strftime("%Y年%m月%d日")
+         td 
+          - if estimate.comment.cocacola == "契約"
+           | コカコーラ
+          - elsif estimate.comment.asahi == "契約"
+           | アサヒ
+          - elsif estimate.comment.itoen == "契約"
+           | 伊藤園
+          - elsif estimate.comment.dydo == "契約"
+           | ダイドー
+          - elsif estimate.comment.yamakyu == "契約"
+           | 山久
+          - elsif estimate.comment.neos == "契約"
+           | ネオス
+         td  
+          = estimate.sales_price
+         td  
+          = estimate.percentage_i 
+         td 
+          = estimate.assumed_number 
+         td.red
+          = assumed_total
 
+
+  table.company.center
+   tr
+    col[width="16%"]
+    col[width="16%"]
+    col[width="16%"]
+    col[width="16%"]
+    col[width="16%"]
+    col[width="16%"]
+    th
+      | 契約件数
+    td.red
+     = count
+     |件
+    th
+      | 成約率
+    td.red
+     = ((count.to_f / total_estimates) * 100).round(2).to_s + "%"
+    th
+      | 月間想定報酬
+    td.red
+     = total_sum.to_i
+     |円

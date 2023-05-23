@@ -4,7 +4,7 @@ ja:
       estimate: 企業
     attributes:
       estimate:
-        company: 会社名
+        co: 会社名
         name: 担当者様名
         tel: 電話番号
         email: メールアドレス
