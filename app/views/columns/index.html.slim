@@ -28,3 +28,22 @@
          hr.line
             
 = paginate(@columns)
+.inquiry
+ hr
+ br
+ p.push
+         span
+           | 自販機を簡単一括比較見積
+           br
+           br
+           | 以下よりお問い合わせください
+ br
+ br
+ .center  
+  = link_to "/" do 
+    = image_tag "all-vender.webp", width:"80%"
+ .center 
+   = link_to "/estimates/new", target:"_blank" do  
+    = image_tag "click3.webp", width:"70%"
+ hr
+ br
