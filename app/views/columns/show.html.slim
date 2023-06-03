@@ -93,7 +93,7 @@ br
       = @column.display_heading_2.html_safe
   - if @column.file_2?
     br
-    .center.column-image
+    .column-image
       = image_tag @column.file_2.url, alt: @column.title
   - if @column.display_content_2.present?
     .body-base

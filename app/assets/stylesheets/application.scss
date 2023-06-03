@@ -186,9 +186,26 @@ main {
       text-align:left;
       font-size:16px;
     }
-    .inquiry {
+    .column-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+  }
   
-    }
+  .column-image img {
+      width: 500px;
+      height: auto;
+      object-fit: cover;
+  }
+  
+  @media (max-width: 768px) {
+      .column-image img {
+          width: 250px;
+      }
+  }
+
+
  }
 
  .put {/*親div*/
@@ -846,20 +863,7 @@ footer {
   }
 }
 
-  .column-image{
-    img{
-      width: 350px;
-      height: auto;
-    }
-    /* pc　768px以上 */
-    @media only screen and (min-width: 768px), print {
-      img{
-        width: 80%;
-        height: auto;
-      }
-    }
 
-  }
 
 
   .title-error {
