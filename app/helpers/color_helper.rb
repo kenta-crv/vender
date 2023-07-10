@@ -22,7 +22,7 @@ module ColorHelper
       when 'top#suntory'
         '#5bc2dc' 
       else
-        '#327BEE'
+        '#0000FF'
       end
     end
   end

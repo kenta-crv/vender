@@ -22,6 +22,8 @@ body {
   margin:0 auto;
 }
 
+
+
                                 /*ヘッダーのベース設定*/
 header {
 width:100%;
@@ -257,26 +259,49 @@ main {
 
 
 
-                                  /*  メイン画像  */
- .back-image-index {
-   text-align:center;
-   .index-3 {
-       font-size:3.8vw;
-       font-weight:bold;
-       line-height:7vw;
-       color:var(--main-color);
-       text-shadow: 2px 2px 2px #fff, -2px 2px 2px #fff, 2px -2px 2px #fff, -2px -2px 2px #fff, 2px 2px 2px #fff, -2px 2px 2px #fff, 2px -2px 2px #fff, -2px -2px 2px #fff;
-   }
-   /*イエローライン*/
-   .push {
-       text-align:center;
-       font-size:4.3vw;
-       color:#F27200;
-       font-weight:bold;
-       width:100%;
-       text-shadow: 3px 3px 3px #fff, -3px 3px 3px #fff, 3px -3px 3px #fff, -3px -3px 3px #fff, 3px 3px 3px #fff, -3px 3px 3px #fff, 3px -3px 3px #fff, -3px -3px 3px #fff;
-   }
+/*  メイン画像  */
+.back-image-index {
+  text-align:center;
+  .index-3 {
+      font-size:3.6vw;
+      font-weight:bold;
+      line-height:7vw;
+      color:var(--main-color);
+      text-shadow: 2px 2px 2px #fff, -2px 2px 2px #fff, 2px -2px 2px #fff, -2px -2px 2px #fff, 2px 2px 2px #fff, -2px 2px 2px #fff, 2px -2px 2px #fff, -2px -2px 2px #fff;
+      @media(max-width: 748px) {
+        text-align:center;
+        font-size:7.0vw;
+        line-height:12vw;
+      }
   }
+  .red {
+      font-size:4.2vw;
+      font-weight:bold;
+      line-height:7vw;
+      color:red;
+      text-shadow: 2px 2px 2px #fff, -2px 2px 2px #fff, 2px -2px 2px #fff, -2px -2px 2px #fff, 2px 2px 2px #fff, -2px 2px 2px #fff, 2px -2px 2px #fff, -2px -2px 2px #fff;
+      @media(max-width: 748px) {
+        text-align:center;
+        font-size:8.0vw;
+        line-height:12vw;
+      }
+  }
+  /*イエローライン*/
+  .push {
+      text-align:center;
+      font-size:4.3vw;
+      color:#F27200;
+      font-weight:bold;
+      width:100%;
+      text-shadow: 3px 3px 3px #fff, -3px 3px 3px #fff, 3px -3px 3px #fff, -3px -3px 3px #fff, 3px 3px 3px #fff, -3px 3px 3px #fff, 3px -3px 3px #fff, -3px -3px 3px #fff;
+      @media(max-width: 748px) {
+        text-align:center;
+        font-size:7.0vw;
+        line-height:10vw;
+      }
+  }
+ }
+                                
 
 
 
@@ -299,26 +324,6 @@ main {
 .back-image-kirin {background-image: url('kirin.webp');}
 .back-image-otsuka {background-image: url('otsuka.webp');}
 .back-image-dydo {background-image: url('dydo.webp');}
-.back-image-index {
-   text-align:center;
-   .index-3 {
-       font-size:3.8vw;
-       font-weight:bold;
-       line-height:7vw;
-       color:var(--main-color);
-       text-shadow: 2px 2px 2px #fff, -2px 2px 2px #fff, 2px -2px 2px #fff, -2px -2px 2px #fff, 2px 2px 2px #fff, -2px 2px 2px #fff, 2px -2px 2px #fff, -2px -2px 2px #fff;
-   }
-   /*イエローライン*/
-   .push {
-       text-align:center;
-       font-size:4.3vw;
-       color:#F27200;
-       font-weight:bold;
-       width:100%;
-       text-shadow: 3px 3px 3px #fff, -3px 3px 3px #fff, 3px -3px 3px #fff, -3px -3px 3px #fff, 3px 3px 3px #fff, -3px 3px 3px #fff, 3px -3px 3px #fff, -3px -3px 3px #fff;
-   }
-  }
-
 
 /*中央寄せ*/
 .center {
@@ -435,7 +440,7 @@ dd {
 }
 
 
-                                            /*テーブルに関する情報*/
+          /*テーブルに関する情報*/
 /*テーブル共通*/
 table.company {
   width: 90%;
@@ -746,6 +751,9 @@ nav.globalMenuSp ul li a {
  width: 90%;
  margin: 0 0 1em 0;
  color: var(--main-color);
+ h4 {
+  all: unset;
+}
 }
 .cp_qa .cp_actab input {
  position: absolute;
@@ -949,4 +957,93 @@ footer {
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+
+.pc-image {
+  display: none; // PC向けの画像を初めに非表示にします
+}
+
+@media only screen and (max-width: 599px) {
+  .pc-image {
+    display: none; // モバイルビューではPC向けの画像を非表示にします
+    width: 105%;
+  }
+
+  .mobile-image {
+    display: block; // モバイルビューではモバイル向けの画像を表示します
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .pc-image {
+    display: block; // PCビューではPC向けの画像を表示します
+    width: 105%;
+  }
+
+  .mobile-image {
+    display: none; // PCビューではモバイル向けの画像を非表示にします
+  }
+}
+
+.box-design13 {
+  margin: 20px auto;
+  padding: 20px;
+  //background-color: #999;
+  border: 2px solid var(--main-color);
+  position: relative;
+}
+.box-design13-ttl {
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  background-color: #fff;
+  padding: 0 0.5em;
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+/*テーブル共通*/
+table.free {
+  width: 90%;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0px 15px;
+  font-size: 1.3vw;
+  th, td { padding: 10px; }
+  th {
+     background: var(--main-color);
+     vertical-align: middle;
+     text-align: left;
+     overflow: visible;
+     position: relative;
+     color: #fff;
+     size:24px;
+     font-weight: bold;
+     :after {
+        left: 100%;
+        top: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-color: rgba(136, 183, 213, 0);
+        border-left-color: var(--main-color);
+        border-width: 10px;
+        margin-top: -10px;
+        }
+     }
+
+  td {
+     background: #f4f4f4;
+     color:red;
+     font-weight: bold;
+     font-size:30px;
+     }
+     
 }
