@@ -1047,3 +1047,22 @@ table.free {
      }
      
 }
+
+
+.block-image {
+  width: 65%; // 通常の場合は65%
+}
+@media only screen and (max-width: 599px) { 
+  .block-image {
+      width: 100%; // スマホの場合（575px以下）は90%
+  }
+}
+
+.select-image  {
+  width: 70%; // 通常の場合は65%
+}
+@media only screen and (max-width: 599px) { 
+  .select-image {
+    display:none // スマホの場合（575px以下）は90%
+  }
+}
