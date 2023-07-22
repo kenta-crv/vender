@@ -20,7 +20,7 @@ module ColorHelper
       when 'top#otsuka'
         '#88B9E2' 
       when 'top#suntory'
-        '#5bc2dc' 
+        '#234DB4' 
       else
         '#0000FF'
       end
