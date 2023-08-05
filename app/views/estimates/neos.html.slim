@@ -15,14 +15,7 @@ h2.headline
      th 契約日
      th 支払（％）
      th 最新コメント
-   - total_sum = 0
-   - count = 0
-   - total_estimates = Estimate.count
    - @estimates.each do |estimate|
-      - assumed_total = calculate_assumed_total(estimate).to_i
-      - if assumed_total > 0
-        - total_sum += assumed_total
-        - count += 1
         tr
          td 
           = link_to estimate.co, estimate_path(estimate), clsss:"store"
@@ -31,4 +24,4 @@ h2.headline
          td  
           = estimate.percentage_other
          td 
-          = estimate.comment.body
+          = estimate.progresses.first&.body
