@@ -39,7 +39,7 @@ class EstimatesController < ApplicationController
   end
 
   def neos
-    @estimates = Estimate.joins(:comment).where.not(sales_price: nil).where("comments.neos": "契約")
+    @estimates = Estimate.joins(:comment).where.not(percentage_other: 0).where("comments.neos": "契約")
   end
 
   def create
