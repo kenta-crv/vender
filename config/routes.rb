@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   get 'dydo' => 'top#dydo'
   get 'kirin' => 'top#kirin'
 
+  get 'neos' => 'estimates#neos'
+
   get 'question' => 'top#question'
   get 'business' => 'top#business'
   get 'corporation' => 'top#corporation'  #会社概要

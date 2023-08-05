@@ -38,6 +38,10 @@ class EstimatesController < ApplicationController
     @estimates = Estimate.joins(:comment).where.not(sales_price: nil).where("comments.cocacola = ? OR comments.asahi = ? OR comments.itoen = ? OR comments.dydo = ? OR comments.yamakyu = ? OR comments.neos = ?", "契約", "契約", "契約", "契約", "契約", "契約")
   end
 
+  def neos
+    @estimates = Estimate.joins(:comment).where.not(sales_price: nil).where("comments.neos": "契約")
+  end
+
   def create
     @estimate = Estimate.new(estimate_params)
     @estimate.save

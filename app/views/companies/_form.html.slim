@@ -1,12 +1,12 @@
-= form_for @company do |f|
-  - if @company.errors.any?
+= form_for @job do |f|
+  - if @job.errors.any?
    .alert.alert-warning.center
      ul
-       - @company.errors.full_messages.each do |message|
+       - @job.errors.full_messages.each do |message|
         li
           = message
 
-  table.company
+  table.job
    colgroup
      col width="10%"
      col width="20%"
@@ -17,39 +17,39 @@
           strong.label 必須
         td.arrow_box
           | 会社名
-        td = text_field :company, :company
+        td = text_field :job, :job
       tr
         td
           strong.label 必須
         td.arrow_box
           | 担当者名
         td
-          = text_field :company, :name
+          = text_field :job, :name
       tr
         td
           strong.label 必須
         td.arrow_box
           | 携帯番号
         td
-          = number_field :company, :tel
+          = number_field :job, :tel
       tr
         td
           strong.label 必須
         td.arrow_box
           | 住所
         td
-          = text_field :company, :address
+          = text_field :job, :address
       tr
         td
           strong.label 必須
         td.arrow_box
           | メールアドレス
-        td = email_field :company, :mail
+        td = email_field :job, :mail
       tr
         td
           strong.label 必須
         td.arrow_box
           | 備考
-        td = text_area :company, :remarks
+        td = text_area :job, :remarks
       tr.center
         td[colspan="3"] = f.submit '確認画面へ'
