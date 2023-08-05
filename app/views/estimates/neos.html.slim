@@ -25,7 +25,7 @@ h2.headline
         - count += 1
         tr
          td 
-          = estimate.co
+          = link_to estimate.co, estimate_path(estimate), clsss:"store"
          td 
           = estimate.comment.updated_at.strftime("%Y年%m月%d日")
          td  
