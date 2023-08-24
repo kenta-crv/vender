@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_11_133609) do
+ActiveRecord::Schema.define(version: 2023_08_24_081547) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(version: 2023_05_11_133609) do
     t.string "yamakyu"
     t.string "neos"
     t.string "body"
+    t.string "net"
     t.index ["estimate_id"], name: "index_comments_on_estimate_id"
   end
 

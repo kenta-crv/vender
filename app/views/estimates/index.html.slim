@@ -29,7 +29,7 @@
      th ネオス
      th その他
      th メール送信
-   - @estimates.each do |estimate|
+   - @estimates_for_view.each do |estimate|
     tr
      td = link_to estimate.co, estimate_path(estimate), clsss:"store"
      td = estimate.name
@@ -49,7 +49,7 @@
   br
     hr.line
     br
-    = paginate(@estimates)
+    = paginate(@estimates_for_view)
 
 = search_form_for @q do |f|
  table.company[width="90%"]

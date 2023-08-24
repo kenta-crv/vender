@@ -2,15 +2,15 @@ br
 br
 = form_for ([@estimate, @comment]) do |f|
  table.company[width="100%"]
-    col[width="11%"]
-    col[width="11%"]
-    col[width="11%"]
-    col[width="11%"]
-    col[width="11%"]
-    col[width="11%"]
-    col[width="11%"]
-    col[width="11%"]
-    col[width="11%"]
+    col[width="12%"]
+    col[width="12%"]
+    col[width="12%"]
+    col[width="12%"]
+    col[width="12%"]
+    col[width="12%"]
+    col[width="12%"]
+    col[width="12%"]
+    col[width="12%"]
     tbody
       tr
           th
@@ -22,13 +22,11 @@ br
           th
             | 伊藤園
           th
-            | キリン
-          th
-            | サントリー
-          th
             | 山久
           th
             | ネオス
+          th
+            | 自販機ねっと
           th
       tr
           td
@@ -68,24 +66,6 @@ br
               ["設置NG","設置NG"],\
              ])
           td
-            = f.select(:kirin,[\
-              ["",""],\
-              ["未依頼","未依頼"],\
-              ["現地調査中","現地調査中"],\
-              ["見積提示中","見積提示中"],\
-              ["契約","契約"],\
-              ["設置NG","設置NG"],\
-             ])
-          td
-            = f.select(:suntory,[\
-              ["",""],\
-              ["未依頼","未依頼"],\
-              ["現地調査中","現地調査中"],\
-              ["見積提示中","見積提示中"],\
-              ["契約","契約"],\
-              ["設置NG","設置NG"],\
-             ])
-          td
             = f.select(:yamakyu,[\
               ["",""],\
               ["未依頼","未依頼"],\
@@ -100,6 +80,14 @@ br
               ["未依頼","未依頼"],\
               ["現地調査中","現地調査中"],\
               ["見積提示中","見積提示中"],\
+              ["契約","契約"],\
+              ["設置NG","設置NG"],\
+             ])
+          td
+            = f.select(:net,[\
+              ["",""],\
+              ["提案中","提案中"],\
+              ["検討中","検討中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
              ])

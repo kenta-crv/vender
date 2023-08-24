@@ -173,16 +173,15 @@ br
 
 table.company[width="100%"]
   = form_for([@estimate, @comment], url: estimate_comments_path(estimate_id: @estimate)) do |f|
-    col[width="10%"]
-    col[width="10%"]
-    col[width="10%"]
-    col[width="10%"]
-    col[width="10%"]
-    col[width="10%"]
-    col[width="10%"]
-    col[width="10%"]
-    col[width="10%"]
-    col[width="10%"]
+    col[width="12%"]
+    col[width="12%"]
+    col[width="12%"]
+    col[width="12%"]
+    col[width="12%"]
+    col[width="12%"]
+    col[width="12%"]
+    col[width="12%"]
+    col[width="12%"]
     tbody
       tr
           th
@@ -194,13 +193,11 @@ table.company[width="100%"]
           th
             | 伊藤園
           th
-            | キリン
-          th
-            | サントリー
-          th
             | 山久
           th
             | ネオス
+          th
+            | 自販機ねっと
           th
 
           th
@@ -238,22 +235,6 @@ table.company[width="100%"]
               ["設置NG","設置NG"],\
              ])
           td
-            = f.select(:kirin,[\
-              ["",""],\
-              ["現地調査中","現地調査中"],\
-              ["見積提示中","見積提示中"],\
-              ["契約","契約"],\
-              ["設置NG","設置NG"],\
-             ])
-          td
-            = f.select(:suntory,[\
-              ["",""],\
-              ["現地調査中","現地調査中"],\
-              ["見積提示中","見積提示中"],\
-              ["契約","契約"],\
-              ["設置NG","設置NG"],\
-             ])
-          td
             = f.select(:yamakyu,[\
               ["",""],\
               ["現地調査中","現地調査中"],\
@@ -270,6 +251,14 @@ table.company[width="100%"]
               ["設置NG","設置NG"],\
              ])
           td
+            = f.select(:net,[\
+              ["",""],\
+              ["提案中","提案中"],\
+              ["検討中","検討中"],\
+              ["契約","契約"],\
+              ["設置NG","設置NG"],\
+             ])
+          td
             = f.select(:body,[\
               ["",""],\
               ["不在","不在"],\
@@ -279,16 +268,15 @@ table.company[width="100%"]
           td
             = f.submit "登録"
 table.company[width="100%"]
-    col[width="10%"]
-    col[width="10%"]
-    col[width="10%"]
-    col[width="10%"]
-    col[width="10%"]
-    col[width="10%"]
-    col[width="10%"]
-    col[width="10%"]
-    col[width="10%"]
-    col[width="10%"]
+    col[width="12%"]
+    col[width="12%"]
+    col[width="12%"]
+    col[width="12%"]
+    col[width="12%"]
+    col[width="12%"]
+    col[width="12%"]
+    col[width="12%"]
+    col[width="12%"]
     - if @estimate.comment
      tr.center
         td
@@ -300,13 +288,11 @@ table.company[width="100%"]
         td
           = @estimate.comment.itoen
         td
-          = @estimate.comment.kirin
-        td
-          = @estimate.comment.suntory
-        td
           = @estimate.comment.yamakyu
         td
           = @estimate.comment.neos
+        td
+          = @estimate.comment.net
         td
           = @estimate.comment.body
         td

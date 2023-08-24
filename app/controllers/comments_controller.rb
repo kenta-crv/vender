@@ -50,6 +50,7 @@ class CommentsController < ApplicationController
     :suntory,
     :yamakyu,
     :neos,
+    :net,
     :body
     )
  	end
