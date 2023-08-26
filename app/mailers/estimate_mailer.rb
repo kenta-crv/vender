@@ -11,7 +11,7 @@ class EstimateMailer < ActionMailer::Base
   def send_email(estimate)
     @estimate = estimate
     mail to: estimate.email
-    mail(subject: '自販機ねっとにお問い合わせ頂きありがとうございます') do |format|
+    mail(subject: '自販機現地調査開始のご案内') do |format|
       format.text
     end
   end
