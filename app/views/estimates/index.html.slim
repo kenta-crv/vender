@@ -27,7 +27,7 @@
      th ダイドー
      th 山久
      th ネオス
-     th その他
+     th 収益型
      th メール送信
    - @estimates_for_view.each do |estimate|
     tr
@@ -41,7 +41,7 @@
      td = estimate.comment ? estimate.comment.dydo : nil
      td = estimate.comment ? estimate.comment.yamakyu : nil
      td = estimate.comment ? estimate.comment.neos : nil
-     td = estimate.comment ? estimate.comment.body : nil
+     td = estimate.comment ? estimate.comment.net : nil
      - if estimate.send_mail_flag == true
       td = link_to "送信済", "#selectingModal" , style: "color: fff" ,class: "btn btn-success"
      - else
