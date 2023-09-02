@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   #自販機オーナーアカウント
-  devise_for :clients, controllers: {
-    registrations: 'clients/registrations',
-    sessions: 'clients/sessions'
-  }
-  resources :clients, only: [:show]
+  #devise_for :clients, controllers: {
+   # registrations: 'clients/registrations',
+    #sessions: 'clients/sessions'
+  #}
+  #resources :clients, only: [:show]
   #管理者アカウント
   devise_for :admins, controllers: {
     registrations: 'admins/registrations',

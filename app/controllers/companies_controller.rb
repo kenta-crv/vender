@@ -1,6 +1,5 @@
 class CompaniesController < ApplicationController
-before_action :authenticate_admin!, only: [:index]
-before_action :authenticate_client!, except: [:index] 
+before_action :authenticate_admin!
 
   def index
     @q = Company.ransack(params[:q])

@@ -41,8 +41,6 @@ private
     case resource
     when Admin, :admin, :admins
       "/"
-    when Client, :client, :clients
-      "/"
     else
        super
     end
