@@ -141,6 +141,11 @@ class EstimatesController < ApplicationController
     @estimates = Estimate.order(created_at: "DESC").where(send_mail_flag: "送信済").page(params[:page])
   end
 
+  def sfa
+    @q = Estimate.joins(:comment).where("comments.net": ["提案中","検討中"]).ransack(params[:q])
+    @estimates_for_view = @q.result.page(params[:page]).per(100).order(created_at: :desc)
+  end
+
   private
   def estimate_params
     params.require(:estimate).permit(

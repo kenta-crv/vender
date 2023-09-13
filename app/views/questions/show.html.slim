@@ -14,56 +14,56 @@ br
          td.arrow_box
            | 会社名
          td
-           = @estimate.co
+           = @question.co
        tr
          td
            strong.label 必須
          td.arrow_box
            | 担当者名
          td
-           = @estimate.name
+           = @question.name
        tr
          td
            strong.label 必須
          td.arrow_box
            | 電話番号
          td
-           = @estimate.tel
+           = @question.tel
        tr
          td
            strong.label 必須
          td.arrow_box
            | 設置先住所
          td
-           = @estimate.address
+           = @question.address
        tr
          td
            strong.label 必須
          td.arrow_box
            | メールアドレス
          td
-           = @estimate.email
+           = @question.email
        tr
          td
            strong.label 必須
          td.arrow_box
            | 設置先業種
          td
-           = @estimate.industry
+           = @question.industry
        tr
          td
            strong.label 任意
          td.arrow_box
            | 希望ベンダー
          td
-           = @estimate.vender
+           = @question.vender
        tr
          td
            strong.label 任意
          td.arrow_box
            | その他の自販機見積もりを希望しますか？
          td
-           = @estimate.other
+           = @question.other
        tr
          td
            strong.label.label-blue 任意
@@ -72,7 +72,7 @@ br
            br
            |（※ex.屋内・駐車場等）
          td
-           = @estimate.installation
+           = @question.installation
        tr
          td
            strong.label.label-blue 任意
@@ -81,14 +81,14 @@ br
            br
            |(※屋内の場合)
          td
-          = @estimate.people
+          = @question.people
        tr
          td
            strong.label 必須
          td.arrow_box
            | 自販機について
          td
-           = @estimate.chenge
+           = @question.chenge
        tr
          td
            strong.label.label-blue 必須
@@ -97,7 +97,7 @@ br
            br
            |（※交換・追加の場合）
          td
-           = @estimate.change_before
+           = @question.change_before
        tr
          td
            strong.label.label-blue 必須
@@ -106,21 +106,21 @@ br
            br
            |（※交換・追加の場合）
          td
-           = @estimate.aim
+           = @question.aim
        tr
          td
            strong.label 必須
          td.arrow_box
            | 設置希望時期
          td
-           = @estimate.period
+           = @question.period
        tr
          td
            strong.label.label-blue 任意
          td.arrow_box
            | 要望・備考
          td
-           = @estimate.remarks
+           = @question.remarks
        -if admin_signed_in?
         tr
          td
@@ -128,51 +128,51 @@ br
          td.arrow_box
           | 社内メモ
          td
-          = @estimate.word
+          = @question.word
         tr
          td
           strong.label.label-blue 任意
          td.arrow_box
           | 販売価格
          td
-          = @estimate.sales_price
+          = @question.sales_price
         tr
          td
           strong.label.label-blue 任意
          td.arrow_box
           | 先方パーセンテージ
          td
-          = @estimate.percentage_other
+          = @question.percentage_other
         tr
          td
           strong.label.label-blue 任意
          td.arrow_box
           | 弊社パーセンテージ
          td
-          = @estimate.percentage_i
+          = @question.percentage_i
         tr
          td
           strong.label.label-blue 任意
          td.arrow_box
           | 想定本数
          td
-          = @estimate.assumed_number
+          = @question.assumed_number
 .actions_container style="text-align: center; margin-bottom: 30px;"
-  = link_to "編集する", edit_estimate_path(@estimate), class: "btn btn-danger"
-  - if @estimate.blank?
-    = link_to "削除する", estimate_path(@estimate), class: "btn btn-secondary", method: :delete, data: { confirm: '本当に削除しますか？' }, style: "margin-left: 10px;"
+  = link_to "編集する", edit_question_path(@question), class: "btn btn-danger"
+  - if @question.blank?
+    = link_to "削除する", question_path(@question), class: "btn btn-secondary", method: :delete, data: { confirm: '本当に削除しますか？' }, style: "margin-left: 10px;"
   - else
     = link_to "削除する", "javascript:void(0)", class: "btn btn-secondary", data: { confirm: 'やりとりが始まっているので削除できません' }, style: "margin-left: 10px;"
-  - if !@estimate.send_mail_flag
-    = link_to "送信する", send_mail_estimate_path(@estimate), class: "btn btn-primary", method: :post, data: { confirm: '登録中の全企業に送信します。よろしいですか？' }, style: "margin-left: 10px;"
+  - if !@question.send_mail_flag
+    = link_to "送信する", send_mail_question_path(@question), class: "btn btn-primary", method: :post, data: { confirm: '登録中の全企業に送信します。よろしいですか？' }, style: "margin-left: 10px;"
   - else
     = link_to "送信済", "javascript:void(0)", class: "btn btn-primary", style: "margin-left: 10px;"
 .back_link_container style='margin: 0 0 50px 40px;'
   hr
-  = link_to "一覧に戻る", estimates_path
+  = link_to "一覧に戻る", questions_path
 
 table.company[width="100%"]
-  = form_for([@estimate, @comment], url: estimate_comments_path(estimate_id: @estimate)) do |f|
+  = form_for([@question, @comment], url: question_comments_path(question_id: @question)) do |f|
     col[width="12%"]
     col[width="12%"]
     col[width="12%"]
@@ -277,31 +277,31 @@ table.company[width="100%"]
     col[width="12%"]
     col[width="12%"]
     col[width="12%"]
-    - if @estimate.comment
+    - if @question.comment
      tr.center
         td
-          = @estimate.comment.asahi
+          = @question.comment.asahi
         td
-          = @estimate.comment.cocacola
+          = @question.comment.cocacola
         td
-          = @estimate.comment.dydo
+          = @question.comment.dydo
         td
-          = @estimate.comment.itoen
+          = @question.comment.itoen
         td
-          = @estimate.comment.yamakyu
+          = @question.comment.yamakyu
         td
-          = @estimate.comment.neos
+          = @question.comment.neos
         td
-          = @estimate.comment.net
+          = @question.comment.net
         td
-          = @estimate.comment.body
+          = @question.comment.body
         td
-          = link_to "編集", edit_estimate_comment_path(@estimate, @estimate.comment), target: "_blank"
-          = link_to "削除", estimate_comment_path(@estimate, @estimate.comment), method: :delete, data: {confirm:"本当に削除しますか？"}
+          = link_to "編集", edit_question_comment_path(@question, @question.comment), target: "_blank"
+          = link_to "削除", question_comment_path(@question, @question.comment), method: :delete, data: {confirm:"本当に削除しますか？"}
 
 
 table.company[width="100%"]
-  = form_for([@estimate, @progress], url: estimate_progresses_path(estimate_id: @estimate)) do |f|
+  = form_for([@question, @progress], url: question_progresses_path(question_id: @question)) do |f|
     tbody
     col[width="30%"]
     col[width="50%"]
@@ -325,7 +325,7 @@ table.company[width="100%"]
     col[width="20%"]
     col[width="35%"]
     col[width="20%"]
-     - @estimate.progresses.each do |progress|
+     - @question.progresses.each do |progress|
        tr.center
         th
           = progress.created_at
@@ -334,5 +334,5 @@ table.company[width="100%"]
         td
           = progress.body
         td
-          = link_to "編集", edit_estimate_progress_path(@estimate, progress), _blank: "target"
-          = link_to "削除", estimate_progress_path(@estimate, progress), method: :delete, data: {confirm:"本当に削除しますか？"}
+          = link_to "編集", edit_question_progress_path(@question, progress), _blank: "target"
+          = link_to "削除", question_progress_path(@question, progress), method: :delete, data: {confirm:"本当に削除しますか？"}

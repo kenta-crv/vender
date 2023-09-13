@@ -1,0 +1,14 @@
+.tops-wrapper
+br
+  h2.headline  FAQ 
+- @questions.each do |question|
+ .top-wrapper
+  .cp_qa
+    .cp_actab.left
+      input#cp_tabfour001[type="checkbox" name="tabs"]
+      label[for="cp_tabfour001"]
+        h4 
+         = question.whats
+      .cp_actab-content
+        p
+          = question.answer

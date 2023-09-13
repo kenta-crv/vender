@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   get 'privacy' => 'top#privacy' #プライバシーポリシー
 
   resources :columns
+  resources :questions
 
   resources :estimates do
     resources :progresses
@@ -54,6 +55,8 @@ Rails.application.routes.draw do
     end
   end
   get 'contract' => 'estimates#contract'
+  get 'sfa' => 'estimates#sfa'
+
 
   # メッセージ
   resources :messages, only: [:create] do

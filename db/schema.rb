@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_24_081547) do
+ActiveRecord::Schema.define(version: 2023_09_13_123610) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -200,6 +200,14 @@ ActiveRecord::Schema.define(version: 2023_08_24_081547) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["estimate_id"], name: "index_progresses_on_estimate_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string "whats"
+    t.string "category"
+    t.string "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "rooms", force: :cascade do |t|

@@ -4,66 +4,30 @@
   br
   br
   table.company
-   col[width="15%"]
-   col[width="8%"]
-   col[width="8%"]
-   col[width="15%"]
-   col[width="8%"]
-   col[width="5%"]
-   col[width="5%"]
-   col[width="5%"]
-   col[width="5%"]
-   col[width="5%"]
-   col[width="5%"]
-   col[width="5%"]
    tr
      th 会社名
      th 担当者
      th 電話番号
      th 問い合わせ日
-     th アサヒ
-     th コカコーラ
-     th 伊藤園
-     th ダイドー
-     th 山久
-     th ネオス
      th 収益型
-     th その他
-     th メール送信
+     th 最終更新日時
+     th 最新のコメント
    - @estimates_for_view.each do |estimate|
     tr
      td = link_to estimate.co, estimate_path(estimate), clsss:"store"
      td = estimate.name
      td = estimate.tel
-     td = estimate.created_at.strftime("%Y年%m月%d日 %-H時%-M分%-S秒 %a")
-     td = estimate.comment ? estimate.comment.asahi : nil
-     td = estimate.comment ? estimate.comment.cocacola : nil
-     td = estimate.comment ? estimate.comment.itoen : nil
-     td = estimate.comment ? estimate.comment.dydo : nil
-     td = estimate.comment ? estimate.comment.yamakyu : nil
-     td = estimate.comment ? estimate.comment.neos : nil
+     td = estimate.created_at.strftime("%Y年%m月%d日")
      td = estimate.comment ? estimate.comment.net : nil
-     td = estimate.comment ? estimate.comment.body : nil
-     - if estimate.send_mail_flag == true
-      td = link_to "送信済", "#selectingModal" , style: "color: fff" ,class: "btn btn-success"
-     - else
-      td = link_to "未送信", "/estimates/#{estimate.id}/select_sent" , style: "color: fff" ,class: "btn btn-danger unsent"
+     - latest_progress = estimate.progresses.last
+     td
+        = latest_progress.try(:created_at).try(:strftime, "%Y年%m月%d日")
+     td = estimate.progresses.last.try(:body)
   br
     hr.line
     br
     = paginate(@estimates_for_view)
 
-br/
-
-.row 
- .col-sm-3 
- .col-sm-3
-  = link_to "収益型CRM", "/sfa", class:"btn btn-primary" 
- .col-sm-3 
-  = link_to "FAQ", questions_path, class:"btn btn-primary" 
- .col-sm-3 
-
-br/
 = search_form_for @q do |f|
  table.company[width="90%"]
             col[width="20%"]
