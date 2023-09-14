@@ -16,14 +16,16 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = @estimate.comments.build(comment_params)
+    @comment = @estimate.build_comment(comment_params)
     if @comment.save
       redirect_to estimate_path(@estimate)
+    else
+      render 'new'
     end
   end
   
   def destroy
-    @comment = @estimate.comments.find(params[:id])
+    @comment = @estimate.comment
     @comment.destroy
     redirect_to estimate_path(@estimate)
   end
@@ -36,7 +38,7 @@ class CommentsController < ApplicationController
       render 'edit'
     end
   end
-  
+
   private
  	def comment_params
  		params.require(:comment).permit(
