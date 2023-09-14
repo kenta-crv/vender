@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
   end
   
   def update
-    @comment = @estimate.comments.find(params[:id])
+    @comment = @estimate.comment
     if @comment.update(comment_params)
       redirect_to estimate_path(@estimate)
     else
