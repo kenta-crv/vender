@@ -11,18 +11,24 @@
      th 問い合わせ日
      th 収益型
      th 最終更新日時
-     th 最新のコメント
    - @estimates_for_view.each do |estimate|
     tr
      td = link_to estimate.co, estimate_path(estimate), clsss:"store"
      td = estimate.name
      td = estimate.tel
      td = estimate.created_at.strftime("%Y年%m月%d日")
-     td = estimate.comment ? estimate.comment.net : nil
+     td 
+        = estimate.comment ? estimate.comment.net : nil
+        br/
+        | (
+        = estimate.comment.created_at.strftime("%Y年%m月%d日")
+        | )
      - latest_progress = estimate.progresses.last
      td
+        = estimate.progresses.last.try(:body)
+        | (
         = latest_progress.try(:created_at).try(:strftime, "%Y年%m月%d日")
-     td = estimate.progresses.last.try(:body)
+        | )
   br
     hr.line
     br
