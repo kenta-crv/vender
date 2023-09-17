@@ -47,3 +47,17 @@
     = image_tag "click3.webp", width:"70%"
  hr
  br
+
+
+-if admin_signed_in?
+ = form_with(url: import_columns_path, method: :post, local: true, multipart: true) do |f|
+  table.company[width="90%"]
+    tbody
+      tr
+        th[colspan="2"]
+          | 記事_CSVファイルインポート
+      tr
+        td
+          = f.file_field :file
+        th
+          = submit_tag "インポート",  class: 'btn btn-primary'

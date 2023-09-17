@@ -35,7 +35,11 @@ Rails.application.routes.draw do
   get 'corporation' => 'top#corporation'  #会社概要
   get 'privacy' => 'top#privacy' #プライバシーポリシー
 
-  resources :columns
+  resources :columns do
+    collection do 
+      post :import
+    end
+  end
   resources :questions
 
   resources :estimates do

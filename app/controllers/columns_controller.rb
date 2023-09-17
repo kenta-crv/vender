@@ -45,6 +45,11 @@ class ColumnsController < ApplicationController
     end
   end
 
+  def import
+    cnt = Column.import(params[:file])
+    redirect_to columns_url, notice:"#{cnt}件登録されました。"
+  end
+
   private
   def column_params
     params.require(:column).permit(
