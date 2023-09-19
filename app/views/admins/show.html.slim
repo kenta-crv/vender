@@ -34,11 +34,3 @@ br
            | 今月の実施件数
          th
            | 総合件数
-    h2.headline
-      | メッセージルーム一覧
-    .message_room_index
-      - @rooms.each do |room|
-        - member = room.member
-        - user = room.user
-        .message_room_link style="margin-bottom: 20px;"
-          = link_to "#{member.company.first_name + "弁護士"} - #{user.user_name}", room_messages_path(uri_token: room.uri_token)

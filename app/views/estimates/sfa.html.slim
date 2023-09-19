@@ -11,6 +11,7 @@
      th 問い合わせ日
      th 収益型
      th 最終更新日時
+     th 更新者
    - @estimates_for_view.each do |estimate|
     tr
      td = link_to estimate.co, estimate_path(estimate), clsss:"store"
@@ -29,6 +30,7 @@
         | (
         = latest_progress.try(:created_at).try(:strftime, "%Y年%m月%d日")
         | )
+     td = estimate.progresses.last&.admin&.user_name
   br
     hr.line
     br

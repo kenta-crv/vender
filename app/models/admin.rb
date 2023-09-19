@@ -4,5 +4,4 @@ class Admin < ApplicationRecord
   has_many :members
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
 end

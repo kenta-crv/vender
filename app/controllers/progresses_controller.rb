@@ -44,7 +44,7 @@ class ProgressesController < ApplicationController
    		params.require(:progress).permit(
        :status,
    		 :body
-      )
+      )&.merge(admin: current_admin)
    	end
 
 end
