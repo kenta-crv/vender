@@ -296,7 +296,7 @@ table.company[width="100%"]
         td
           = @estimate.comment.body
         td
-          = link_to "編集", edit_estimate_comment_path(@estimate, @estimate.comment), target: "_blank"
+          = link_to "編集", edit_estimate_comment_path(@estimate, @estimate.comment)
           = link_to "削除", estimate_comment_path(@estimate, @estimate.comment), method: :delete, data: {confirm:"本当に削除しますか？"}
 
 

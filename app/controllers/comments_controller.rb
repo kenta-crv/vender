@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
   def update
     @comment = @estimate.comment
     if @comment.update(comment_params)
-      redirect_to estimate_path(@estimate)
+      redirect_to estimates_path(@estimates)
     else
       render 'edit'
     end
