@@ -61,6 +61,7 @@ Rails.application.routes.draw do
   end
   get 'contract' => 'estimates#contract'
   get 'sfa' => 'estimates#sfa'
+  get 'payment' => 'estimates#payment'
 
 
   # メッセージ

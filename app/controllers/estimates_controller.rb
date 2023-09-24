@@ -147,6 +147,11 @@ class EstimatesController < ApplicationController
     @estimates_for_view = @q.result.page(params[:page]).per(100).order(created_at: :desc)
   end
 
+  def payment
+    @q = Estimate.joins(:transfer).where.not("transfers.id": nil).ransack(params[:q])
+    @estimates_for_view = @q.result.page(params[:page]).per(100).order(created_at: :desc)
+  end
+
   private
   def estimate_params
     params.require(:estimate).permit(
