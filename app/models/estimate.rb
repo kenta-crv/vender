@@ -1,6 +1,7 @@
 class Estimate < ApplicationRecord
   belongs_to :company, optional: true
   has_one :comment, dependent: :destroy
+  has_one :transfer, dependent: :destroy
   has_many :progresses, dependent: :destroy
   validates :co, presence: { message: '会社名が入力されていません。' }, on: :create
   validates :name, presence: { message: '名前が入力されていません。' }, on: :create

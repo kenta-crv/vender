@@ -336,3 +336,55 @@ table.company[width="100%"]
         td
           = link_to "編集", edit_estimate_progress_path(@estimate, progress), _blank: "target"
           = link_to "削除", estimate_progress_path(@estimate, progress), method: :delete, data: {confirm:"本当に削除しますか？"}
+
+
+-if admin_signed_in?
+ - if @comment.neos == "契約"
+  table.company[width="100%"]
+   = form_for([@estimate, @transfer], url: estimate_transfers_path(estimate_id: @estimate)) do |f|
+    tbody
+      tr
+          th
+            | 銀行名
+          th
+            | 支店
+          th
+            | 口座番号
+          th
+            | 口座名義
+          th
+            | メモ
+          th
+      tr
+          td
+            = f.text_field :bank
+          td
+            = f.text_field :branch
+          td
+            = f.text_field :number
+          td
+            = f.text_field :name
+          td
+            = f.text_field :body
+      tr
+          td[colspan = "5"]
+           .center 
+            = f.submit "登録", class:"btn btn-primary"
+  table.company[width="100%"]
+    - if @estimate.transfer
+     tr.center
+        td
+          = @estimate.transfer.bank
+        td
+          = @estimate.transfer.branch
+        td
+          = @estimate.transfer.number
+        td
+          = @estimate.transfer.name
+        td
+          = @estimate.transfer.body
+     tr
+        td[colspan = "5"]
+         .center
+          = link_to "編集", edit_estimate_transfer_path(@estimate, @estimate.transfer), class:"btn btn-primary"
+          = link_to "削除", estimate_transfer_path(@estimate, @estimate.transfer), method: :delete, data: {confirm:"本当に削除しますか？"}, class:"btn btn-primary"

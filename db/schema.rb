@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_19_133513) do
+ActiveRecord::Schema.define(version: 2023_09_24_050126) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -219,6 +219,18 @@ ActiveRecord::Schema.define(version: 2023_09_19_133513) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "transfers", force: :cascade do |t|
+    t.integer "estimate_id"
+    t.string "bank"
+    t.string "branch"
+    t.string "number"
+    t.string "name"
+    t.string "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["estimate_id"], name: "index_transfers_on_estimate_id"
   end
 
 end

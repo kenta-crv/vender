@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   resources :estimates do
     resources :progresses
     resources :comments
+    resources :transfers
     collection do
       post :confirm
       post :thanks
