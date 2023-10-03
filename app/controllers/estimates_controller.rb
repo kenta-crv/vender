@@ -143,7 +143,7 @@ class EstimatesController < ApplicationController
   end
 
   def sfa
-    @q = Estimate.joins(:comment).where("comments.net": ["提案中","検討中"]).ransack(params[:q])
+    @q = Estimate.joins(:comment).where("comments.net": ["未提案","提案中","検討中"]).ransack(params[:q])
     @estimates_for_view = @q.result.page(params[:page]).per(100).order(created_at: :desc)
   end
 
