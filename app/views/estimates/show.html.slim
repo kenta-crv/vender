@@ -2,7 +2,15 @@
 .center
 .tops-wrapper
 br
- h2.headline  基本情報
+ h2.headline  
+   |基本情報　
+   = link_to "一覧に戻る", estimates_path, class: "btn btn-default"
+   = link_to "編集する", edit_estimate_path(@estimate), class: "btn btn-primary"
+   = link_to "削除する", estimate_path(@estimate), class: "btn btn-secondary", method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger"
+   - if !@estimate.send_mail_flag
+    = link_to "送信する", send_mail_estimate_path(@estimate), class: "btn btn-default", method: :post, data: { confirm: '登録中の全企業に送信します。よろしいですか？' }, style: "margin-left: 10px;"
+   - else
+    = link_to "送信済", "javascript:void(0)", class: "btn btn-default", style: "margin-left: 10px;"
  table.company
        colgroup
          col width="10%"
@@ -157,88 +165,35 @@ br
           | 想定本数
          td
           = @estimate.assumed_number
-.actions_container style="text-align: center; margin-bottom: 30px;"
-  = link_to "編集する", edit_estimate_path(@estimate), class: "btn btn-danger"
-  - if @estimate.blank?
-    = link_to "削除する", estimate_path(@estimate), class: "btn btn-secondary", method: :delete, data: { confirm: '本当に削除しますか？' }, style: "margin-left: 10px;"
-  - else
-    = link_to "削除する", "javascript:void(0)", class: "btn btn-secondary", data: { confirm: 'やりとりが始まっているので削除できません' }, style: "margin-left: 10px;"
-  - if !@estimate.send_mail_flag
-    = link_to "送信する", send_mail_estimate_path(@estimate), class: "btn btn-primary", method: :post, data: { confirm: '登録中の全企業に送信します。よろしいですか？' }, style: "margin-left: 10px;"
-  - else
-    = link_to "送信済", "javascript:void(0)", class: "btn btn-primary", style: "margin-left: 10px;"
-.back_link_container style='margin: 0 0 50px 40px;'
-  hr
-  = link_to "一覧に戻る", estimates_path
 
+h2.headline  
+ | 調査進捗　
+ = link_to "編集", edit_estimate_comment_path(@estimate, @estimate.comment), class:"btn btn-primary"
+ = link_to "削除", estimate_comment_path(@estimate, @estimate.comment), method: :delete, data: {confirm:"本当に削除しますか？"}, class:"btn btn-danger"
 table.company[width="100%"]
   = form_for([@estimate, @comment], url: estimate_comments_path(estimate_id: @estimate)) do |f|
-    col[width="12%"]
-    col[width="12%"]
-    col[width="12%"]
-    col[width="12%"]
-    col[width="12%"]
-    col[width="12%"]
-    col[width="12%"]
-    col[width="12%"]
-    col[width="12%"]
     tbody
       tr
           th
-            | アサヒ
+            = image_tag "cocacola-rogo.webp", width:"100%"
           th
-            | コカコーラ
+            = image_tag "neos-rogo.webp", width:"100%"
           th
-            | ダイドー
+            = image_tag "itoen-rogo.webp", width:"100%"
           th
-            | 伊藤園
+            = image_tag "dydo-rogo.webp", width:"100%"
           th
-            | 山久
+            = image_tag "asahi-rogo.webp", width:"100%"
           th
-            | ネオス
+            = image_tag "yamakyu-rogo.webp", width:"100%"
           th
-            | 自販機ねっと
-          th
-
+            = image_tag "rogo.webp", width:"100%"
           th
       tr
-          td
-            = f.select(:asahi,[\
-              ["",""],\
-              ["現地調査中","現地調査中"],\
-              ["見積提示中","見積提示中"],\
-              ["契約","契約"],\
-              ["設置NG","設置NG"],\
-             ])
           td
             = f.select(:cocacola,[\
               ["",""],\
               ["現地調査中","現地調査中"],\
-              ["見積提示中","見積提示中"],\
-              ["契約","契約"],\
-              ["設置NG","設置NG"],\
-             ])
-          td
-            = f.select(:dydo,[\
-              ["",""],\
-              ["現地調査中","現地調査中"],\
-              ["見積提示中","見積提示中"],\
-              ["契約","契約"],\
-              ["設置NG","設置NG"],\
-             ])
-          td
-            = f.select(:itoen,[\
-              ["",""],\
-              ["現地調査中","現地調査中"],\
-              ["見積提示中","見積提示中"],\
-              ["契約","契約"],\
-              ["設置NG","設置NG"],\
-             ])
-          td
-            = f.select(:yamakyu,[\
-              ["",""],\
-              ["現地調査中","現地調査中"],\
-              ["見積提示中","見積提示中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
              ])
@@ -246,15 +201,42 @@ table.company[width="100%"]
             = f.select(:neos,[\
               ["",""],\
               ["現地調査中","現地調査中"],\
-              ["見積提示中","見積提示中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
              ])
           td
+            = f.select(:itoen,[\
+              ["",""],\
+              ["現地調査中","現地調査中"],\
+              ["契約","契約"],\
+              ["設置NG","設置NG"],\
+             ])
+          td
+            = f.select(:dydo,[\
+              ["",""],\
+              ["現地調査中","現地調査中"],\
+              ["契約","契約"],\
+              ["設置NG","設置NG"],\
+             ])
+          td
+            = f.select(:asahi,[\
+              ["",""],\
+              ["現地調査中","現地調査中"],\
+              ["契約","契約"],\
+              ["設置NG","設置NG"],\
+             ])   
+          td
+            = f.select(:yamakyu,[\
+              ["",""],\
+              ["現地調査中","現地調査中"],\
+              ["契約","契約"],\
+              ["設置NG","設置NG"],\
+             ])
+      
+          td
             = f.select(:net,[\
               ["",""],\
               ["未提案","未提案"],\
-              ["提案中","提案中"],\
               ["検討中","検討中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
@@ -266,78 +248,101 @@ table.company[width="100%"]
               ["明細待","明細待"],\
               ["NG","NG"],\
              ])
-          td
-            = f.submit "登録"
+      tr 
+          td[colspan="8"]
+           .center
+            = f.submit "登録",class:"btn btn-primary"
 table.company[width="100%"]
-    col[width="12%"]
-    col[width="12%"]
-    col[width="12%"]
-    col[width="12%"]
-    col[width="12%"]
-    col[width="12%"]
-    col[width="12%"]
-    col[width="12%"]
-    col[width="12%"]
+
     - if @estimate.comment
      tr.center
         td
-          = @estimate.comment.asahi
-        td
           = @estimate.comment.cocacola
         td
-          = @estimate.comment.dydo
+          = @estimate.comment.neos
         td
           = @estimate.comment.itoen
         td
-          = @estimate.comment.yamakyu
+          = @estimate.comment.dydo
         td
-          = @estimate.comment.neos
+          = @estimate.comment.asahi    
+        td
+          = @estimate.comment.yamakyu
         td
           = @estimate.comment.net
         td
           = @estimate.comment.body
-        td
-          = link_to "編集", edit_estimate_comment_path(@estimate, @estimate.comment)
-          = link_to "削除", estimate_comment_path(@estimate, @estimate.comment), method: :delete, data: {confirm:"本当に削除しますか？"}
-
-
+h2.headline  
+ | 屋内型ベンディング・貸し出し型自販機進捗
 table.company[width="100%"]
   = form_for([@estimate, @progress], url: estimate_progresses_path(estimate_id: @estimate)) do |f|
     tbody
-    col[width="30%"]
-    col[width="50%"]
-    col[width="20%"]
+    col[width="10%"]
+    col[width="10%"]
+    col[width="15%"]
+    col[width="15%"]
+    col[width="42%"]
+    col[width="8%"]
+      tr 
+       th ステータス
+       th 資料送付
+       th 最終更新日
+       th 次回提案日
+       th コメント
+       th 削除
       tr.ceter
-          td
-            = f.select(:status,[\
-              ["未コンタクト","未コンタクト"],\
-              ["見積依頼前","見積依頼前"],\
-              ["見積依頼中","見積依頼中"],\
-              ["見積提示中","見積提示中"],\
-              ["契約済","契約済"],\
-              ["status","契約済"],\
-             ])
-          td
-            = f.text_area :body
-          td
-            = f.submit "登録"
-table.company[width="100%"]
-    col[width="25%"]
-    col[width="20%"]
-    col[width="35%"]
-    col[width="20%"]
-     - @estimate.progresses.each do |progress|
+       td
+        = f.select(:status,[\
+              ["",""],\
+              ["不在","不在"],\
+              ["見込低","見込低"],\
+              ["見込中","見込中"],\
+              ["見込高","見込高"],\
+              ["契約","契約"],\
+              ["連絡不通","連絡不通"],\
+              ["設置NG","設置NG"],\
+          ])
+       td
+        = f.select(:document,[\
+              ["",""],\
+              ["屋内型","屋内型"],\
+              ["貸出型","貸出型"],\
+              ["両方","両方"],\
+          ])
+       td
+       td
+        = f.datetime_field :next
+       td
+        = f.text_area :body
+       td
+      tr 
+          td[colspan="６"]
+           .center
+            = f.submit "登録",class:"btn btn-primary"
+- @estimate.progresses.each do |progress|
+      table.company[width="100%"]
+       col[width="10%"]
+       col[width="10%"]
+       col[width="15%"]
+       col[width="15%"]
+       col[width="42%"]
+       col[width="8%"]
        tr.center
-        th
-          = progress.created_at
         td
           = progress.status
         td
+          = progress.document
+        td
+          = progress.created_at.strftime("%Y年%m月%d日")
+        td
+          = progress&.next&.strftime("%Y年%m月%d日 %-H時%-M分")
+        td
           = progress.body
         td
-          = link_to "編集", edit_estimate_progress_path(@estimate, progress), _blank: "target"
-          = link_to "削除", estimate_progress_path(@estimate, progress), method: :delete, data: {confirm:"本当に削除しますか？"}
-
+          = link_to "削除", estimate_progress_path(@estimate, progress), method: :delete, data: {confirm:"本当に削除しますか？"}, class:"btn btn-danger"
+      .center  
+       = image_tag "down.webp",width:"50px"
+        
 
 -if admin_signed_in?
  - if @comment.neos == "契約"
