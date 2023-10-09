@@ -168,8 +168,6 @@ br
 
 h2.headline  
  | 調査進捗　
- = link_to "編集", edit_estimate_comment_path(@estimate, @estimate.comment), class:"btn btn-primary"
- = link_to "削除", estimate_comment_path(@estimate, @estimate.comment), method: :delete, data: {confirm:"本当に削除しますか？"}, class:"btn btn-danger"
 table.company[width="100%"]
   = form_for([@estimate, @comment], url: estimate_comments_path(estimate_id: @estimate)) do |f|
     tbody
@@ -272,6 +270,9 @@ table.company[width="100%"]
           = @estimate.comment.net
         td
           = @estimate.comment.body
+     tr.center[colspan="8"]
+      = link_to "編集", edit_estimate_comment_path(@estimate, @estimate.comment), class:"btn btn-primary"
+      = link_to "削除", estimate_comment_path(@estimate, @estimate.comment), method: :delete, data: {confirm:"本当に削除しますか？"}, class:"btn btn-danger"
 h2.headline  
  | 屋内型ベンディング・貸し出し型自販機進捗
 table.company[width="100%"]
