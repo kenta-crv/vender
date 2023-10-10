@@ -48,4 +48,9 @@ class TopController < ApplicationController
   def suntory
   end
 
+  def inside 
+  end
+
+  def outside
+  end
 end

@@ -270,11 +270,17 @@ table.company[width="100%"]
           = @estimate.comment.net
         td
           = @estimate.comment.body
-     tr.center[colspan="8"]
-      = link_to "編集", edit_estimate_comment_path(@estimate, @estimate.comment), class:"btn btn-primary"
-      = link_to "削除", estimate_comment_path(@estimate, @estimate.comment), method: :delete, data: {confirm:"本当に削除しますか？"}, class:"btn btn-danger"
+     tr[colspan="8"]
+      .center
+        = link_to "編集", edit_estimate_comment_path(@estimate, @estimate.comment), class:"btn btn-primary"
+        = link_to "削除", estimate_comment_path(@estimate, @estimate.comment), method: :delete, data: {confirm:"本当に削除しますか？"}, class:"btn btn-danger"
+
+
 h2.headline  
- | 屋内型ベンディング・貸し出し型自販機進捗
+ | 屋内型ベンディング・貸し出し型自販機進捗　
+ = link_to '貸出型', outside_email_estimate_path(estimate_id: @estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-danger" 
+ = link_to '屋内型', inside_email_estimate_path(estimate_id: @estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-danger"
+ = link_to '両方', both_email_estimate_path(estimate_id: @estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-danger"
 table.company[width="100%"]
   = form_for([@estimate, @progress], url: estimate_progresses_path(estimate_id: @estimate)) do |f|
     tbody
@@ -345,8 +351,10 @@ table.company[width="100%"]
        = image_tag "down.webp",width:"50px"
         
 
--if admin_signed_in?
- - if @comment.neos == "契約"
+
+- if @estimate.comment&.neos == "契約"
+  h2.headline  
+   | 振込口座
   table.company[width="100%"]
    = form_for([@estimate, @transfer], url: estimate_transfers_path(estimate_id: @estimate)) do |f|
     tbody
@@ -394,4 +402,4 @@ table.company[width="100%"]
         td[colspan = "5"]
          .center
           = link_to "編集", edit_estimate_transfer_path(@estimate, @estimate.transfer), class:"btn btn-primary"
-          = link_to "削除", estimate_transfer_path(@estimate, @estimate.transfer), method: :delete, data: {confirm:"本当に削除しますか？"}, class:"btn btn-primary"
+          = link_to "削除", estimate_transfer_path(@estimate, @estimate.transfer), method: :delete, data: {confirm:"本当に削除しますか？"}, class:"btn btn-danger"

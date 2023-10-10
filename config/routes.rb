@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   get 'co' => 'top#co'
   get 'question' => 'top#question'
 
+  get 'inside' => 'top#inside'
+  get 'outside' => 'top#outside'
+  get 'both' => 'top#both'
+
   get 'lp' => 'top#lp'
 
   get 'cocacola' => 'top#cocacola'
@@ -56,6 +60,9 @@ Rails.application.routes.draw do
       post :send_mail
       get :select_sent
       get :confirm_point
+      post 'inside_email', to: 'estimates#inside_email', as: 'inside_email'
+      post 'outside_email', to: 'estimates#outside_email', as: 'outside_email'
+      post 'both_email', to: 'estimates#both_email', as: 'both_email'
       post :apply
     end
   end

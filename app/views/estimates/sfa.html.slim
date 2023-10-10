@@ -4,6 +4,13 @@
   br
   br
   table.company
+   col[width="10%"]
+   col[width="8%"]
+   col[width="12%"]
+   col[width="12%"]
+   col[width="15%"]
+   col[width="35%"]
+   col[width="11%"]
    tr
      th 会社名
      th 担当者
@@ -69,41 +76,3 @@
                   = f.submit "検索する"
 
 
-
-
-table.company
-    tbody
-      tr
-        th
-          | CUSTOMER_CSVファイルエクスポート
-
-        td.center
-          = link_to 'エクスポート', estimates_path(format: :csv), class: 'btn btn-primary'
-
-
-javascript: 
-  function modalfadein(coname){
-    $(function() {
-     $('.unsent').click(function() {
-        $('#selectingModal').fadeIn()
-        console.log(coname)
-        $('.dialogs').text('送信する企業を選択('+coname+')')
-     })
-    })
-  }
-
-  function modalout(){
-    $(function() {
-     $('.close').click(function() {
-        $('#selectingModal').fadeOut()
-     })
-    });
-  }
-
-  function sent_mail(){
-    console.log('clicked')
-
-    var colors = []
-
-    //すべてのチェック済みvalue値を取得する
-  }

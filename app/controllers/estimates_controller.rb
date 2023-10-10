@@ -72,6 +72,24 @@ class EstimatesController < ApplicationController
     end
   end
 
+  def inside_email
+    estimate = Estimate.find(params[:estimate_id])
+    EstimateMailer.inside_email(estimate).deliver_now
+    redirect_to estimate_path(estimate), notice: 'Email sent successfully.'
+  end
+
+  def outside_email
+    estimate = Estimate.find(params[:estimate_id])
+    EstimateMailer.outside_email(estimate).deliver_now
+    redirect_to estimate_path(estimate), notice: 'Email sent successfully.'
+  end
+
+  def both_email
+    estimate = Estimate.find(params[:estimate_id])
+    EstimateMailer.both_email(estimate).deliver_now
+    redirect_to estimate_path(estimate), notice: 'Email sent successfully.'
+  end
+
   def send_mail
     @estimate = Estimate.find(params[:id])
     @estimate.update(send_mail_flag: true)

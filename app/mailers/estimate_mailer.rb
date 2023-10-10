@@ -16,6 +16,30 @@ class EstimateMailer < ActionMailer::Base
     end
   end
 
+  def outside_email(estimate)
+    @estimate = estimate
+    mail to: estimate.email
+    mail(subject: '収益性の高い貸出型自販機のご案内') do |format|
+      format.text
+    end
+  end
+
+  def inside_email(estimate)
+    @estimate = estimate
+    mail to: estimate.email
+    mail(subject: '実質利用でご利用可能な屋内ベンディングサービスのご案内') do |format|
+      format.text
+    end
+  end
+
+  def both_email(estimate)
+    @estimate = estimate
+    mail to: estimate.email
+    mail(subject: '屋内ベンディングサービス・貸出型自販機のご案内') do |format|
+      format.text
+    end
+  end
+
   def client_email(estimate,customer_id)
     @estimate = estimate
     mail bcc: Company.all.map{|company| company.mail}
