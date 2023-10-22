@@ -120,16 +120,22 @@ class EstimatesController < ApplicationController
     end
     Rails.logger.info("set by #{customer_target}")
     customer_target.each do |target|
-      if target == "ASAHI"
-        @comment.update(asahi:"依頼中")
-      elsif target == "コカ・コーラ"
-        @comment.update(cocacola:"依頼中")
-      elsif target == "伊藤園"
-        @comment.update(itoen:"依頼中")
-      elsif target == "ダイドードリンコ"
-        @comment.update(dydo:"依頼中")
-      else
-        @comment.update(body:"依頼中")
+      if target == "アサヒ飲料販売株式会社 中部支社"
+        @comment.update(asahi:"現地調査中")
+      elsif target == "アサヒ飲料販売株式会社 関西支社"
+        @comment.update(asahi:"現地調査中")
+      elsif target == "アサヒ飲料販売株式会社"
+        @comment.update(asahi:"現地調査中")
+      elsif target == "日本コカ･コーラ株式会社"
+        @comment.update(cocacola:"現地調査中")
+      elsif target == "株式会社伊藤園"
+        @comment.update(itoen:"現地調査中")
+      elsif target == "ダイドードリンコ株式会社"
+        @comment.update(dydo:"現地調査中")
+      elsif target == "株式会社山久"
+        @comment.update(yamakyu:"現地調査中")
+      elsif target == "ネオス株式会社"
+        @comment.update(neos:"現地調査中")
       end
     end
     select_companies = []
