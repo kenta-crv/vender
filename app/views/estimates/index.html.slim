@@ -98,15 +98,21 @@ br/
 
 
 
-
-table.company
+br/
+br/
+= form_with(url: import_estimates_path, method: :post, local: true, multipart: true) do |f|
+  table.company[width="90%"]
     tbody
       tr
+        th[colspan="3"]
+          | ファイルインポート
+      tr
+        td
+          = f.file_field :file
         th
-          | CUSTOMER_CSVファイルエクスポート
-
-        td.center
-          = link_to 'エクスポート', estimates_path(format: :csv), class: 'btn btn-primary'
+          = submit_tag "インポート",  class: 'btn btn-primary'
+        th
+          = link_to 'エクスポート', estimates_path(format: :csv, page: params[:page]), class: 'btn btn-primary'
 
 
 javascript: 

@@ -4,6 +4,12 @@ class EstimatesController < ApplicationController
   def index
     @q = Estimate.ransack(params[:q])
     @estimates_for_view = @q.result.page(params[:page]).per(100).order(created_at: :desc)
+    respond_to do |format|
+      format.html
+      format.csv do
+         send_data @estimates_for_view.generate_csv, filename: "estimates_for_view-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"
+      end
+     end
   end
 
   def new
@@ -168,6 +174,11 @@ class EstimatesController < ApplicationController
   def payment
     @q = Estimate.joins(:transfer).where.not("transfers.id": nil).ransack(params[:q])
     @estimates_for_view = @q.result.page(params[:page]).per(100).order(created_at: :desc)
+  end
+
+  def import
+    cnt = Estimate.import(params[:file])
+    redirect_to estimates_url, notice:"#{cnt}件登録されました。"
   end
 
   private

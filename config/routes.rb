@@ -53,6 +53,7 @@ Rails.application.routes.draw do
     collection do
       post :confirm
       post :thanks
+      post :import
     end
     member do
       get :apply
