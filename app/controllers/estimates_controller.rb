@@ -4,12 +4,12 @@ class EstimatesController < ApplicationController
   def index
     @q = Estimate.ransack(params[:q])
     @estimates_for_view = @q.result.page(params[:page]).per(100).order(created_at: :desc)
-    respond_to do |format|
-      format.html
-      format.csv do
-         send_data @estimates_for_view.generate_csv, filename: "estimates_for_view-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"
-      end
-     end
+    #respond_to do |format|
+    #  format.html
+    #  format.csv do
+    #     send_data @estimates_for_view.generate_csv, filename: "estimates_for_view-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"
+    #  end
+    # end
   end
 
   def new
