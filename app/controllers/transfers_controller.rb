@@ -47,7 +47,6 @@ class TransfersController < ApplicationController
     :number,
     :name,
     :body,
-    :image
     )
  	end
 end
