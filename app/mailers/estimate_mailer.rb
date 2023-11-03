@@ -48,12 +48,14 @@ class EstimateMailer < ActionMailer::Base
     end
   end
 
-  def client_email_select(estimate,select_companies)
+  def client_email_select(estimate, select_companies)
     @estimate = estimate
-    @companies = select_companies
-    mail(
-    bcc: @companies.map { |company| company.mail },
-    subject: "自販機現地調査依頼【#{@estimate.co}】"
-  )
+    select_companies.each do |company|
+      @company = company
+      mail(to: company.mail, subject: "自販機現地調査依頼【#{@estimate.co}】", content_type: "text/plain; charset=UTF-8", content_transfer_encoding: '7bit') do |format|
+        format.text
+      end.deliver
+    end
   end
+
 end
