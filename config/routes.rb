@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  #自販機オーナーアカウント
-  #devise_for :clients, controllers: {
-   # registrations: 'clients/registrations',
-    #sessions: 'clients/sessions'
-  #}
-  #resources :clients, only: [:show]
+  #取引先アカウント
+  devise_for :clients, controllers: {
+    registrations: 'clients/registrations',
+    sessions: 'clients/sessions'
+  }
+  resources :clients, only: [:show]
+
   #管理者アカウント
   devise_for :admins, controllers: {
     registrations: 'admins/registrations',
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
   get 'co' => 'top#co'
   get 'question' => 'top#question'
 
+  get 'old' => 'top#old'
   get 'inside' => 'top#inside'
   get 'outside' => 'top#outside'
   get 'both' => 'top#both'
@@ -61,6 +63,7 @@ Rails.application.routes.draw do
       post :send_mail
       get :select_sent
       get :confirm_point
+      post 'old_email', to: 'estimates#old_email', as: 'old_email'
       post 'inside_email', to: 'estimates#inside_email', as: 'inside_email'
       post 'outside_email', to: 'estimates#outside_email', as: 'outside_email'
       post 'both_email', to: 'estimates#both_email', as: 'both_email'
@@ -69,6 +72,7 @@ Rails.application.routes.draw do
   end
   get 'contract' => 'estimates#contract'
   get 'sfa' => 'estimates#sfa'
+  get 'disclosure/:id', to: 'estimates#disclosure', as: :disclosure
   get 'payment' => 'estimates#payment'
 
 
@@ -81,18 +85,16 @@ Rails.application.routes.draw do
   end
 
   #企業側アカウント
-  resources :companies do
-    resources :images, only: [:create, :destroy, :update, :download, :edit]
-      member do
-        get 'images/view'
-        get 'images/download/:id' => 'images#download' ,as: :images_pdf
-      end
-    collection do
-      get :pay
-      post :get_point
-      post :confirm
-      post :thanks
+  resource :company, only: [:show, :edit, :update] do
+    # imagesに関するルーティング
+    resources :images, only: [:create, :destroy, :update, :download, :edit] do
+      get 'view', on: :member
+      get 'download/:id', action: :download, as: :pdf, on: :member
     end
+  end
+
+  resources :clients do
+    resource :company, only: [:new, :create, :edit, :update, :show, :destroy]
   end
 
 

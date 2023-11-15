@@ -1,0 +1,106 @@
+- set_meta_tags noindex: true
+.center
+.tops-wrapper
+br
+ h2.headline  
+   |案件情報
+ table.company
+       colgroup
+         col width="10%"
+         col width="20%"
+         col width="70%"
+       tr
+         td
+           strong.label 必須
+         td.arrow_box
+           | 会社名
+         td
+           = @estimate.co
+       tr
+         td
+           strong.label 必須
+         td.arrow_box
+           | 担当者名
+         td
+           = @estimate.name
+       tr
+         td
+           strong.label 必須
+         td.arrow_box
+           | 電話番号
+         td
+           = @estimate.tel
+       tr
+         td
+           strong.label 必須
+         td.arrow_box
+           | 設置先住所
+         td
+           = @estimate.address
+       tr
+         td
+           strong.label 必須
+         td.arrow_box
+           | メールアドレス
+         td
+           = @estimate.email
+       tr
+         td
+           strong.label 必須
+         td.arrow_box
+           | 設置先業種
+         td
+           = @estimate.industry
+       tr
+         td
+           strong.label.label-blue 任意
+         td.arrow_box
+           | 設置箇所
+         td
+           = @estimate.installation
+       tr
+         td
+           strong.label.label-blue 任意
+         td.arrow_box
+           | 想定される利用人数
+         td
+          = @estimate.people
+       tr
+         td
+           strong.label 必須
+         td.arrow_box
+           | 自販機について
+         td
+           = @estimate.chenge
+       tr
+         td
+           strong.label.label-blue 必須
+         td.arrow_box
+           | （交換）設置中のメーカー
+           br
+           |（※交換・追加の場合）
+         td
+           = @estimate.change_before
+       tr
+         td
+           strong.label.label-blue 必須
+         td.arrow_box
+           | 設置目的
+           br
+           |（※交換・追加の場合）
+         td
+           = @estimate.aim
+       tr
+         td
+           strong.label 必須
+         td.arrow_box
+           | 設置希望時期
+         td
+           = @estimate.period
+       tr
+         td
+           strong.label.label-blue 任意
+         td.arrow_box
+           | 要望・備考
+         td
+           = @estimate.remarks

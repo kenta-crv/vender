@@ -1,5 +1,6 @@
 class EstimatesController < ApplicationController
   before_action :authenticate_admin!, only: [:index, :show, :edit, :update, :destroy, :send_mail]
+  before_action :authenticate_client!, only: [:client]
   add_breadcrumb "フォーム入力ページ", :new_estimate_path, only: [:confirm]
   def index
     @q = Estimate.ransack(params[:q])
@@ -35,6 +36,10 @@ class EstimatesController < ApplicationController
 
   def contract
     @estimates = Estimate.joins(:comment).where.not(sales_price: nil).where("comments.cocacola = ? OR comments.asahi = ? OR comments.itoen = ? OR comments.dydo = ? OR comments.yamakyu = ? OR comments.neos = ?", "契約", "契約", "契約", "契約", "契約", "契約")
+  end
+
+  def disclosure
+    @estimate = Estimate.find(params[:id])
   end
 
   def neos
@@ -87,6 +92,12 @@ class EstimatesController < ApplicationController
   def outside_email
     estimate = Estimate.find(params[:estimate_id])
     EstimateMailer.outside_email(estimate).deliver_now
+    redirect_to estimate_path(estimate), notice: 'Email sent successfully.'
+  end
+
+  def old_email
+    estimate = Estimate.find(params[:estimate_id])
+    EstimateMailer.old_email(estimate).deliver_now
     redirect_to estimate_path(estimate), notice: 'Email sent successfully.'
   end
 

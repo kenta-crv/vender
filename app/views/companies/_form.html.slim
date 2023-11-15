@@ -1,11 +1,9 @@
-= form_for @company do |f|
+= form_for [@client, @company], url: (@company.new_record? ? client_path(@client) : client_company_path(@client)), method: (@company.new_record? ? :post : :patch) do |f|
   - if @company.errors.any?
-   .alert.alert-warning.center
-     ul
-       - @company.errors.full_messages.each do |message|
-        li
-          = message
-
+    .alert.alert-warning.center
+      ul
+        - @company.errors.full_messages.each do |message|
+          li = message
   table.company
    colgroup
      col width="10%"

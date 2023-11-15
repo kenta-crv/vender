@@ -16,6 +16,14 @@ class EstimateMailer < ActionMailer::Base
     end
   end
 
+  def old_email(estimate)
+    @estimate = estimate
+    mail to: estimate.email
+    mail(subject: '最長5年保証で運営出来る新中古自販機のご案内') do |format|
+      format.text
+    end
+  end
+
   def outside_email(estimate)
     @estimate = estimate
     mail to: estimate.email

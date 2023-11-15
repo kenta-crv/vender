@@ -31,7 +31,7 @@ private
     when Admin
       "/estimates"
     when Client
-      "/"
+      client_path(resource)
     else
       "/"
     end
@@ -40,6 +40,8 @@ private
   def after_sign_out_path_for(resource)
     case resource
     when Admin, :admin, :admins
+      "/"
+    when Client, :client, :clients
       "/"
     else
        super

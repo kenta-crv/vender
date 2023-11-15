@@ -278,9 +278,10 @@ table.company[width="100%"]
 
 h2.headline  
  | 屋内型ベンディング・貸し出し型自販機進捗　
+ = link_to '新中古型', old_email_estimate_path(estimate_id: @estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-danger"
  = link_to '貸出型', outside_email_estimate_path(estimate_id: @estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-danger" 
  = link_to '屋内型', inside_email_estimate_path(estimate_id: @estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-danger"
- = link_to '両方', both_email_estimate_path(estimate_id: @estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-danger"
+ /= link_to '両方', both_email_estimate_path(estimate_id: @estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-danger"
 table.company[width="100%"]
   = form_for([@estimate, @progress], url: estimate_progresses_path(estimate_id: @estimate)) do |f|
     tbody
