@@ -1,33 +1,56 @@
 class ClientsController < ApplicationController
-  before_action :authenticate_client!, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_admin!, only: [:index]
-  before_action :correct_client, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_client
   def index
-    # 管理者が全クライアント情報を確認できるアクション
     @clients = Client.all
   end
 
   def show
-    # クライアントが自分自身の情報を確認できるアクション
+    @client = Client.find(params[:id])
+    @estimates = current_client.estimates
+  end
+
+  def disclose
+    @client = Client.find(params[:id])
+    @client.update(disclosure_clicked_at: Time.current)
+    # 開示された案件情報を表示するためのロジック
+    redirect_to client_path(@client)
+  end
+
+  def new
+    @client = Client.new
+  end
+
+  def create
+    @client = Client.new(client_params)
+    if @client.save
+      redirect_to @client, notice: 'クライアントが正常に作成されました。'
+    else
+      render :new
+    end
+  end
+
+  def edit
     @client = Client.find(params[:id])
   end
 
-  # その他のアクション...
+  def update
+    @client = Client.find(params[:id])
+    if @client.update(client_params)
+      redirect_to @client, notice: 'クライアント情報が更新されました。'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @client = Client.find(params[:id])
+    @client.destroy
+    redirect_to clients_url, notice: 'クライアントが削除されました。'
+  end
 
   private
 
-  def correct_client
-    @client = Client.find(params[:id])
-    redirect_to(root_path) unless current_client?(@client) || current_admin?
+  def client_params
+    params.require(:client).permit(:company, :name, :tel, :email, :password, :password_confirmation)
   end
-
-  def current_client?(client)
-    client == current_client
-  end
-
-  
-
-  # current_admin? メソッドはAdminモデルに依存するため、
-  # そのモデルの実装に合わせて定義する必要があります。
 end

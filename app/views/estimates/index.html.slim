@@ -44,10 +44,7 @@
      td = estimate.comment ? estimate.comment.neos : nil
      td = estimate.comment ? estimate.comment.net : nil
      td = estimate.comment ? estimate.comment.body : nil
-     - if estimate.send_mail_flag == true
-      td = link_to "送信済", "#selectingModal" , style: "color: fff" ,class: "btn btn-success"
-     - else
-      td = link_to "未送信", "/estimates/#{estimate.id}/select_sent" , style: "color: fff" ,class: "btn btn-danger unsent"
+     td = link_to "送信", "/estimates/#{estimate.id}/select_sent" , style: "color: fff" ,class: "btn btn-success unsent"
   br
     hr.line
     br

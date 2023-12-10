@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_10_170733) do
+ActiveRecord::Schema.define(version: 2023_12_04_142619) do
+
+  create_table "add_column_to_comments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,11 +33,15 @@ ActiveRecord::Schema.define(version: 2023_11_10_170733) do
   create_table "clients", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "company"
+    t.string "name"
+    t.string "tel"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "disclosure_clicked_at"
     t.index ["email"], name: "index_clients_on_email", unique: true
     t.index ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true
   end
@@ -120,7 +129,28 @@ ActiveRecord::Schema.define(version: 2023_11_10_170733) do
     t.string "neos"
     t.string "body"
     t.string "net"
+    t.string "asahi_suggestion"
+    t.string "asahi_remarks"
+    t.string "cocacola_suggestion"
+    t.string "cocacola_remarks"
+    t.string "itoen_suggestion"
+    t.string "itoen_remarks"
+    t.string "neos_suggestion"
+    t.string "neos_remarks"
+    t.string "yamakyu_suggestion"
+    t.string "yamakyu_remarks"
+    t.string "dydo_suggestion"
+    t.string "dydo_remarks"
+    t.string "token"
+    t.integer "client_id"
+    t.string "asahi_file"
+    t.string "cocacola_file"
+    t.string "itoen_file"
+    t.string "neos_file"
+    t.string "yamakyu_file"
+    t.string "dydo_file"
     t.index ["estimate_id"], name: "index_comments_on_estimate_id"
+    t.index ["token"], name: "index_comments_on_token", unique: true
   end
 
   create_table "companies", force: :cascade do |t|
@@ -141,6 +171,16 @@ ActiveRecord::Schema.define(version: 2023_11_10_170733) do
     t.integer "client_id"
     t.index ["client_id"], name: "index_companies_on_client_id"
     t.index ["reset_password_token"], name: "index_companies_on_reset_password_token", unique: true
+  end
+
+  create_table "disclosure_logs", force: :cascade do |t|
+    t.integer "client_id"
+    t.integer "estimate_id"
+    t.string "action"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_disclosure_logs_on_client_id"
+    t.index ["estimate_id"], name: "index_disclosure_logs_on_estimate_id"
   end
 
   create_table "estimates", force: :cascade do |t|
@@ -173,6 +213,9 @@ ActiveRecord::Schema.define(version: 2023_11_10_170733) do
     t.string "attracting"
     t.string "chagnge_remarks"
     t.string "industry"
+    t.boolean "disclosed"
+    t.boolean "accepted_by_client"
+    t.integer "client_id"
   end
 
   create_table "images", force: :cascade do |t|

@@ -18,7 +18,7 @@
           | 会社名
         td.responsive-cell
          .input-container
-          = f.text_field :co, placeholder:"※個人の場合は担当者名"
+          = f.text_field :co, placeholder:"※個人の場合は担当者名・アパート設置はアパート名を記載"
       tr
         td.label-cell
           strong.label 必須
@@ -42,7 +42,7 @@
           | 設置先住所
         td.responsive-cell
          .input-container
-          = f.text_field :address
+          = f.text_field :address, placeholder:"※必ず番地まで記載をお願い致します。"
       tr
         td.label-cell
           strong.label 必須
@@ -58,7 +58,7 @@
           | 設置先業種（個人の場合『個人』と入力）
         td.responsive-cell
          .input-container
-          = f.text_field :industry
+          = f.text_field :industry, placeholder:"※ex.飲食店・介護事業社・建設業等"
       - if request.referer&.include?("/cocacola")
        tr
          td.label-cell
@@ -257,10 +257,12 @@
         td.label-cell
           strong.label 必須
         td.arrow-box-cell
-          | 想定される利用人数
+          | 1日に設置場所を利用する人数
         td.responsive-cell
          .input-container
-           = f.text_field :people, placeholder:"※事務所の場合はスタッフ総数・店舗の場合は平均来店人数"
+           = f.text_field :people, placeholder:"※通行人等不確定な人数は含めない"
+           br/
+           small ※（事務所）従業員総数・（建設）ヘルプ含めた総数・（サービス業）来客者＋スタッフ総数
       tr
         td.label-cell
           strong.label 必須
@@ -275,7 +277,7 @@
            ],include_blank: "選択してください")
       tr
         td.label-cell
-          strong.label.label-blue 任意
+          strong.label.label-blue ある場合必須
         td.arrow-box-cell
           | （交換）設置中のメーカー
         td.responsive-cell
@@ -325,6 +327,8 @@
         td.responsive-cell
          .input-container
           = f.text_area :remarks, placeholder:"※周辺に高校がある・駅が近い等、周辺状況等明記・その他要望等"
+          br/
+          small 既存自販機交換の場合、メーカー・売上本数（おおよそでも可）・交換理由を記載してください。
       -if admin_signed_in?
        tr
         td.label-cell

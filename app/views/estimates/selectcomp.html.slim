@@ -6,7 +6,7 @@ br
     = form_tag "/estimates/#{params[:id]}/send_mail_cfsl", method: :post
         .labeler
           .row  
-            = collection_check_boxes :companies, :comp, @company.all, :id, :company do |user|
+            = collection_check_boxes :clients, :comp, @client.all, :id, :company do |user|
               .col-sm-4
                 = user.label { user.check_box + user.text }
 

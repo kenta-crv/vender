@@ -2,7 +2,7 @@ br
 br
 .top-wrapper.center
   h2.headline
-      | アカウント情報編集
+      | メーカーログイン情報編集
   p
     | 登録するID/PASSを入力して下さい。
   = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
@@ -12,42 +12,59 @@ br
         | Currently waiting confirmation for:
         = resource.unconfirmed_email
     table.company
-      colgroup
-        col[width="40%"]
-        col[width="60%"]
+     colgroup
+      col width="10%"
+      col width="20%"
+      col width="70%"
+      tbody
       tr
-        th.arrow_box
+        td
+          strong.label.label-blue 任意
+        td.arrow_box
+          | 会社名
+        td = f.text_field :company
+      tr
+        td
+          strong.label.label-blue 任意
+        td.arrow_box
+          | 担当者名
+        td
+          = f.text_field :name
+      tr
+        td
+          strong.label.label-blue 任意
+        td.arrow_box
+          | 携帯番号
+        td
+          = f.text_field :tel
+      tr
+        td
+          strong.label.label-blue 任意
+        td.arrow_box
           | ログインアドレス
-          .label
-            | 必須
         td
           = f.email_field :email, autofocus: true, autocomplete: "email"
       tr
-        th.arrow_box
-          | 現在のパスワード
-          .label
-            | 必須
         td
-          |  　
+          strong.label 必須
+        td.arrow_box
+          | 現在のパスワード
+        td
           = f.password_field :current_password, autocomplete: "off"
       tr
-        td[colspan="2"]
-          = f.submit "更新する", class:"btn btn-success"
-  .heading
-    h2
-      | アカウント削除
-  table
-    colgroup
-      col[width="40%"]
-      col[width="60%"]
-      |  　
-    tr
-      th
-        | アカウント削除
-      td
-        = button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "本当に削除しますか？" }, method: :delete, class:"btn btn-success"
-    tr
-      th
-        | 戻る
-      td
-        = link_to "戻る", :back, class:"btn btn-success"
+        td
+          strong.label.label-blue 任意
+        td.arrow_box
+          | 新しいのパスワード
+        td
+          = f.password_field :password, autocomplete: "new-password"
+      tr
+        td
+          strong.label.label-blue 任意
+        td.arrow_box
+          | 新しいパスワード（確認用）
+        td
+          = f.password_field :password_confirmation, autocomplete: "new-password"
+      tr
+        td[colspan="3"]
+          = f.submit "更新する", class:"btn btn-primary"

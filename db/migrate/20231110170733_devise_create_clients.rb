@@ -7,6 +7,10 @@ class DeviseCreateClients < ActiveRecord::Migration[5.2]
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
+      t.string :company
+      t.string :name
+      t.string :tel
+
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at

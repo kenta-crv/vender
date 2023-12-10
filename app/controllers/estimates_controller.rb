@@ -1,16 +1,10 @@
 class EstimatesController < ApplicationController
-  before_action :authenticate_admin!, only: [:index, :show, :edit, :update, :destroy, :send_mail]
-  before_action :authenticate_client!, only: [:client]
+  before_action :check_admin
+  before_action :check_client, only: [:decline, :accept, :update_status]
   add_breadcrumb "フォーム入力ページ", :new_estimate_path, only: [:confirm]
   def index
     @q = Estimate.ransack(params[:q])
     @estimates_for_view = @q.result.page(params[:page]).per(100).order(created_at: :desc)
-    #respond_to do |format|
-    #  format.html
-    #  format.csv do
-    #     send_data @estimates_for_view.generate_csv, filename: "estimates_for_view-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"
-    #  end
-    # end
   end
 
   def new
@@ -38,10 +32,6 @@ class EstimatesController < ApplicationController
     @estimates = Estimate.joins(:comment).where.not(sales_price: nil).where("comments.cocacola = ? OR comments.asahi = ? OR comments.itoen = ? OR comments.dydo = ? OR comments.yamakyu = ? OR comments.neos = ?", "契約", "契約", "契約", "契約", "契約", "契約")
   end
 
-  def disclosure
-    @estimate = Estimate.find(params[:id])
-  end
-
   def neos
     @estimates = Estimate.joins(:comment).where.not(percentage_other: 0).where("comments.neos": "契約")
   end
@@ -53,18 +43,34 @@ class EstimatesController < ApplicationController
   end
 
   def show
-    @estimate = Estimate.find(params[:id])
-    @comment = Comment.new
+    @estimate = Estimate.find_by(id: params[:id])
+  
+    if @estimate.nil?
+      redirect_to estimates_path, alert: "指定された見積もりは見つかりませんでした。"
+      return
+    end
+  
+    if admin_signed_in?
+      # 管理者の場合、制限なしにアクセス許可
+    elsif admin_signed_in? && !@estimate.accepted_by_client?
+      # クライアントユーザーで案件が承諾されていない場合
+      redirect_to root_path, alert: 'この案件にはアクセスできません。'
+      return
+    end
+  
+    # 必要なインスタンス変数の設定
+    @comment = @estimate.comment || Comment.new
     @progress = Progress.new
     @transfer = Transfer.new
   end
+
 
   def edit
     @estimate = Estimate.find(params[:id])
   end
 
   def select_sent
-    @company = Company.all
+    @client = Client.all
     render "selectcomp"
   end
 
@@ -83,9 +89,9 @@ class EstimatesController < ApplicationController
     end
   end
 
-  def inside_email
+  def share_email
     estimate = Estimate.find(params[:estimate_id])
-    EstimateMailer.inside_email(estimate).deliver_now
+    EstimateMailer.share_email(estimate).deliver_now
     redirect_to estimate_path(estimate), notice: 'Email sent successfully.'
   end
 
@@ -101,12 +107,6 @@ class EstimatesController < ApplicationController
     redirect_to estimate_path(estimate), notice: 'Email sent successfully.'
   end
 
-  def both_email
-    estimate = Estimate.find(params[:estimate_id])
-    EstimateMailer.both_email(estimate).deliver_now
-    redirect_to estimate_path(estimate), notice: 'Email sent successfully.'
-  end
-
   def send_mail
     @estimate = Estimate.find(params[:id])
     @estimate.update(send_mail_flag: true)
@@ -117,66 +117,92 @@ class EstimatesController < ApplicationController
   def send_mail_cfsl
     @estimate = Estimate.find(params[:id])
     @comment = Comment.find_or_initialize_by(estimate_id: params[:id])
-    customer_email = []
-    customer_target = []
-    params[:companies].each do |prms|
-      prms[1].each do |prms|
-        if prms != ""
-          Rails.logger.info("set by #{prms}")
-          comp = Company.find(prms)
-          customer_email << comp.mail
-          customer_target << comp.company
+  
+    # クライアントIDを処理
+    params[:clients].each do |_key, client_ids|
+      client_ids.each do |client_id|
+        next if client_id.blank?
+  
+        client = Client.find(client_id)
+  
+        # メール送信
+        EstimateMailer.client_email_select(@estimate, client).deliver_now
+  
+        # コメントの更新
+        case client.company
+        when "アサヒ飲料販売株式会社 中部支社", "アサヒ飲料販売株式会社 関西支社", "アサヒ飲料販売株式会社"
+          @comment.update(asahi: "依頼中")
+        when "日本コカ･コーラ株式会社"
+          @comment.update(cocacola: "依頼中")
+        when "株式会社伊藤園"
+          @comment.update(itoen: "依頼中")
+        when "ダイドードリンコ株式会社"
+          @comment.update(dydo: "依頼中")
+        when "株式会社山久"
+          @comment.update(yamakyu: "依頼中")
+        when "ネオス株式会社"
+          @comment.update(neos: "依頼中")
+        when "株式会社Ri-Plus"
+          @comment.update(kirin: "依頼中")
+        when "合同会社ファクトル"
+          @comment.update(body: "依頼中")
         end
       end
     end
-    Rails.logger.info("set by #{customer_target}")
-    customer_target.each do |target|
-      if target == "アサヒ飲料販売株式会社 中部支社"
-        @comment.update(asahi:"現地調査中")
-      elsif target == "アサヒ飲料販売株式会社 関西支社"
-        @comment.update(asahi:"現地調査中")
-      elsif target == "アサヒ飲料販売株式会社"
-        @comment.update(asahi:"現地調査中")
-      elsif target == "日本コカ･コーラ株式会社"
-        @comment.update(cocacola:"現地調査中")
-      elsif target == "株式会社伊藤園"
-        @comment.update(itoen:"現地調査中")
-      elsif target == "ダイドードリンコ株式会社"
-        @comment.update(dydo:"現地調査中")
-      elsif target == "株式会社山久"
-        @comment.update(yamakyu:"現地調査中")
-      elsif target == "ネオス株式会社"
-        @comment.update(neos:"現地調査中")
-      end
-    end
-    select_companies = []
-    customer_target.each do |target|
-      select_companies << Company.find_by(company: target)
-    end
-    EstimateMailer.client_email_select(@estimate, select_companies).deliver
-    redirect_to "/estimates", alert: "#{@estimate.co}が指定した企業へ送信しました。"
+    redirect_to estimates_path, alert: "#{@estimate.co}が指定した企業へ送信しました。"
   end
 
-  def apply
+  def accept
     estimate = Estimate.find(params[:id])
-    room = estimate.rooms.find_by(member_id: current_member.id)
-
-    if room.blank?
-      # 初めての場合
-      if current_member.point >= 10
-        # ポイントを減らす
-        current_member.update(point: current_member.point - 10)
-        room = Room.get_room_in(estimate.user, current_member)
-        content = "会社名: #{estimate.co} \n担当者名: #{estimate.name} \n電話番号: #{estimate.tel} \nメールアドレス: #{estimate.email} \n住所: #{estimate.address} \n従業員数: #{estimate.employment} \n募集職種: #{estimate.business} \n重要な点: #{estimate.importance} \n募集人材: #{estimate.recruitment} \n必要人数: #{estimate.people} \n必要時期: #{estimate.period} \n相談内容: #{estimate.remarks}"
-        Message.create(is_user: true, room_id: room.id, content: content, estimate_id: estimate.id)
-        redirect_to room_messages_path(uri_token: room.uri_token), alert: "10ポイント消費しました"
-      else
-        redirect_to member_path(current_member), alert: "ポイントが足りません"
-      end
-    else
-      # 既に応募済の場合
-      redirect_to room_messages_path(uri_token: room.uri_token)
+    client = Client.find(params[:client_id])
+    comment = Comment.find_or_initialize_by(estimate_id: estimate.id)
+    case client.company
+    when "アサヒ飲料株式会社 中部支社" "アサヒ飲料株式会社 関西支社" "アサヒ飲料株式会社"
+      comment.update(asahi: "現地調査中")
+    when "日本コカ･コーラ株式会社"
+      comment.update(cocacola: "現地調査中")
+    when "株式会社伊藤園"
+      comment.update(itoen: "現地調査中")
+    when "ダイドードリンコ株式会社"
+      comment.update(dydo: "現地調査中")
+    when "株式会社山久"
+      comment.update(yamakyu: "現地調査中")
+    when "ネオス株式会社"
+      comment.update(neos: "現地調査中")
+    when "株式会社Ri-Plus"
+      comment.update(neos: "現地調査中")
+    when "合同会社ファクトル"
+      comment.update(body: "現地調査中")
     end
+    EstimateMailer.client_public_email(estimate, client, comment).deliver_now
+    EstimateMailer.net_accept_email(estimate, client).deliver_now
+    redirect_to root_path, notice: "案件が承諾されました。"
+  end
+  
+  def decline
+    estimate = Estimate.find(params[:id])
+    client = Client.find(params[:client_id])
+    comment = Comment.find_or_initialize_by(estimate_id: estimate.id)
+    case client.company
+    when "アサヒ飲料株式会社 中部支社" "アサヒ飲料株式会社 関西支社" "アサヒ飲料株式会社"
+      comment.update(asahi: "設置NG")
+    when "日本コカ･コーラ株式会社"
+      comment.update(cocacola: "設置NG")
+    when "株式会社伊藤園"
+      comment.update(itoen: "設置NG")
+    when "ダイドードリンコ株式会社"
+      comment.update(dydo: "設置NG")
+    when "株式会社山久"
+      comment.update(yamakyu: "設置NG")
+    when "ネオス株式会社"
+      comment.update(neos: "設置NG")
+    when "株式会社Ri-Plus"
+      comment.update(neos: "設置NG")
+    when "合同会社ファクトル"
+      comment.update(body: "設置NG")
+    end
+    EstimateMailer.net_decline_email(estimate, client).deliver_now
+    redirect_to root_path, notice: "案件を辞退しました。"
   end
 
   def recruit

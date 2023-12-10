@@ -1,4 +1,5 @@
 class EstimateMailer < ActionMailer::Base
+  include Rails.application.routes.url_helpers
   default from: "zihanki@factoru.jp"
   def received_email(estimate)
     @estimate = estimate
@@ -24,6 +25,14 @@ class EstimateMailer < ActionMailer::Base
     end
   end
 
+  def share_email(estimate)
+    @estimate = estimate
+    mail to: estimate.email
+    mail(subject: 'ドコモシェアサイクルで副収入と社会貢献！') do |format|
+      format.text
+    end
+  end
+
   def outside_email(estimate)
     @estimate = estimate
     mail to: estimate.email
@@ -32,38 +41,46 @@ class EstimateMailer < ActionMailer::Base
     end
   end
 
-  def inside_email(estimate)
-    @estimate = estimate
-    mail to: estimate.email
-    mail(subject: '実質利用でご利用可能な屋内ベンディングサービスのご案内') do |format|
-      format.text
-    end
-  end
-
-  def both_email(estimate)
-    @estimate = estimate
-    mail to: estimate.email
-    mail(subject: '屋内ベンディングサービス・貸出型自販機のご案内') do |format|
-      format.text
-    end
-  end
-
   def client_email(estimate,customer_id)
     @estimate = estimate
-    mail bcc: Company.all.map{|company| company.mail}
+    mail bcc: Client.all.map{|client| client.email}
     mail(subject: '自販機お見積もり依頼') do |format|
       format.text
     end
   end
 
-  def client_email_select(estimate, select_companies)
+  def client_email_select(estimate, client)
     @estimate = estimate
-    select_companies.each do |company|
-      @company = company
-      mail(to: company.mail, subject: "自販機現地調査依頼【#{@estimate.co}】", content_type: "text/plain; charset=UTF-8", content_transfer_encoding: '7bit') do |format|
-        format.text
-      end.deliver
-    end
+    @client = client
+
+    # 承諾と辞退のためのリンクを生成
+    @accept_link = accept_estimate_url(@estimate, client_id: @client.id)
+    @decline_link = decline_estimate_url(@estimate, client_id: @client.id)
+
+    mail(to: client.email, subject: "自販機現地調査依頼【#{@estimate.co}】", content_type: "text/plain; charset=UTF-8", content_transfer_encoding: '7bit') 
   end
 
+  def status_update_email(comment)
+    @comment = comment
+    mail(to: 'zihanki@factoru.jp', from: comment.client.email, subject: 'ステータス更新通知')
+  end
+
+  def client_public_email(estimate, client, comment)
+    @estimate = estimate
+    @client = client
+    @comment = comment
+    mail(to: @client.email, subject: "#{client.company}の情報が公開されました。")
+  end
+  
+  def net_accept_email(estimate, client)
+    @estimate = estimate
+    @client = client
+    mail(from: @client.email, to: 'zihanki@factoru.jp', subject: "#{client.company}が案件を受託しました。")
+  end
+
+  def net_decline_email(estimate, client)
+    @estimate = estimate
+    @client = client
+    mail(from: @client.email, to: 'zihanki@factoru.jp', subject: "#{client.company}が案件を辞退しました")
+  end
 end

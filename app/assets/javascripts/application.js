@@ -34,3 +34,27 @@ $(document).on("turbolinks:load", function () {
   }
 })
 
+// カーソルにモーダルを表示する処理
+document.querySelectorAll('td.hoverable').forEach(function(element) {
+  element.addEventListener('mouseover', function() {
+    var comment = this.getAttribute('data-comment');
+    if (comment) {
+      var popup = document.createElement('div');
+      popup.className = 'hoverable-popup';
+      popup.innerHTML = comment;
+      document.body.appendChild(popup);
+      
+      // カーソルに近い位置にモーダルを表示
+      popup.style.left = (event.clientX + 10) + 'px';
+      popup.style.top = (event.clientY + 10) + 'px';
+      
+      // モーダルを表示
+      popup.style.display = 'block';
+
+      // カーソルから外れたらモーダルを非表示にする
+      element.addEventListener('mouseout', function() {
+        document.body.removeChild(popup);
+      });
+    }
+  });
+});

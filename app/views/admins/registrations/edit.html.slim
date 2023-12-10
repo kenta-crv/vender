@@ -38,6 +38,20 @@ br
           |  　
           = f.password_field :current_password, autocomplete: "off"
       tr
+        th.arrow_box
+          | 現在のパスワード
+          .label
+            | 必須
+        td
+          = f.password_field :password, autocomplete: "new-password" 
+      tr
+        th.arrow_box
+          | 現在のパスワード
+          .label
+            | 必須
+        td
+          = f.password_field :password_confirmation, autocomplete: "new-password"
+      tr
         td[colspan="2"]
           = f.submit "更新する", class:"btn btn-success"
   .heading

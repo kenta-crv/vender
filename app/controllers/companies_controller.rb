@@ -1,5 +1,4 @@
 class CompaniesController < ApplicationController
-  before_action :authenticate_client!, except: [:index, :show, :destroy]
   before_action :set_company, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -14,7 +13,7 @@ class CompaniesController < ApplicationController
 
   def new
     @client = current_client
-    @company = Company.new
+    @company = @client.build_company
   end
 
   def create
@@ -33,7 +32,7 @@ class CompaniesController < ApplicationController
   def update
     @company = Company.find(params[:id])
     if @company.update(company_params)
-        redirect_to client_path(current_client) # または適切なパスに変更
+        redirect_to "/clients/#{current_client.id}"(current_client) # または適切なパスに変更
     else
         render :edit
     end

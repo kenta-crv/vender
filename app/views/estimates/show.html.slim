@@ -7,10 +7,6 @@ br
    = link_to "一覧に戻る", estimates_path, class: "btn btn-default"
    = link_to "編集する", edit_estimate_path(@estimate), class: "btn btn-primary"
    = link_to "削除する", estimate_path(@estimate), class: "btn btn-secondary", method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger"
-   - if !@estimate.send_mail_flag
-    = link_to "送信する", send_mail_estimate_path(@estimate), class: "btn btn-default", method: :post, data: { confirm: '登録中の全企業に送信します。よろしいですか？' }, style: "margin-left: 10px;"
-   - else
-    = link_to "送信済", "javascript:void(0)", class: "btn btn-default", style: "margin-left: 10px;"
  table.company
        colgroup
          col width="10%"
@@ -18,63 +14,71 @@ br
          col width="70%"
        tr
          td
-           strong.label 必須
+           strong.label.label-blue.point
+            | Point
+            span.word 個人でフルネーム登録をされている場合、開示前に情報の公開を行うことになりますので、苗字のみに変更します。また、法人やマンション名がある場合、それに切り替えます。
          td.arrow_box
            | 会社名
          td
            = @estimate.co
        tr
          td
-           strong.label 必須
+           strong.label 
          td.arrow_box
            | 担当者名
          td
            = @estimate.name
        tr
          td
-           strong.label 必須
+           strong.label 
          td.arrow_box
            | 電話番号
          td
            = @estimate.tel
        tr
          td
-           strong.label 必須
+           strong.label.label-blue.point
+            | Point
+            span.word 住所が途中までの場合はヒアリングを行なってください。
          td.arrow_box
            | 設置先住所
          td
            = @estimate.address
        tr
          td
-           strong.label 必須
+           strong.label 
          td.arrow_box
            | メールアドレス
          td
            = @estimate.email
        tr
          td
-           strong.label 必須
+           strong.label.label-blue.point
+            | Point
+            span.word 業種が未記入や曖昧な場合は確認を行なって記入してください。また業種によってはサービス業や建設業の場合、ヘルプスタッフや来客もあるため利用人数が変わる場合があります。
          td.arrow_box
            | 設置先業種
          td
            = @estimate.industry
        tr
          td
-           strong.label 任意
+           strong
          td.arrow_box
            | 希望ベンダー
          td
            = @estimate.vender
        tr
          td
-           strong.label 任意
+           strong.label.label-blue.point
+            | Point
+            span.word 『いいえ』となっている場合、理由をヒアリングしましょう。1社のみでは設置が叶わない場合が多いことを伝え、なるべく多くの企業で見積もりを行った方が良いことを伝えます。
          td.arrow_box
            | その他の自販機見積もりを希望しますか？
          td
            = @estimate.other
        tr
          td
-           strong.label.label-blue 任意
+           strong.label.label-blue 
          td.arrow_box
            | 設置箇所
            br
@@ -83,7 +87,12 @@ br
            = @estimate.installation
        tr
          td
-           strong.label.label-blue 任意
+           strong.label.label-blue.point
+            | Point
+            span.word 
+               |現状10名程度では記載しているだけで設置が難しくなります。例えば建設業であればヘルプ等含めて何名ほど事務所を使うか、介護であればスタッフ・来客・入居者の総合数を明記します。
+               br/
+               |尚、外を歩く人は基本カウントしませんが、駅や商店街等、明らかな集客と判断できる場合は記載しましょう。
          td.arrow_box
            | 想定される利用人数
            br
@@ -92,14 +101,18 @@ br
           = @estimate.people
        tr
          td
-           strong.label 必須
+           strong.label.label-blue.point
+            | Point
+            span.word 交換の場合、必ず交換理由をヒアリングします。交換の理由によって自社ベンダーか、メーカーかの判断を行えます。基本的に200本を下回る場合は他メーカーでも設置不可の判断となります。
          td.arrow_box
            | 自販機について
          td
            = @estimate.chenge
        tr
          td
-           strong.label.label-blue 必須
+           strong.label.label-blue.point
+            | Point
+            span.word 理由に問わず、設置中メーカーへは見積もり依頼は行えません。
          td.arrow_box
            | （交換）設置中のメーカー
            br
@@ -108,7 +121,14 @@ br
            = @estimate.change_before
        tr
          td
-           strong.label.label-blue 必須
+           strong.label.label-blue.point
+            | Point
+            span.word 
+             | この項目は非常に重要となります。メーカーから出た条件を先方にそのまま伝えるのではなく、当社の仲介収益を引いて先方に提案します。
+             br/
+             | 現地調査前に先方に収益目的がどれくらいの比重があるかヒアリングしメモしておくと、提案する時の駆け引きがなくなるのでスムーズです。
+             br/
+             | このパーセンテージが低すぎると当社がボランティアに近いてくるので注意しましょう。
          td.arrow_box
            | 設置目的
            br
@@ -117,14 +137,16 @@ br
            = @estimate.aim
        tr
          td
-           strong.label 必須
+           strong.label 
          td.arrow_box
            | 設置希望時期
          td
            = @estimate.period
        tr
          td
-           strong.label.label-blue 任意
+           strong.label.label-blue.point
+            | Point
+            span.word 小学校が近くにある等、補足内容を明記します。
          td.arrow_box
            | 要望・備考
          td
@@ -132,35 +154,41 @@ br
        -if admin_signed_in?
         tr
          td
-          strong.label.label-blue 任意
+           strong.label.label-blue.point
+            | Point
+            span.word ヒアリングを行った際にメーカー等には開示しない内容を記載できます。例えば『マージンがお客様で望んでいない』等
          td.arrow_box
           | 社内メモ
          td
           = @estimate.word
         tr
          td
-          strong.label.label-blue 任意
+           strong.label.label-blue.point
+            | Point
+            span.word 販売価格はベースは150円となり、先方への提案で-10円引きであれば140円...等金額を引いていきます。
          td.arrow_box
           | 販売価格
          td
           = @estimate.sales_price
         tr
          td
-          strong.label.label-blue 任意
+           strong.label.label-blue
          td.arrow_box
           | 先方パーセンテージ
          td
           = @estimate.percentage_other
         tr
          td
-          strong.label.label-blue 任意
+           strong.label.label-blue
          td.arrow_box
           | 弊社パーセンテージ
          td
           = @estimate.percentage_i
         tr
          td
-          strong.label.label-blue 任意
+           strong.label.label-blue.point
+            | Point
+            span.word このあたりは慣れとなりますが、少数設置で250本程度〜となります。
          td.arrow_box
           | 想定本数
          td
@@ -172,116 +200,161 @@ table.company[width="100%"]
   = form_for([@estimate, @comment], url: estimate_comments_path(estimate_id: @estimate)) do |f|
     tbody
       tr
-          th
-            = image_tag "cocacola-rogo.webp", width:"100%"
-          th
-            = image_tag "neos-rogo.webp", width:"100%"
-          th
-            = image_tag "itoen-rogo.webp", width:"100%"
-          th
-            = image_tag "dydo-rogo.webp", width:"100%"
-          th
-            = image_tag "asahi-rogo.webp", width:"100%"
-          th
-            = image_tag "yamakyu-rogo.webp", width:"100%"
-          th
-            = image_tag "rogo.webp", width:"100%"
-          th
+          td
+            = image_tag "cocacola-rogo.webp", width:"100px"
+          td 
+            = f.select(:cocacola,[\
+              ["依頼中","依頼中"],\
+              ["現地調査中","現地調査中"],\
+              ["見積提示中","見積提示中"],\
+              ["契約","契約"],\
+              ["設置NG","設置NG"],\
+             ], include_blank: "選択してください")
+          td
+            = @estimate.comment&.cocacola
+          td 
+            = @estimate.comment&.cocacola_file
+          td 
+            = @estimate.comment&.cocacola_suggestion
+          td 
+            = @estimate.comment&.cocacola_remarks
+      tr 
+          td
+            = image_tag "neos-rogo.webp", width:"100px"
+          td 
+            = f.select(:neos,[\
+              ["依頼中","依頼中"],\
+              ["現地調査中","現地調査中"],\
+              ["見積提示中","見積提示中"],\
+              ["契約","契約"],\
+              ["設置NG","設置NG"],\
+             ], include_blank: "選択してください")          
+          td
+            = @estimate.comment&.neos
+          td 
+            = @estimate.comment&.neos_file
+          td 
+            = @estimate.comment&.neos_suggestion
+          td 
+            = @estimate.comment&.neos_remarks
+      tr 
+          td
+            = image_tag "itoen-rogo.webp", width:"100px"
+          td 
+            = f.select(:itoen,[\
+              ["依頼中","依頼中"],\
+              ["現地調査中","現地調査中"],\
+              ["見積提示中","見積提示中"],\
+              ["契約","契約"],\
+              ["設置NG","設置NG"],\
+             ], include_blank: "選択してください")
+          td
+            = @estimate.comment&.itoen
+          td 
+            = @estimate.comment&.itoen_file
+          td 
+            = @estimate.comment&.itoen_suggestion
+          td 
+            = @estimate.comment&.itoen_remarks
       tr
           td
-            = f.select(:cocacola,[\
-              ["",""],\
-              ["現地調査中","現地調査中"],\
-              ["契約","契約"],\
-              ["設置NG","設置NG"],\
-             ])
-          td
-            = f.select(:neos,[\
-              ["",""],\
-              ["現地調査中","現地調査中"],\
-              ["契約","契約"],\
-              ["設置NG","設置NG"],\
-             ])
-          td
-            = f.select(:itoen,[\
-              ["",""],\
-              ["現地調査中","現地調査中"],\
-              ["契約","契約"],\
-              ["設置NG","設置NG"],\
-             ])
-          td
-            = f.select(:dydo,[\
-              ["",""],\
-              ["現地調査中","現地調査中"],\
-              ["契約","契約"],\
-              ["設置NG","設置NG"],\
-             ])
-          td
+            = image_tag "asahi-rogo.webp", width:"100px"
+          td 
             = f.select(:asahi,[\
-              ["",""],\
+              ["依頼中","依頼中"],\
               ["現地調査中","現地調査中"],\
+              ["見積提示中","見積提示中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
-             ])   
+             ], include_blank: "選択してください")          
           td
+            = @estimate.comment&.asahi
+          td 
+            = @estimate.comment&.asahi_file
+          td 
+            = @estimate.comment&.asahi_suggestion
+          td 
+            = @estimate.comment&.asahi_remarks          
+      tr
+          td
+            = image_tag "dydo-rogo.webp", width:"100px"
+          td 
+            = f.select(:dydo,[\
+              ["依頼中","依頼中"],\
+              ["現地調査中","現地調査中"],\
+              ["見積提示中","見積提示中"],\
+              ["契約","契約"],\
+              ["設置NG","設置NG"],\
+             ], include_blank: "選択してください")
+          td
+            = @estimate.comment&.dydo
+          td 
+            = @estimate.comment&.dydo_file
+          td 
+            = @estimate.comment&.dydo_suggestion
+          td 
+            = @estimate.comment&.dydo_remarks   
+      tr
+          td
+            = image_tag "yamakyu-rogo.webp", width:"100px"
+          td 
             = f.select(:yamakyu,[\
-              ["",""],\
+              ["依頼中","依頼中"],\
               ["現地調査中","現地調査中"],\
+              ["見積提示中","見積提示中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
-             ])
-      
+             ], include_blank: "選択してください")
           td
+            = @estimate.comment&.yamakyu
+          td 
+            = @estimate.comment&.yamakyu_file
+          td 
+            = @estimate.comment&.yamakyu_suggestion
+          td 
+            = @estimate.comment&.yamakyu_remarks   
+      tr
+          td
+            = image_tag "rogo.webp", width:"100px"
+          td 
             = f.select(:net,[\
-              ["",""],\
-              ["未提案","未提案"],\
-              ["検討中","検討中"],\
+              ["依頼中","依頼中"],\
+              ["現地調査中","現地調査中"],\
+              ["見積提示中","見積提示中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
-             ])
+             ], include_blank: "選択してください") 
           td
+            = @estimate.comment&.net
+      tr
+          td
+            | その他
+          td 
             = f.select(:body,[\
-              ["",""],\
-              ["不在","不在"],\
-              ["明細待","明細待"],\
-              ["NG","NG"],\
-             ])
+              ["依頼中","依頼中"],\
+              ["現地調査中","現地調査中"],\
+              ["見積提示中","見積提示中"],\
+              ["契約","契約"],\
+              ["設置NG","設置NG"],\
+             ], include_blank: "選択してください")
+          td
+            = @estimate.comment&.body
+  
       tr 
-          td[colspan="8"]
+          td[colspan="6"]
            .center
-            = f.submit "登録",class:"btn btn-primary"
-table.company[width="100%"]
-
-    - if @estimate.comment
-     tr.center
-        td
-          = @estimate.comment.cocacola
-        td
-          = @estimate.comment.neos
-        td
-          = @estimate.comment.itoen
-        td
-          = @estimate.comment.dydo
-        td
-          = @estimate.comment.asahi    
-        td
-          = @estimate.comment.yamakyu
-        td
-          = @estimate.comment.net
-        td
-          = @estimate.comment.body
-     tr[colspan="8"]
-      .center
-        = link_to "編集", edit_estimate_comment_path(@estimate, @estimate.comment), class:"btn btn-primary"
-        = link_to "削除", estimate_comment_path(@estimate, @estimate.comment), method: :delete, data: {confirm:"本当に削除しますか？"}, class:"btn btn-danger"
+            - if @estimate.comment
+             = link_to "編集", edit_estimate_comment_path(@estimate, @estimate.comment), class: "btn btn-primary"
+             = link_to "削除", estimate_comment_path(@estimate, @estimate.comment), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger"
+            - else 
+             = f.submit "登録",class:"btn btn-primary"
 
 
 h2.headline  
- | 屋内型ベンディング・貸し出し型自販機進捗　
- = link_to '新中古型', old_email_estimate_path(estimate_id: @estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-danger"
- = link_to '貸出型', outside_email_estimate_path(estimate_id: @estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-danger" 
- = link_to '屋内型', inside_email_estimate_path(estimate_id: @estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-danger"
- /= link_to '両方', both_email_estimate_path(estimate_id: @estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-danger"
+ | 新品・中古自販機進捗　
+ = link_to '中古自販機', old_email_estimate_path(estimate_id: @estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-danger"
+ = link_to '新品自販機', outside_email_estimate_path(estimate_id: @estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-danger" 
+ = link_to 'シェアサイクル', share_email_estimate_path(estimate_id: @estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-danger" 
 table.company[width="100%"]
   = form_for([@estimate, @progress], url: estimate_progresses_path(estimate_id: @estimate)) do |f|
     tbody
@@ -313,9 +386,9 @@ table.company[width="100%"]
        td
         = f.select(:document,[\
               ["",""],\
-              ["屋内型","屋内型"],\
-              ["貸出型","貸出型"],\
-              ["両方","両方"],\
+              ["中古自販機","中古自販機"],\
+              ["新品自販機","新品自販機"],\
+              ["ドコモシェア","ドコモシェア"],\
           ])
        td
        td

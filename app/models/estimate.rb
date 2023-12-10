@@ -1,5 +1,6 @@
 class Estimate < ApplicationRecord
   belongs_to :company, optional: true
+  belongs_to :client
   has_one :comment, dependent: :destroy
   has_one :transfer, dependent: :destroy
   has_many :progresses, dependent: :destroy

@@ -1,0 +1,37 @@
+<%= @client.company%> <%= @client.name%>様
+
+お世話になっております。
+
+合同会社ファクトルでございます。
+
+この度は現地調査対応を頂けるお返事を頂き、誠にありがとうございます。
+
+以下、案件公開致しますので、お手数では御座いますが、ご連絡のほどお願い致します。
+
+尚、調査結果についてはお手数では御座いますが、14日以内に回答下さいませ。
+
+提案を行う: <%= edit_estimate_comment_url(@estimate, @comment, client_id: @client.id) %>
+
+辞退する: <%= decline_estimate_url(@estimate, client_id: @client.id) %>
+
+ご確認よろしくお願い致します。
+
+--------------------------
+会社名: <%= @estimate.co%>
+担当者名: <%= @estimate.name%>
+電話番号: <%= @estimate.tel%>
+メールアドレス: <%= @estimate.email%>
+住所: <%= @estimate.address%>
+設置箇所: <%= @estimate.installation%>
+人数: <%= @estimate.people %>
+自販機の用途: <%= @estimate.chenge %>
+交換前自販機: <%= @estimate.change_before %>
+設置時期: <%= @estimate.period %>
+要望:<%= @estimate.remarks %>
+--------------------------
+
+株式会社Ri-Plus
+Mail：zihanki@factoru.jp
+URL：https://自販機.net/
+所在地：〒863-0023 熊本県天草市中央新町12-13
+問い合わせ時間：10:00-17:00（定休日：土曜日、日曜日、祝日）

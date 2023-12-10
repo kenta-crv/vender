@@ -4,7 +4,11 @@ Rails.application.routes.draw do
     registrations: 'clients/registrations',
     sessions: 'clients/sessions'
   }
-  resources :clients, only: [:show]
+  resources :clients, only: [:show] do
+    member do
+      post :disclose
+    end
+  end
 
   #管理者アカウント
   devise_for :admins, controllers: {
@@ -50,7 +54,11 @@ Rails.application.routes.draw do
 
   resources :estimates do
     resources :progresses
-    resources :comments
+    resources :comments  do
+     member do
+       post :update_status
+     end
+    end
     resources :transfers
     collection do
       post :confirm
@@ -58,23 +66,21 @@ Rails.application.routes.draw do
       post :import
     end
     member do
-      get :apply
       post :send_mail_cfsl
       post :send_mail
       get :select_sent
       get :confirm_point
       post 'old_email', to: 'estimates#old_email', as: 'old_email'
-      post 'inside_email', to: 'estimates#inside_email', as: 'inside_email'
       post 'outside_email', to: 'estimates#outside_email', as: 'outside_email'
-      post 'both_email', to: 'estimates#both_email', as: 'both_email'
-      post :apply
+      post 'share_email', to: 'estimates#share_email', as: 'share_email'
     end
   end
   get 'contract' => 'estimates#contract'
   get 'sfa' => 'estimates#sfa'
-  get 'disclosure/:id', to: 'estimates#disclosure', as: :disclosure
   get 'payment' => 'estimates#payment'
-
+  post 'estimates/client_select', to: 'estimates#client_select', as: 'client_select_estimate'
+  get 'estimates/:id/accept', to: 'estimates#accept', as: 'accept_estimate'
+  get 'estimates/:id/decline', to: 'estimates#decline', as: 'decline_estimate'
 
   # メッセージ
   resources :messages, only: [:create] do
@@ -85,18 +91,14 @@ Rails.application.routes.draw do
   end
 
   #企業側アカウント
-  resource :company, only: [:show, :edit, :update] do
+  #resource :company, only: [:show, :edit, :update] do
     # imagesに関するルーティング
-    resources :images, only: [:create, :destroy, :update, :download, :edit] do
-      get 'view', on: :member
-      get 'download/:id', action: :download, as: :pdf, on: :member
-    end
-  end
-
-  resources :clients do
-    resource :company, only: [:new, :create, :edit, :update, :show, :destroy]
-  end
-
+   # resources :images, only: [:create, :destroy, :update, :download, :edit] do
+    #  get 'view', on: :member
+     # get 'download/:id', action: :download, as: :pdf, on: :member
+    #end
+  #end
+  resources :companies
 
   #get '*path', controller: 'application', action: 'render_404'
 end

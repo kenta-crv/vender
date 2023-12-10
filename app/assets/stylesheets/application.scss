@@ -1074,3 +1074,25 @@ table.free {
   padding:100px 20px 0px 0px;
   line-height:30px;
 }
+
+.point {
+  position   : relative;
+}
+.point:hover .word {
+  display: inline;
+}
+
+/*色は適当です。*/
+.word {
+  position   : absolute;
+  display: none;
+  padding: 2px;
+  color: blue;
+  border-radius: 5px;
+  background-color:white;
+  width:100px;
+  top: 20px;
+  left: 0px;
+  font-size: 12px;
+  text-align: center;
+}

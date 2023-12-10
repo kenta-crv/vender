@@ -3,6 +3,14 @@ class ApplicationController < ActionController::Base
   before_action :set_host
   before_action :set_footer
 
+  def check_admin
+    redirect_to root_path unless admin_signed_in?
+  end
+
+  def check_client
+    redirect_to root_path unless client_signed_in?
+  end
+
   # 例外処理
 
    rescue_from ActiveRecord::RecordNotFound, with: :render_404 unless Rails.env.development?

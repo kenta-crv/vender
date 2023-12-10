@@ -1,4 +1,5 @@
 class TransfersController < ApplicationController
+  before_action :check_admin
   before_action :load_estimate
   before_action :load_transfer, only: [:edit,:update,:show,:destroy]
   #before_action :authenticate_user!

@@ -1,4 +1,4 @@
-= form_for [@client, @company], url: (@company.new_record? ? client_path(@client) : client_company_path(@client)), method: (@company.new_record? ? :post : :patch) do |f|
+= form_with model: [@client, @company], local: true do |f|
   - if @company.errors.any?
     .alert.alert-warning.center
       ul
@@ -29,25 +29,12 @@
         td.arrow_box
           | 携帯番号
         td
-          = number_field :company, :tel
-      tr
-        td
-          strong.label 必須
-        td.arrow_box
-          | 住所
-        td
-          = text_field :company, :address
+          = text_field :company, :tel
       tr
         td
           strong.label 必須
         td.arrow_box
           | メールアドレス
         td = email_field :company, :mail
-      tr
-        td
-          strong.label 必須
-        td.arrow_box
-          | 備考
-        td = text_area :company, :remarks
       tr.center
         td[colspan="3"] = f.submit '確認画面へ'

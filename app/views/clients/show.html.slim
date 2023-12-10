@@ -1,8 +1,13 @@
 br
 br
 .tops-wrapper
+    h3 開示された案件情報
+    - @client.estimates.each do |estimate|
+      = estimate.name
+      = estimate.disclosure_clicked_at
+      = link_to '開示する', disclose_estimate_path(estimate), method: :post
     h2.headline
-      | アカウント情報
+      | メーカーログイン
     table.company
       colgroup
         col[width="40%"]
@@ -12,7 +17,6 @@ br
         th
           | ログインアドレス
         td
-          = @client.email
+          = @client.company
     br
-    = link_to "アカウント情報編集", edit_client_registration_path, class:"btn btn-success"
-    = link_to "会社情報登録", new_client_company_path, class:"btn btn-success"
+    = link_to "アカウント情報編集", edit_client_registration_path, class:"btn btn-primary"

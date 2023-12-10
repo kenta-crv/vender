@@ -1,104 +1,326 @@
 br
 br
 = form_for ([@estimate, @comment]) do |f|
- table.company[width="100%"]
-    col[width="12%"]
-    col[width="12%"]
-    col[width="12%"]
-    col[width="12%"]
-    col[width="12%"]
-    col[width="12%"]
-    col[width="12%"]
-    col[width="12%"]
-    col[width="12%"]
+ -if admin_signed_in?
+  h2.headline  
+   | 調査進捗　
+  table.company[width="100%"]
     tbody
       tr
           th
-            | アサヒ
-          th
-            | コカコーラ
-          th
-            | ダイドー
-          th
-            | 伊藤園
-          th
-            | 山久
-          th
-            | ネオス
-          th
-            | 自販機ねっと
-          th
-      tr
-          td
-            = f.select(:asahi,[\
-              ["",""],\
-              ["未依頼","未依頼"],\
-              ["現地調査中","現地調査中"],\
-              ["見積提示中","見積提示中"],\
-              ["契約","契約"],\
-              ["設置NG","設置NG"],\
-             ])
+            = image_tag "cocacola-rogo.webp", width:"100px"
           td
             = f.select(:cocacola,[\
-              ["",""],\
-              ["未依頼","未依頼"],\
+              ["依頼中","依頼中"],\
               ["現地調査中","現地調査中"],\
               ["見積提示中","見積提示中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
-             ])
-          td
-            = f.select(:dydo,[\
-              ["",""],\
-              ["未依頼","未依頼"],\
-              ["現地調査中","現地調査中"],\
-              ["見積提示中","見積提示中"],\
-              ["契約","契約"],\
-              ["設置NG","設置NG"],\
-             ])
-          td
-            = f.select(:itoen,[\
-              ["",""],\
-              ["未依頼","未依頼"],\
-              ["現地調査中","現地調査中"],\
-              ["見積提示中","見積提示中"],\
-              ["契約","契約"],\
-              ["設置NG","設置NG"],\
-             ])
-          td
-            = f.select(:yamakyu,[\
-              ["",""],\
-              ["未依頼","未依頼"],\
-              ["現地調査中","現地調査中"],\
-              ["見積提示中","見積提示中"],\
-              ["契約","契約"],\
-              ["設置NG","設置NG"],\
-             ])
+             ], include_blank: "選択してください")
+          td 
+            = f.file_field :cocacola_file
+          td 
+            = f.text_area :cocacola_suggestion
+          td 
+            = f.text_area :cocacola_remarks
+      tr
+          th
+            = image_tag "neos-rogo.webp", width:"100px"
           td
             = f.select(:neos,[\
-              ["",""],\
-              ["未依頼","未依頼"],\
+              ["依頼中","依頼中"],\
               ["現地調査中","現地調査中"],\
               ["見積提示中","見積提示中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
-             ])
+             ], include_blank: "選択してください")
+          td 
+            = f.file_field :neos_file
+          td 
+            = f.text_area :neos_suggestion
+          td 
+            = f.text_area :neos_remarks
+      tr
+          th
+            = image_tag "itoen-rogo.webp", width:"100px"
           td
-            = f.select(:net,[\
-              ["",""],\
-              ["未提案","未提案"],\
-              ["提案中","提案中"],\
-              ["検討中","検討中"],\
+            = f.select(:itoen,[\
+              ["依頼中","依頼中"],\
+              ["現地調査中","現地調査中"],\
+              ["見積提示中","見積提示中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
-             ])
+             ], include_blank: "選択してください")
+          td 
+            = f.file_field :itoen_file
+          td 
+            = f.text_area :itoen_suggestion
+          td 
+            = f.text_area :itoen_remarks     
+      tr
+          th
+            = image_tag "asahi-rogo.webp", width:"100px"
+          td
+            = f.select(:asahi,[\
+              ["依頼中","依頼中"],\
+              ["現地調査中","現地調査中"],\
+              ["見積提示中","見積提示中"],\
+              ["契約","契約"],\
+              ["設置NG","設置NG"],\
+             ], include_blank: "選択してください")
+          td 
+            = f.file_field :asahi_file
+          td 
+            = f.text_area :asahi_suggestion
+          td 
+            = f.text_area :asahi_remarks
+      tr
+          th
+            = image_tag "dydo-rogo.webp", width:"100px"
+          td
+            = f.select(:dydo,[\
+              ["依頼中","依頼中"],\
+              ["現地調査中","現地調査中"],\
+              ["見積提示中","見積提示中"],\
+              ["契約","契約"],\
+              ["設置NG","設置NG"],\
+             ], include_blank: "選択してください")
+          td 
+            = f.file_field :dydo_file
+          td 
+            = f.text_area :dydo_suggestion
+          td 
+            = f.text_area :dydo_remarks
+      tr
+          th
+            = image_tag "yamakyu-rogo.webp", width:"100px"
+          td
+            = f.select(:yamakyu,[\
+              ["依頼中","依頼中"],\
+              ["現地調査中","現地調査中"],\
+              ["見積提示中","見積提示中"],\
+              ["契約","契約"],\
+              ["設置NG","設置NG"],\
+             ], include_blank: "選択してください")
+          td 
+            = f.file_field :yamakyu_file
+          td 
+            = f.text_area :yamakyu_suggestion
+          td 
+            = f.text_area :yamakyu_remarks
+      tr
+          th
+            = f.select(:net,[\
+              ["依頼中","依頼中"],\
+              ["現地調査中","現地調査中"],\
+              ["見積提示中","見積提示中"],\
+              ["契約","契約"],\
+              ["設置NG","設置NG"],\
+             ], include_blank: "選択してください")
           td
             = f.select(:body,[\
-              ["",""],\
-              ["明細待","明細待"],\
-              ["NG","NG"],\
-             ])
+              ["依頼中","依頼中"],\
+              ["現地調査中","現地調査中"],\
+              ["見積提示中","見積提示中"],\
+              ["契約","契約"],\
+              ["設置NG","設置NG"],\
+             ], include_blank: "選択してください")
       tr
-        th[colspan="9"]
-         .center
-          = f.submit
+          th
+            その他
+          td
+            = @estimate.comment.body
+      tr 
+          td[colspan="5"]
+           .center
+            = f.submit "登録",class:"btn btn-primary"
+
+ - elsif client_signed_in? && (@client.company == 'アサヒ飲料株式会社' || @client.company == 'アサヒ飲料株式会社 中部担当' || @client.company == 'アサヒ飲料株式会社 関西担当') 
+  h2.headline 現地結果情報を入力してください
+  table.company[width="100%"]
+    tbody
+      tr
+          th ステータス更新
+          td
+            = f.select(:asahi,[\
+              ["見積条件提示","見積条件提示"],\
+              ["設置NG","設置NG"],\
+             ], include_blank: "選択してください")
+      tr 
+          th 送付資料
+          td
+            = f.file_field :asahi_file
+      tr 
+          th 提示内容
+          td
+            = f.text_area :asahi_suggestion
+      tr 
+          th  備考
+          td
+            = f.text_area :asahi_remarks
+      tr 
+          th[colspan="9"]
+           .center
+            = f.submit class:"btn btn-primary"
+ - elsif client_signed_in? && (@client.company == '日本コカ･コーラ株式会社') 
+  h2.headline 現地結果情報を入力してください
+  table.company[width="100%"]
+    tbody
+      tr
+          th ステータス更新
+          td
+            = f.select(:cocacola,[\
+              ["見積条件提示","見積条件提示"],\
+              ["設置NG","設置NG"],\
+             ], include_blank: "選択してください")
+      tr 
+          th 送付資料
+          td
+            = f.file_field :cocacola_file
+      tr 
+          th 提示内容
+          td
+            = f.text_area :cocacola_suggestion
+      tr 
+          th  備考
+          td
+            = f.text_area :cocacola_remarks
+      tr 
+          th[colspan="9"]
+           .center
+            = f.submit class:"btn btn-primary"
+ - elsif client_signed_in? && (@client.company == '株式会社伊藤園') 
+  h2.headline 現地結果情報を入力してください
+  table.company[width="100%"]
+    tbody
+      tr
+          th ステータス更新
+          td
+            = f.select(:itoen,[\
+              ["見積条件提示","見積条件提示"],\
+              ["設置NG","設置NG"],\
+             ], include_blank: "選択してください")
+      tr 
+          th 送付資料
+          td
+            = f.file_field :itoen_file
+      tr 
+          th 提示内容
+          td
+            = f.text_area :itoen_suggestion
+      tr 
+          th  備考
+          td
+            = f.text_area :itoen_remarks
+      tr 
+          th[colspan="9"]
+           .center
+            = f.submit class:"btn btn-primary"
+ - elsif client_signed_in? && (@client.company == 'ダイドードリンコ株式会社') 
+  h2.headline 現地結果情報を入力してください
+  table.company[width="100%"]
+    tbody
+      tr
+          th ステータス更新
+          td
+            = f.select(:dydo,[\
+              ["見積条件提示","見積条件提示"],\
+              ["設置NG","設置NG"],\
+             ], include_blank: "選択してください")
+      tr 
+          th 送付資料
+          td
+            = f.file_field :dydo_file
+      tr 
+          th 提示内容
+          td
+            = f.text_area :dydo_suggestion
+      tr 
+          th  備考
+          td
+            = f.text_area :dydo_remarks
+      tr 
+          th[colspan="9"]
+           .center
+            = f.submit class:"btn btn-primary"
+ - elsif client_signed_in? && (@client.company == '株式会社山久') 
+  h2.headline 現地結果情報を入力してください
+  table.company[width="100%"]
+    tbody
+      tr
+          th ステータス更新
+          td
+            = f.select(:yamakyu,[\
+              ["見積条件提示","見積条件提示"],\
+              ["設置NG","設置NG"],\
+             ], include_blank: "選択してください")
+      tr 
+          th 送付資料
+          td
+            = f.file_field :yamakyu_file
+      tr 
+          th 提示内容
+          td
+            = f.text_area :yamakyu_suggestion
+      tr 
+          th  備考
+          td
+            = f.text_area :yamakyu_remarks
+      tr 
+          th[colspan="9"]
+           .center
+            = f.submit class:"btn btn-primary"
+ - elsif client_signed_in? && (@client.company == 'ネオス株式会社') 
+  h2.headline 現地結果情報を入力してください
+  table.company[width="100%"]
+    tbody
+      tr
+          th ステータス更新
+          td
+            = f.select(:neos,[\
+              ["見積条件提示","見積条件提示"],\
+              ["設置NG","設置NG"],\
+             ], include_blank: "選択してください")
+      tr 
+          th 送付資料
+          td
+            = f.file_field :neos_file
+      tr 
+          th 提示内容
+          td
+            = f.text_area :neos_suggestion
+      tr 
+          th  備考
+          td
+            = f.text_area :neos_remarks
+      tr 
+          th[colspan="9"]
+           .center
+            = f.submit class:"btn btn-primary"
+ - elsif client_signed_in? && (@client.company == '株式会社Ri-Plus') 
+  h2.headline 現地結果情報を入力してください
+  table.company[width="100%"]
+    tbody
+      tr
+          th ステータス更新
+          td
+            = f.select(:asahi,[\
+              ["見積条件提示","見積条件提示"],\
+              ["設置NG","設置NG"],\
+             ], include_blank: "選択してください")
+      tr 
+          th 送付資料
+          td
+            = f.file_field :asahi_file
+      tr 
+          th 提示内容
+          td
+            = f.text_area :asahi_suggestion
+      tr 
+          th  備考
+          td
+            = f.text_area :asahi_remarks
+      tr 
+          th[colspan="9"]
+           .center
+            = f.submit class:"btn btn-primary"

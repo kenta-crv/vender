@@ -5,16 +5,21 @@ class Clients::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  protected
 
   def after_sign_up_path_for(resource)
     "/clients/#{current_client.id}"
   end
-  # POST /resource
+
+  # アカウント更新後のリダイレクト先
+  def after_update_path_for(resource)
+    "/clients/#{current_client.id}"  
+  end
 
   private
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:user_name])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:user_name])#追記
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:company, :name, :tel])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:company, :name, :tel])#追記
   end
   # GET /resource/sign_up
   # def new

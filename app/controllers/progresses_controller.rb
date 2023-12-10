@@ -1,4 +1,5 @@
 class ProgressesController < ApplicationController
+    before_action :check_admin
     before_action :load_estimate
     before_action :load_progress, only: [:edit,:update,:show,:destroy]
     #before_action :authenticate_user!
