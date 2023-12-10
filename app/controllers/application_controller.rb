@@ -4,11 +4,17 @@ class ApplicationController < ActionController::Base
   before_action :set_footer
 
   def check_admin
-    redirect_to root_path unless admin_signed_in?
+    unless admin_signed_in?
+      flash[:alert] = "管理者専用のページです。"
+      redirect_to root_path
+    end
   end
-
+  
   def check_client
-    redirect_to root_path unless client_signed_in?
+    unless client_signed_in?
+      flash[:alert] = "クライアント専用のページです。"
+      redirect_to root_path
+    end
   end
 
   # 例外処理
