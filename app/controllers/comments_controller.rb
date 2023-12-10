@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :check_admin
+  before_action :check_admin, except: [:edit, :update]
   before_action :check_client, only: [:edit, :update]
   before_action :load_estimate
   before_action :load_comment, only: [:edit,:update,:show,:destroy]
