@@ -16,12 +16,12 @@ html
                   span
                   span menu
       .row.navi
+        p.notice.alert
+           = alert
+           = notice
         .bread
           = render_breadcrumbs separator: ' > '
         .col-xs-12.center
-          p.notice.alert
-           = alert
-           = notice
           /ul#dropmenu
            li
              = link_to  'トップ', '/' , class: "col-md"
