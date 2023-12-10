@@ -57,7 +57,6 @@ class CommentsController < ApplicationController
     else
       # clientユーザーであれば、@clientを設定
       @client = Client.find(params[:client_id])
-      # その他のclient用の処理
     end
   end
 
@@ -78,10 +77,19 @@ class CommentsController < ApplicationController
   
   def update
     @comment = @estimate.comment
-    if @comment.update(comment_params)
+    if admin_signed_in?
+     if @comment.update(comment_params)
       redirect_to estimate_path(@estimate)
-    else
+     else
       render 'edit'
+     end
+    elsif client_signed_in?
+      if @comment.update(comment_params)
+        flash[:notice] = "案件提案が完了しました"
+        redirect_to root_path
+       else
+        render 'edit'
+       end
     end
   end
 

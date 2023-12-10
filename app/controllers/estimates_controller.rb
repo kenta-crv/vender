@@ -176,7 +176,8 @@ class EstimatesController < ApplicationController
     end
     EstimateMailer.client_public_email(estimate, client, comment).deliver_now
     EstimateMailer.net_accept_email(estimate, client).deliver_now
-    redirect_to root_path, notice: "案件が承諾されました。"
+    flash[:notice] = "案件詳細メールを送信しました。"
+    redirect_to root_path
   end
   
   def decline
@@ -202,7 +203,8 @@ class EstimatesController < ApplicationController
       comment.update(body: "設置NG")
     end
     EstimateMailer.net_decline_email(estimate, client).deliver_now
-    redirect_to root_path, notice: "案件を辞退しました。"
+    flash[:notice] = "案件を辞退しました。"
+    redirect_to root_path
   end
 
   def recruit

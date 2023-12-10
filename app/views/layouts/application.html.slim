@@ -71,5 +71,7 @@ html
       = yield
   br
   br
-  footer
-   = render template: 'layouts/_footer.html.slim'
+  - if client_signed_in? 
+  - else
+   footer
+    = render template: 'layouts/_footer.html.slim'

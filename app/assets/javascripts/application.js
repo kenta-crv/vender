@@ -58,3 +58,11 @@ document.querySelectorAll('td.hoverable').forEach(function(element) {
     }
   });
 });
+
+document.addEventListener('turbolinks:load', function() {
+  var message = "<%= j flash[:notice] %>";
+  if (message) {
+    alert(message);
+    <% flash[:notice] = nil %>
+  }
+});
