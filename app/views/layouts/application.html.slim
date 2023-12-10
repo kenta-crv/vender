@@ -19,6 +19,10 @@ html
         .bread
           = render_breadcrumbs separator: ' > '
         .col-xs-12.center
+          p.notice
+           = notice
+          p.alert
+           = alert
           /ul#dropmenu
            li
              = link_to  'トップ', '/' , class: "col-md"
@@ -63,10 +67,6 @@ html
 
 
   body
-    p.notice
-      = notice
-    p.alert
-      = alert
     main
       = yield
   br
