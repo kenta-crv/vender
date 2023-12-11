@@ -111,26 +111,24 @@ br/
             = f.text_area :yamakyu_remarks
       tr
           th
-            = f.select(:net,[\
-              ["依頼中","依頼中"],\
-              ["現地調査中","現地調査中"],\
-              ["見積提示中","見積提示中"],\
-              ["契約","契約"],\
-              ["設置NG","設置NG"],\
-             ], include_blank: "選択してください")
+            = image_tag "rogo.webp", width:"100px"
           td
-            = f.select(:body,[\
-              ["依頼中","依頼中"],\
-              ["現地調査中","現地調査中"],\
-              ["見積提示中","見積提示中"],\
+            = f.select(:net,[\
+              ["未提案","未提案"],\
+              ["提案中","提案中"],\
+              ["検討中","検討中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
              ], include_blank: "選択してください")
       tr
           th
-            その他
+            | その他
           td
-            = @estimate.comment.body
+            = f.select(:body,[\
+              ["不在","不在"],\
+              ["明細待","明細待"],\
+              ["NG","NG"],\
+             ], include_blank: "選択してください")
       tr 
           td[colspan="5"]
            .center

@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
 
   def update_comment_status(comment, target, new_status)
     case target
-    when "アサヒ飲料販売株式会社 中部支社", "アサヒ飲料販売株式会社 関西支社", "アサヒ飲料販売株式会社"
+    when "アサヒ飲料株式会社 中部支社", "アサヒ飲料株式会社 関西支社", "アサヒ販売株式会社"
       comment.update(asahi: new_status)
     when "日本コカ･コーラ株式会社"
       comment.update(cocacola: new_status)
