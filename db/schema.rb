@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_12_04_142619) do
+ActiveRecord::Schema.define(version: 2023_12_12_113547) do
 
   create_table "add_column_to_comments", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(version: 2023_12_04_142619) do
     t.string "neos_file"
     t.string "yamakyu_file"
     t.string "dydo_file"
+    t.date "inspection_start_date"
     t.index ["estimate_id"], name: "index_comments_on_estimate_id"
     t.index ["token"], name: "index_comments_on_token", unique: true
   end

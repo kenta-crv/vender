@@ -83,4 +83,11 @@ class EstimateMailer < ActionMailer::Base
     @client = client
     mail(from: @client.email, to: 'zihanki@factoru.jp', subject: "#{client.company}が案件を辞退しました")
   end
+  #催促
+  def expiration_notification(client, comment, estimate)
+    @client = client
+    @comment = comment
+    @estimate = estimate
+    mail(to: @client.email,  subject: "【#{@estimate.co}】現地調査結果を更新してください")
+  end
 end

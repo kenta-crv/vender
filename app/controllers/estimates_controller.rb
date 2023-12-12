@@ -156,6 +156,9 @@ class EstimatesController < ApplicationController
     estimate = Estimate.find(params[:id])
     client = Client.find(params[:client_id])
     comment = Comment.find_or_initialize_by(estimate_id: estimate.id)
+    # 現地調査開始日を更新
+    comment.inspection_start_date = Date.today
+
     case client.company
     when "アサヒ飲料株式会社 中部支社" "アサヒ飲料株式会社 関西支社" "アサヒ飲料株式会社"
       comment.update(asahi: "現地調査中")
@@ -214,6 +217,10 @@ class EstimatesController < ApplicationController
   def sfa
     @q = Estimate.joins(:comment).where("comments.net": ["未提案","提案中","検討中"]).ransack(params[:q])
     @estimates_for_view = @q.result.page(params[:page]).per(100).order(created_at: :desc)
+  end
+
+  def info
+    @clients = Client.all
   end
 
   def payment

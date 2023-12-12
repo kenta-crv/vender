@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   get 'kirin' => 'top#kirin'
 
   get 'neos' => 'estimates#neos'
+  get 'estimates/info' => 'estimates#info'
 
   get 'question' => 'top#question'
   get 'business' => 'top#business'
