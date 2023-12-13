@@ -132,7 +132,7 @@ class EstimatesController < ApplicationController
         case client.company
         when "アサヒ飲料株式会社 中部支社", "アサヒ飲料株式会社 関西支社", "アサヒ飲料株式会社"
           @comment.update(asahi: "依頼中")
-        when "日本コカ･コーラ株式会社"
+        when "コカ・コーラボトラーズジャパン株式会社"
           @comment.update(cocacola: "依頼中")
         when "株式会社伊藤園"
           @comment.update(itoen: "依頼中")
@@ -162,7 +162,7 @@ class EstimatesController < ApplicationController
     case client.company
     when "アサヒ飲料株式会社 中部支社" "アサヒ飲料株式会社 関西支社" "アサヒ飲料株式会社"
       comment.update(asahi: "現地調査中")
-    when "日本コカ･コーラ株式会社"
+    when "コカ・コーラボトラーズジャパン株式会社"
       comment.update(cocacola: "現地調査中")
     when "株式会社伊藤園"
       comment.update(itoen: "現地調査中")
@@ -190,7 +190,7 @@ class EstimatesController < ApplicationController
     case client.company
     when "アサヒ飲料株式会社 中部支社" "アサヒ飲料株式会社 関西支社" "アサヒ飲料株式会社"
       comment.update(asahi: "設置NG")
-    when "日本コカ･コーラ株式会社"
+    when "コカ・コーラボトラーズジャパン株式会社"
       comment.update(cocacola: "設置NG")
     when "株式会社伊藤園"
       comment.update(itoen: "設置NG")
