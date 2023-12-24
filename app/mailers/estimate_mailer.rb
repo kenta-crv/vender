@@ -52,11 +52,8 @@ class EstimateMailer < ActionMailer::Base
   def client_email_select(estimate, client)
     @estimate = estimate
     @client = client
-
-    # 承諾と辞退のためのリンクを生成
     @accept_link = accept_estimate_url(@estimate, client_id: @client.id)
     @decline_link = decline_estimate_url(@estimate, client_id: @client.id)
-
     mail(to: client.email, subject: "自販機現地調査依頼【#{@estimate.co}】", content_type: "text/plain; charset=UTF-8", content_transfer_encoding: '7bit') 
   end
 
@@ -83,11 +80,33 @@ class EstimateMailer < ActionMailer::Base
     @client = client
     mail(from: @client.email, to: 'zihanki@factoru.jp', subject: "#{client.company}が案件を辞退しました")
   end
+
   #催促
   def expiration_notification(client, comment, estimate)
     @client = client
     @comment = comment
     @estimate = estimate
     mail(to: @client.email,  subject: "【#{@estimate.co}】現地調査結果を更新してください")
+  end
+  #契約メール
+  def contract_email(estimate, comment, client)
+    @estimate = estimate
+    @comment = comment
+    @client = client
+    mail(to: client.email, subject: '【#{@estimate.co}】で契約依頼がありました')
+  end
+  #競合NGメール
+  def conflict_email(estimate, comment, client)
+    @estimate = estimate
+    @comment = comment
+    @client = client
+    mail(to: client.email, subject: '【#{@estimate.co}】はご検討の結果落選となりました')
+  endf
+  #見積提示中メール
+  def presentation_email(estimate, comment, client)
+    @estimate = estimate
+    @comment = comment
+    @client = client
+    mail(to: "zihanki@factoru.jp", from: client.email subject: '【#{@estimate.co}】#{@client.company}が提案を行いました')
   end
 end

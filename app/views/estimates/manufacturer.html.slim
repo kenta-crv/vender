@@ -1,9 +1,9 @@
 - set_meta_tags noindex: true
-br
-br/
 .tops-wrapper
-br
-  h2.headline  顧客一覧
+ br/
+ br/
+ h2.headline 
+  | 現地調査・見積提示一覧
 .row
   table.company
    col[width="15%"]
@@ -53,6 +53,7 @@ br
     = paginate(@estimates_for_view)
 
 br/
+
 
 br/
 = search_form_for @q do |f|

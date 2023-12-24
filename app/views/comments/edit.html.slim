@@ -17,6 +17,7 @@ br/
               ["見積提示中","見積提示中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
+              ["他社NG","他社NG"],\
              ], include_blank: "選択してください")
           td 
             = f.file_field :cocacola_file
@@ -34,6 +35,7 @@ br/
               ["見積提示中","見積提示中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
+              ["他社NG","他社NG"],\
              ], include_blank: "選択してください")
           td 
             = f.file_field :neos_file
@@ -51,6 +53,7 @@ br/
               ["見積提示中","見積提示中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
+              ["他社NG","他社NG"],\
              ], include_blank: "選択してください")
           td 
             = f.file_field :itoen_file
@@ -68,6 +71,7 @@ br/
               ["見積提示中","見積提示中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
+              ["他社NG","他社NG"],\
              ], include_blank: "選択してください")
           td 
             = f.file_field :asahi_file
@@ -85,6 +89,7 @@ br/
               ["見積提示中","見積提示中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
+              ["他社NG","他社NG"],\
              ], include_blank: "選択してください")
           td 
             = f.file_field :dydo_file
@@ -102,6 +107,7 @@ br/
               ["見積提示中","見積提示中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
+              ["他社NG","他社NG"],\
              ], include_blank: "選択してください")
           td 
             = f.file_field :yamakyu_file
@@ -119,6 +125,7 @@ br/
               ["検討中","検討中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
+              ["他社NG","他社NG"],\
              ], include_blank: "選択してください")
       tr
           th
@@ -128,13 +135,20 @@ br/
               ["不在","不在"],\
               ["明細待","明細待"],\
               ["NG","NG"],\
+              ["未提案","未提案"],\
+              ["提案中","提案中"],\
+              ["検討中","検討中"],\
+              ["見積提示中","見積提示中"],\
+              ["契約","契約"],\
+              ["設置NG","設置NG"],\
+              ["他社NG","他社NG"],\
              ], include_blank: "選択してください")
       tr 
           td[colspan="5"]
            .center
-            = f.submit "登録",class:"btn btn-primary"
+              = f.submit "登録",class:"btn btn-primary"
 
- - elsif client_signed_in? && (@client.company == 'アサヒ飲料株式会社' || @client.company == 'アサヒ飲料株式会社 中部担当' || @client.company == 'アサヒ飲料株式会社 関西担当') 
+ - if client_signed_in? && @client && (@client.company == 'アサヒ飲料株式会社' || @client.company == 'アサヒ飲料株式会社 中部担当' || @client.company == 'アサヒ飲料株式会社 関西担当')
   h2.headline 現地結果情報を入力してください
   table.company[width="100%"]
     tbody
@@ -161,7 +175,7 @@ br/
           th[colspan="9"]
            .center
             = f.submit class:"btn btn-primary"
- - elsif client_signed_in? && (@client.company == '日本コカ･コーラ株式会社') 
+ - elsif client_signed_in? && @client && (@client.company == 'コカ･コーラボトラーズジャパン株式会社') 
   h2.headline 現地結果情報を入力してください
   table.company[width="100%"]
     tbody
@@ -188,7 +202,7 @@ br/
           th[colspan="9"]
            .center
             = f.submit class:"btn btn-primary"
- - elsif client_signed_in? && (@client.company == '株式会社伊藤園') 
+ - elsif client_signed_in? && @client && (@client.company == '株式会社伊藤園') 
   h2.headline 現地結果情報を入力してください
   table.company[width="100%"]
     tbody
@@ -215,7 +229,7 @@ br/
           th[colspan="9"]
            .center
             = f.submit class:"btn btn-primary"
- - elsif client_signed_in? && (@client.company == 'ダイドードリンコ株式会社') 
+ - elsif client_signed_in? && @client && (@client.company == 'ダイドードリンコ株式会社') 
   h2.headline 現地結果情報を入力してください
   table.company[width="100%"]
     tbody
@@ -242,7 +256,7 @@ br/
           th[colspan="9"]
            .center
             = f.submit class:"btn btn-primary"
- - elsif client_signed_in? && (@client.company == '株式会社山久') 
+ - elsif client_signed_in? && @client && (@client.company == '株式会社山久') 
   h2.headline 現地結果情報を入力してください
   table.company[width="100%"]
     tbody
@@ -269,7 +283,7 @@ br/
           th[colspan="9"]
            .center
             = f.submit class:"btn btn-primary"
- - elsif client_signed_in? && (@client.company == 'ネオス株式会社') 
+ - elsif client_signed_in? && @client && (@client.company == 'ネオス株式会社') 
   h2.headline 現地結果情報を入力してください
   table.company[width="100%"]
     tbody
@@ -296,29 +310,18 @@ br/
           th[colspan="9"]
            .center
             = f.submit class:"btn btn-primary"
- - elsif client_signed_in? && (@client.company == '株式会社Ri-Plus') 
+ - elsif client_signed_in? && @client && (@client.company == '合同会社ファクトル') 
   h2.headline 現地結果情報を入力してください
   table.company[width="100%"]
     tbody
       tr
           th ステータス更新
           td
-            = f.select(:asahi,[\
+            = f.select(:body,[\
               ["見積条件提示","見積条件提示"],\
               ["設置NG","設置NG"],\
              ], include_blank: "選択してください")
-      tr 
-          th 送付資料
-          td
-            = f.file_field :asahi_file
-      tr 
-          th 提示内容
-          td
-            = f.text_area :asahi_suggestion
-      tr 
-          th  備考
-          td
-            = f.text_area :asahi_remarks
+
       tr 
           th[colspan="9"]
            .center

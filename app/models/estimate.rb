@@ -3,6 +3,7 @@ class Estimate < ApplicationRecord
   has_one :comment, dependent: :destroy
   has_one :transfer, dependent: :destroy
   has_many :progresses, dependent: :destroy
+  has_many :payments, dependent: :destroy
   validates :co, presence: { message: '会社名が入力されていません。' }, on: :create
   validates :name, presence: { message: '名前が入力されていません。' }, on: :create
   validates :tel, presence: { message: '電話番号が入力されていません。' }, on: :create
@@ -64,4 +65,16 @@ class Estimate < ApplicationRecord
   def assumed_total
     percentage_i.to_i * assumed_number.to_i
   end
+
+  scope :with_specific_comments, -> {
+    joins(:comment).where(
+      "comments.asahi IN (:statuses) OR " \
+      "comments.cocacola IN (:statuses) OR " \
+      "comments.itoen IN (:statuses) OR " \
+      "comments.neos IN (:statuses) OR " \
+      "comments.dydo IN (:statuses) OR " \
+      "comments.yamakyu IN (:statuses)",
+      statuses: ["現地調査中", "見積提示中"]
+    )
+  }
 end

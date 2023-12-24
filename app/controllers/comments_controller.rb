@@ -14,42 +14,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
   end
 
-  def update_status
-    @comment = Comment.find(params[:id])
-    target = determine_target(@comment)
-  
-    # 権限の確認
-    unless authorized_to_update_comment?(current_client, @comment, target)
-      redirect_to root_path, alert: 'この操作には権限がありません。'
-      return
-    end
-  
-    if params[:new_status].present? && valid_status_change?(@comment, params[:new_status])
-      # target に基づいて適切なカラムを更新
-      update_comment_status(@comment, target, params[:new_status])
-      @comment.update(comment_text: params[:comment_text])
-      send_status_update_email(@comment)
-      redirect_to somewhere_path, notice: 'ステータスが更新されました。'
-    else
-      redirect_to somewhere_path, alert: '無効なステータス更新です。'
-    end
-  end
-
-  def update_comment_status(comment, target, new_status)
-    case target
-    when "アサヒ飲料株式会社 中部支社", "アサヒ飲料株式会社 関西支社", "アサヒ販売株式会社"
-      comment.update(asahi: new_status)
-    when "コカ・コーラボトラーズジャパン株式会社"
-      comment.update(cocacola: new_status)
-    end
-  end
-
-  def determine_target(comment)
-    # Comment に関連する Estimate の company_name を取得して返す
-    comment.estimate.company_name
-  end
-
-  def edit
+z  def edit
     @estimate = Estimate.find(params[:estimate_id])
     # adminユーザーであれば、@clientは設定しない
     if admin_signed_in?
@@ -93,14 +58,51 @@ class CommentsController < ApplicationController
     end
   end
 
-  private
-  def valid_status_change?(comment, new_status)
-    # 有効なステータスの例
-    valid_statuses = ['見積提示', '設置NG']
-    # 新しいステータスが有効なリストに含まれているか確認
-    valid_statuses.include?(new_status)
+  def update_status
+    estimate = Estimate.find(params[:id])
+    client = Client.find(params[:client_id])
+    comment = Comment.find_or_initialize_by(estimate_id: estimate.id)
+
+    # ステータスを更新する条件に基づいたロジック（例：params[:status_type]）
+    case params[:status_type]
+    when "contract"
+      update_comment_status(client.company, "契約", comment)
+    when "presentation"
+      update_comment_status(client.company, "見積提示中", comment)
+    when "conflict"
+      update_comment_status(client.company, "他社NG", comment)
+    end
   end
 
+  private
+
+  def update_comment_status(company, status, comment)
+    case company
+    when "アサヒ飲料株式会社 中部支社", "アサヒ飲料株式会社 関西支社", "アサヒ飲料株式会社"
+      comment.update(asahi: status)
+    when "コカ･コーラボトラーズジャパン株式会社"
+      comment.update(cocacola: status)
+    when "株式会社伊藤園"
+      comment.update(itoen: status)
+    when "ダイドードリンコ株式会社"
+      comment.update(dydo: status)
+    when "株式会社山久"
+      comment.update(yamakyu: status)
+    when "ネオス株式会社"
+      comment.update(neos: status)
+    when "株式会社Ri-Plus"
+      comment.update(neos: status)
+    when "合同会社ファクトル"
+      comment.update(body: status)
+    end
+  end
+
+    #削除
+  def valid_status_change?(comment, new_status)
+    valid_statuses = ['見積提示', '設置NG']
+    valid_statuses.include?(new_status)
+  end
+    #削除
   def send_status_update_email(comment)
     EstimateMailer.status_update_email(comment).deliver_now
   end

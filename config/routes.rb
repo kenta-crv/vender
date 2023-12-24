@@ -55,6 +55,7 @@ Rails.application.routes.draw do
 
   resources :estimates do
     resources :progresses
+    resources :payments, except: [:index]
     resources :comments  do
      member do
        post :update_status
@@ -78,7 +79,8 @@ Rails.application.routes.draw do
   end
   get 'contract' => 'estimates#contract'
   get 'sfa' => 'estimates#sfa'
-  get 'payment' => 'estimates#payment'
+  get 'share' => 'estimates#share'
+  get 'manufacturer' => 'estimates#manufacturer'
   post 'estimates/client_select', to: 'estimates#client_select', as: 'client_select_estimate'
   get 'estimates/:id/accept', to: 'estimates#accept', as: 'accept_estimate'
   get 'estimates/:id/decline', to: 'estimates#decline', as: 'decline_estimate'
@@ -90,15 +92,7 @@ Rails.application.routes.draw do
       get :room, path: '/room/:uri_token'
     end
   end
-
-  #企業側アカウント
-  #resource :company, only: [:show, :edit, :update] do
-    # imagesに関するルーティング
-   # resources :images, only: [:create, :destroy, :update, :download, :edit] do
-    #  get 'view', on: :member
-     # get 'download/:id', action: :download, as: :pdf, on: :member
-    #end
-  #end
+  resources :payments, only: [:index]
   resources :companies
 
   #get '*path', controller: 'application', action: 'render_404'

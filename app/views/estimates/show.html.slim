@@ -209,6 +209,7 @@ table.company[width="100%"]
               ["見積提示中","見積提示中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
+              ["他社NG","他社NG"],\
              ], include_blank: "選択してください")
           td
             = @estimate.comment&.cocacola
@@ -228,6 +229,7 @@ table.company[width="100%"]
               ["見積提示中","見積提示中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
+              ["他社NG","他社NG"],\
              ], include_blank: "選択してください")          
           td
             = @estimate.comment&.neos
@@ -247,6 +249,7 @@ table.company[width="100%"]
               ["見積提示中","見積提示中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
+              ["他社NG","他社NG"],\
              ], include_blank: "選択してください")
           td
             = @estimate.comment&.itoen
@@ -266,6 +269,7 @@ table.company[width="100%"]
               ["見積提示中","見積提示中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
+              ["他社NG","他社NG"],\
              ], include_blank: "選択してください")          
           td
             = @estimate.comment&.asahi
@@ -285,6 +289,7 @@ table.company[width="100%"]
               ["見積提示中","見積提示中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
+              ["他社NG","他社NG"],\
              ], include_blank: "選択してください")
           td
             = @estimate.comment&.dydo
@@ -304,6 +309,7 @@ table.company[width="100%"]
               ["見積提示中","見積提示中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
+              ["他社NG","他社NG"],\
              ], include_blank: "選択してください")
           td
             = @estimate.comment&.yamakyu
@@ -323,6 +329,7 @@ table.company[width="100%"]
               ["検討中","検討中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
+              ["他社NG","他社NG"],\
              ], include_blank: "選択してください") 
           td
             = @estimate.comment&.net
@@ -380,14 +387,14 @@ table.company[width="100%"]
               ["契約","契約"],\
               ["連絡不通","連絡不通"],\
               ["設置NG","設置NG"],\
-          ])
+          ], include_blank: "未選択")
        td
         = f.select(:document,[\
               ["",""],\
               ["中古自販機","中古自販機"],\
               ["新品自販機","新品自販機"],\
               ["ドコモシェア","ドコモシェア"],\
-          ])
+          ], include_blank: "未選択")
        td
        td
         = f.datetime_field :next
@@ -475,3 +482,59 @@ table.company[width="100%"]
          .center
           = link_to "編集", edit_estimate_transfer_path(@estimate, @estimate.transfer), class:"btn btn-primary"
           = link_to "削除", estimate_transfer_path(@estimate, @estimate.transfer), method: :delete, data: {confirm:"本当に削除しますか？"}, class:"btn btn-danger"
+
+- if @estimate.comment&.neos == "契約"
+ h2.headline  
+  | 月間売上
+ table.company[width="100%"]
+   = form_for([@estimate, @payment], url: estimate_payments_path(estimate_id: @estimate)) do |f|
+     tbody
+       col[width="33%"]
+       col[width="33%"]
+       col[width="33%"]
+       tr.ceter
+        td
+           = f.number_field :year, placeholder: "2023"
+        td
+           = f.number_field :month, placeholder: "10"
+        td
+          = f.number_field :sales, placeholder: "10000"
+        td 
+          /= f.check_box :complete
+        tr 
+           td[colspan="6"]
+            .center
+             = f.submit "登録",class:"btn btn-primary"
+ - @estimate.payments.each do |payment|
+       table.company[width="100%"]
+        col[width="20%"]
+        col[width="15%"]
+        col[width="15%"]
+        col[width="20%"]
+        col[width="10%"]
+        col[width="20%"]
+        tr
+         th 年月
+         th 売上
+         th パーセント
+         th 支払額
+         th 完了
+         th 削除
+        tr.center
+         td
+           = payment.year
+           |年
+           = payment.month
+           |月
+         td
+           = payment.sales
+           |円
+         td 
+           = @estimate.percentage_other
+         td 
+           = (payment.sales.to_i * @estimate.percentage_other.to_i * 0.01)
+         td
+           = check_box_tag "payment_complete_#{payment.id}", "1", payment.complete, disabled: true
+         td
+           = link_to "編集", edit_estimate_payment_path(@estimate, payment), class:"btn btn-primary"
+           = link_to "削除", estimate_payment_path(@estimate, payment), method: :delete, data: {confirm:"本当に削除しますか？"}, class:"btn btn-danger"

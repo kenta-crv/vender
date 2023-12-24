@@ -62,6 +62,7 @@ class EstimatesController < ApplicationController
     @comment = @estimate.comment || Comment.new
     @progress = Progress.new
     @transfer = Transfer.new
+    @payment = Payment.new
   end
 
 
@@ -132,7 +133,7 @@ class EstimatesController < ApplicationController
         case client.company
         when "アサヒ飲料株式会社 中部支社", "アサヒ飲料株式会社 関西支社", "アサヒ飲料株式会社"
           @comment.update(asahi: "依頼中")
-        when "コカ・コーラボトラーズジャパン株式会社"
+        when "コカ･コーラボトラーズジャパン株式会社"
           @comment.update(cocacola: "依頼中")
         when "株式会社伊藤園"
           @comment.update(itoen: "依頼中")
@@ -160,9 +161,9 @@ class EstimatesController < ApplicationController
     comment.inspection_start_date = Date.today
 
     case client.company
-    when "アサヒ飲料株式会社 中部支社" "アサヒ飲料株式会社 関西支社" "アサヒ飲料株式会社"
+    when "アサヒ飲料株式会社 中部支社", "アサヒ飲料株式会社 関西支社", "アサヒ飲料株式会社"
       comment.update(asahi: "現地調査中")
-    when "コカ・コーラボトラーズジャパン株式会社"
+    when "コカ･コーラボトラーズジャパン株式会社"
       comment.update(cocacola: "現地調査中")
     when "株式会社伊藤園"
       comment.update(itoen: "現地調査中")
@@ -188,9 +189,9 @@ class EstimatesController < ApplicationController
     client = Client.find(params[:client_id])
     comment = Comment.find_or_initialize_by(estimate_id: estimate.id)
     case client.company
-    when "アサヒ飲料株式会社 中部支社" "アサヒ飲料株式会社 関西支社" "アサヒ飲料株式会社"
+    when "アサヒ飲料株式会社 中部支社", "アサヒ飲料株式会社 関西支社", "アサヒ飲料株式会社"
       comment.update(asahi: "設置NG")
-    when "コカ・コーラボトラーズジャパン株式会社"
+    when "コカ･コーラボトラーズジャパン株式会社"
       comment.update(cocacola: "設置NG")
     when "株式会社伊藤園"
       comment.update(itoen: "設置NG")
@@ -214,6 +215,16 @@ class EstimatesController < ApplicationController
     @estimates = Estimate.order(created_at: "DESC").where(send_mail_flag: "送信済").page(params[:page])
   end
 
+  def share
+    @q = Estimate.joins(:progresses).where(progresses: { document: "シェアサイクル" }).ransack(params[:q])
+    @estimates_for_view = @q.result.page(params[:page]).per(100).order(created_at: :desc)
+  end
+
+  def manufacturer
+    @q = Estimate.with_specific_comments.ransack(params[:q])
+    @estimates_for_view = @q.result(distinct: true).page(params[:page]).per(100).order(created_at: :desc)
+  end
+
   def sfa
     @q = Estimate.joins(:comment).where("comments.net": ["未提案","提案中","検討中"]).ransack(params[:q])
     @estimates_for_view = @q.result.page(params[:page]).per(100).order(created_at: :desc)
@@ -221,11 +232,6 @@ class EstimatesController < ApplicationController
 
   def info
     @clients = Client.all
-  end
-
-  def payment
-    @q = Estimate.joins(:transfer).where.not("transfers.id": nil).ransack(params[:q])
-    @estimates_for_view = @q.result.page(params[:page]).per(100).order(created_at: :desc)
   end
 
   def import
