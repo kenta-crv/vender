@@ -8,7 +8,7 @@ class PaymentsController < ApplicationController
     end
 
     def index
-       @q = Estimate.joins(:payments).joins(:transfer).where.not("transfers.id": nil).ransack(params[:q])
+       @q = Estimate.joins(:transfer).where.not("transfers.id": nil).ransack(params[:q])
        @estimates_for_view = @q.result.page(params[:page]).per(100).order(created_at: :desc)
     end
 
