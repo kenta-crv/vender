@@ -107,6 +107,6 @@ class EstimateMailer < ActionMailer::Base
     @estimate = estimate
     @comment = comment
     @client = client
-    mail(to: "zihanki@factoru.jp", from: client.email subject: '【#{@estimate.co}】#{@client.company}が提案を行いました')
+    mail(to: "zihanki@factoru.jp", from: client.email, subject: '【#{@estimate.co}】#{@client.company}が提案を行いました')
   end
 end
