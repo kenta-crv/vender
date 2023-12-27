@@ -74,7 +74,7 @@ class Estimate < ApplicationRecord
       "comments.neos IN (:statuses) OR " \
       "comments.dydo IN (:statuses) OR " \
       "comments.yamakyu IN (:statuses)",
-      statuses: ["現地調査中", "見積提示中"]
+      statuses: ["見積提示中"]
     )
   }
 end

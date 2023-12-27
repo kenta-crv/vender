@@ -214,7 +214,9 @@ table.company[width="100%"]
           td
             = @estimate.comment&.cocacola
           td 
-            = @estimate.comment&.cocacola_file
+            - if @estimate.comment&.cocacola_file?
+              = link_to '提案資料', @estimate.comment.cocacola_file.url, class:"btn btn-primary"
+            - else
           td 
             = @estimate.comment&.cocacola_suggestion
           td 
@@ -234,7 +236,9 @@ table.company[width="100%"]
           td
             = @estimate.comment&.neos
           td 
-            = @estimate.comment&.neos_file
+            - if @estimate.comment&.neos_file?
+              = link_to '提案資料', @estimate.comment.neos_file.url, class:"btn btn-primary"
+            - else
           td 
             = @estimate.comment&.neos_suggestion
           td 
@@ -254,7 +258,9 @@ table.company[width="100%"]
           td
             = @estimate.comment&.itoen
           td 
-            = @estimate.comment&.itoen_file
+            - if @estimate.comment&.itoen_file?
+              = link_to '提案資料', @estimate.comment.itoen_file.url, class:"btn btn-primary"
+            - else
           td 
             = @estimate.comment&.itoen_suggestion
           td 
@@ -274,7 +280,9 @@ table.company[width="100%"]
           td
             = @estimate.comment&.asahi
           td 
-            = @estimate.comment&.asahi_file
+            - if @estimate.comment&.asahi_file?
+              = link_to '提案資料', @estimate.comment.asahi_file.url, class:"btn btn-primary"
+            - else
           td 
             = @estimate.comment&.asahi_suggestion
           td 
@@ -294,7 +302,9 @@ table.company[width="100%"]
           td
             = @estimate.comment&.dydo
           td 
-            = @estimate.comment&.dydo_file
+            - if @estimate.comment&.dydo_file?
+              = link_to '提案資料', @estimate.comment.dydo_file.url, class:"btn btn-primary"
+            - else
           td 
             = @estimate.comment&.dydo_suggestion
           td 
@@ -314,7 +324,9 @@ table.company[width="100%"]
           td
             = @estimate.comment&.yamakyu
           td 
-            = @estimate.comment&.yamakyu_file
+            - if @estimate.comment&.yamakyu_file?
+              = link_to '提案資料', @estimate.comment.yamakyu_file.url, class:"btn btn-primary"
+            - else
           td 
             = @estimate.comment&.yamakyu_suggestion
           td 

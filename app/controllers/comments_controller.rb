@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
   end
 
-z  def edit
+  def edit
     @estimate = Estimate.find(params[:estimate_id])
     # adminユーザーであれば、@clientは設定しない
     if admin_signed_in?
@@ -86,11 +86,9 @@ z  def edit
       comment.update(itoen: status)
     when "ダイドードリンコ株式会社"
       comment.update(dydo: status)
-    when "株式会社山久"
+    when "合同会社ファクトル"
       comment.update(yamakyu: status)
     when "ネオス株式会社"
-      comment.update(neos: status)
-    when "株式会社Ri-Plus"
       comment.update(neos: status)
     when "合同会社ファクトル"
       comment.update(body: status)

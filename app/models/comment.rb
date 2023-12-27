@@ -1,6 +1,5 @@
 class Comment < ApplicationRecord
   belongs_to :estimate
-  belongs_to :client
   mount_uploader :asahi_file, ImagesUploader
   mount_uploader :cocacola_file, ImagesUploader
   mount_uploader :itoen_file, ImagesUploader

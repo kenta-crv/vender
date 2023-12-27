@@ -101,7 +101,7 @@ class EstimateMailer < ActionMailer::Base
     @comment = comment
     @client = client
     mail(to: client.email, subject: '【#{@estimate.co}】はご検討の結果落選となりました')
-  endf
+  end
   #見積提示中メール
   def presentation_email(estimate, comment, client)
     @estimate = estimate
