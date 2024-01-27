@@ -1,0 +1,19 @@
+<%= @client.company%> <%= @client.name%>様
+
+お世話になっております。
+
+合同会社ファクトルでございます。
+
+先日ご依頼させて頂きました下記の案件についてですが、ご依頼より（5日・10日）が経過しておりますので、判断可否をお願いできますでしょうか？
+
+現地調査を行う：<%= accept_estimate_url(@estimate, client_id: @client.id) %>
+
+辞退する：<%= decline_estimate_url(@estimate, client_id: @client.id) %>
+
+入れ違いでしたら恐れ入ります。
+
+引き続きよろしくお願い致します。
+
+合同会社ファクトル
+熊本県天草市中央新町12-13
+zihanki@factoru.jp

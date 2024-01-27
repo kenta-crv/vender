@@ -1,0 +1,19 @@
+<%= @client.company%> <%= @client.name%>様
+
+お世話になっております。
+
+合同会社ファクトルでございます。
+
+先日現地調査に進んで頂きました下記案件となりますが、現在調査開始より（10日・15日）が経過しており、その後の進捗はいかがでしょうか？
+
+以下より提案もしくは設置辞退にお進み頂けますので、結果が出ておりましたらご判断をお願い致します。
+
+提案を行う: <%= edit_estimate_comment_url(@estimate, @comment, client_id: @client.id) %>
+
+辞退する: <%= decline_estimate_url(@estimate, client_id: @client.id) %>
+
+引き続きよろしくお願い致します。
+
+合同会社ファクトル
+熊本県天草市中央新町12-13
+zihanki@factoru.jp
