@@ -109,4 +109,55 @@ class EstimateMailer < ActionMailer::Base
     @client = client
     mail(to: "zihanki@factoru.jp", from: client.email, subject: '【#{@estimate.co}】#{@client.company}が提案を行いました')
   end
+
+  # ステータスが依頼中の場合の催促メール送信
+  def requested_status_remaind(comment, client)
+    @comment = comment
+    @estimate = comment.estimate
+    @client = client
+    to = @client.email
+
+    mail(to: to, subject: "#{@estimate.co}様の依頼判断可否について")
+  end
+
+  # ステータスが現地調査中の場合の催促メール送信
+  def investigated_status_remaind(comment, client)
+    @comment = comment
+    @estimate = comment.estimate
+    @client = client
+    to = @client.email
+
+    mail(to: to, subject: "#{@estimate.co}様の現地結果について")
+  end
+
+  # ステータスが見積提示中となった場合の通知メール送信
+  def estimate_status_notification(comment, client)
+    @comment = comment
+    @estimate = comment.estimate
+    @client = client
+    to = @client.email
+
+    mail(to: to, subject: "#{@client.company}より#{@estimate.co}の提案がありました。")
+  end
+
+  # ステータスが契約となった場合の通知メール送信
+  def contracted_status_notification(comment, client)
+    @comment = comment
+    @estimate = comment.estimate
+    @client = client
+    to = @client.email
+
+    mail(to: to, subject: "#{@estimate.co}様の契約のお知らせ")
+  end
+
+  # ステータスが見送りNGとなった場合の通知メール送信
+  def send_off_status_notification(comment, client)
+    @comment = comment
+    @estimate = comment.estimate
+    @client = client
+    to = @client.email
+
+    mail(to: to, subject: "#{@estimate.co}様より見送りのお知らせ")
+  end
+
 end

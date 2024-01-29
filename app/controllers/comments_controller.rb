@@ -70,7 +70,7 @@ class CommentsController < ApplicationController
     when "presentation"
       update_comment_status(client.company, "見積提示中", comment)
     when "conflict"
-      update_comment_status(client.company, "他社NG", comment)
+      update_comment_status(client.company, "見送りNG", comment)
     end
   end
 
