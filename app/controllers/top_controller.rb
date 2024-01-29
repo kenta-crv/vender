@@ -5,6 +5,9 @@ class TopController < ApplicationController
   def lp
   end
 
+  def original 
+  end
+
   def business
   end
 

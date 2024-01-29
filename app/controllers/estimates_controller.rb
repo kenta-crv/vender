@@ -4,7 +4,15 @@ class EstimatesController < ApplicationController
   add_breadcrumb "フォーム入力ページ", :new_estimate_path, only: [:confirm]
   def index
     @q = Estimate.ransack(params[:q])
-    @estimates_for_view = @q.result.page(params[:page]).per(100).order(created_at: :desc)
+    @estimates = @q.result.order(created_at: :desc)
+    @estimates_for_view = @estimates.page(params[:page]).per(100)
+    
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data @estimates.generate_csv, filename: "estimates-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"
+      end
+    end
   end
 
   def new

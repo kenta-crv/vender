@@ -30,6 +30,8 @@ Rails.application.routes.draw do
 
   get 'lp' => 'top#lp'
 
+  get 'original' => 'top#original'
+
   get 'cocacola' => 'top#cocacola'
   get 'suntory' => 'top#suntory'
   get 'asahi' => 'top#asahi'
