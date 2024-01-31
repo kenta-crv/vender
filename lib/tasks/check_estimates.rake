@@ -1,4 +1,10 @@
 namespace :estimates do
+  # rakeコマンド実行ができているか確認するrakeタスク
+  # コマンド：rake estimates:test
+  task test: :environment do
+    puts "CURRENT TIME:#{Time.zone.now.strftime('%Y-%m-%d %H:%M')}"
+  end
+
   task check_and_notify: :environment do
     Comment.where("inspection_start_date <= ?", Date.today - 10.days).each do |comment|
       EstimateMailer.expiration_notification(comment.estimate.client, comment, comment.estimate).deliver_now
