@@ -95,6 +95,7 @@ Rails.application.routes.draw do
     end
   end
   resources :payments, only: [:index]
+  post 'update_payments', to: 'payments#bulk_update'
   resources :companies
 
   #get '*path', controller: 'application', action: 'render_404'

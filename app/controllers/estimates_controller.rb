@@ -133,7 +133,7 @@ class EstimatesController < ApplicationController
         next if client_id.blank?
   
         client = Client.find(client_id)
-  
+
         # メール送信
         EstimateMailer.client_email_select(@estimate, client).deliver_now
   
