@@ -30,6 +30,8 @@ Rails.application.routes.draw do
 
   get 'lp' => 'top#lp'
 
+  get 'original' => 'top#original'
+
   get 'cocacola' => 'top#cocacola'
   get 'suntory' => 'top#suntory'
   get 'asahi' => 'top#asahi'
@@ -93,6 +95,7 @@ Rails.application.routes.draw do
     end
   end
   resources :payments, only: [:index]
+  post 'update_payments', to: 'payments#bulk_update'
   resources :companies
 
   #get '*path', controller: 'application', action: 'render_404'
