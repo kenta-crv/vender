@@ -44,12 +44,14 @@ class CommentsController < ApplicationController
     @comment = @estimate.comment
     if admin_signed_in?
      if @comment.update(comment_params)
+      send_status_change_notifications
       redirect_to estimate_path(@estimate)
      else
       render 'edit'
      end
     elsif client_signed_in?
       if @comment.update(comment_params)
+        send_status_change_notifications
         flash[:notice] = "案件提案が完了しました"
         redirect_to root_path
        else
@@ -138,4 +140,22 @@ class CommentsController < ApplicationController
     :dydo_remarks,
     )
  	end
+
+  # ステータス変更に応じたメール通知
+  def send_status_change_notifications
+    # メール送信対象となる変更カラム
+    fields = ['cocacola', 'neos', 'itoen', 'asahi', 'dydo', 'yamakyu', 'body']
+
+    fields.each do |field|
+      # カラムが更新されたかどうか
+      field_updated = @comment.saved_change_to_attribute?(field)
+      # メールチェックボックスがチェックされたか
+      mail_checked = params["#{field}_mail"].present?
+
+      if field_updated && mail_checked
+        @comment.send_change_status_notifications(field)
+      end
+    end
+  end
+
 end
