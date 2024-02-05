@@ -1103,9 +1103,23 @@ table.free {
   text-align: center;
 }
 
-
-
-
 .red-text {
   color: red;
+}
+
+.comment-mail-box {
+  width: 80px;
+
+  label {
+      font-size: 18px;
+      text-align: center;
+      font-weight: normal;
+      width: 80px;
+  }
+  input[type="checkbox"] {
+      width: 100%;
+      -moz-transform: scale(1.5);
+      -webkit-transform: scale(1.5);
+      transform: scale(1.5);
+  }
 }
