@@ -73,12 +73,6 @@ class Estimate < ApplicationRecord
       "comments.itoen IN (:statuses) OR " \
       "comments.neos IN (:statuses) OR " \
       "comments.dydo IN (:statuses) OR " \
-      "comments.yamakyu IN (:statuses) OR " \
-      "comments.cocacola_suggestion IS NOT NULL OR " \
-      "comments.asahi_suggestion IS NOT NULL OR " \
-      "comments.itoen_suggestion IS NOT NULL OR " \
-      "comments.neos_suggestion IS NOT NULL OR " \
-      "comments.dydo_suggestion IS NOT NULL",
       "(comments.cocacola_suggestion IS NOT NULL AND comments.cocacola_suggestion != '') OR " \
       "(comments.asahi_suggestion IS NOT NULL AND comments.asahi_suggestion != '') OR " \
       "(comments.itoen_suggestion IS NOT NULL AND comments.itoen_suggestion != '') OR " \
