@@ -223,7 +223,7 @@ class EstimatesController < ApplicationController
   end
 
   def manufacturer
-    @q = Estimate.with_specific_comments_or_suggestions.ransack(params[:q])
+    @q = Estimate.with_specific_comments.ransack(params[:q])
     @estimates_for_view = @q.result(distinct: true).page(params[:page]).per(100).order(created_at: :desc)
   end
 
