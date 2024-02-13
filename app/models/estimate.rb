@@ -68,11 +68,11 @@ class Estimate < ApplicationRecord
 
   scope :with_specific_comments_or_suggestions, -> {
     joins(:comment).where(
-      "comments.asahi IN (:statuses) OR " \
-      "comments.cocacola IN (:statuses) OR " \
-      "comments.itoen IN (:statuses) OR " \
-      "comments.neos IN (:statuses) OR " \
-      "comments.dydo IN (:statuses) OR " \
+      "(comments.asahi IN (:statuses) AND comments.asahi IS NOT NULL) OR " \
+      "(comments.cocacola IN (:statuses) AND comments.cocacola IS NOT NULL) OR " \
+      "(comments.itoen IN (:statuses) AND comments.itoen IS NOT NULL) OR " \
+      "(comments.neos IN (:statuses) AND comments.neos IS NOT NULL) OR " \
+      "(comments.dydo IN (:statuses) AND comments.dydo IS NOT NULL) OR " \
       "(comments.dydo_file IS NOT NULL OR comments.dydo_suggestion IS NOT NULL OR comments.dydo_remarks IS NOT NULL) OR " \
       "(comments.cocacola_file IS NOT NULL OR comments.cocacola_suggestion IS NOT NULL OR comments.cocacola_remarks IS NOT NULL) OR " \
       "(comments.asahi_file IS NOT NULL OR comments.asahi_suggestion IS NOT NULL OR comments.asahi_remarks IS NOT NULL) OR " \
@@ -81,6 +81,5 @@ class Estimate < ApplicationRecord
       statuses: ["見積提示中"]
     )
   }
-  
   
 end
