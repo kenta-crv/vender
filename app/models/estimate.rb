@@ -73,12 +73,11 @@ class Estimate < ApplicationRecord
       "comments.itoen IN (:statuses) OR " \
       "comments.neos IN (:statuses) OR " \
       "comments.dydo IN (:statuses) OR " \
-      "comments.yamakyu IN (:statuses) OR " \
-      "(comments.cocacola_suggestion IS NOT NULL AND comments.cocacola_suggestion != '') OR " \
-      "(comments.asahi_suggestion IS NOT NULL AND comments.asahi_suggestion != '') OR " \
-      "(comments.itoen_suggestion IS NOT NULL AND comments.itoen_suggestion != '') OR " \
-      "(comments.neos_suggestion IS NOT NULL AND comments.neos_suggestion != '') OR " \
-      "(comments.dydo_suggestion IS NOT NULL AND comments.dydo_suggestion != '')",
+      "(comments.dydo_file IS NOT NULL OR comments.dydo_suggestion IS NOT NULL OR comments.dydo_remarks IS NOT NULL) OR " \
+      "(comments.cocacola_file IS NOT NULL OR comments.cocacola_suggestion IS NOT NULL OR comments.cocacola_remarks IS NOT NULL) OR " \
+      "(comments.asahi_file IS NOT NULL OR comments.asahi_suggestion IS NOT NULL OR comments.asahi_remarks IS NOT NULL) OR " \
+      "(comments.itoen_file IS NOT NULL OR comments.itoen_suggestion IS NOT NULL OR comments.itoen_remarks IS NOT NULL) OR " \
+      "(comments.neos_file IS NOT NULL OR comments.neos_suggestion IS NOT NULL OR comments.neos_remarks IS NOT NULL)",
       statuses: ["見積提示中"]
     )
   }
