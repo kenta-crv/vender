@@ -66,15 +66,21 @@ class Estimate < ApplicationRecord
     percentage_i.to_i * assumed_number.to_i
   end
 
-  scope :with_specific_comments, -> {
+  scope :with_specific_comments_or_suggestions, -> {
     joins(:comment).where(
       "comments.asahi IN (:statuses) OR " \
       "comments.cocacola IN (:statuses) OR " \
       "comments.itoen IN (:statuses) OR " \
       "comments.neos IN (:statuses) OR " \
       "comments.dydo IN (:statuses) OR " \
-      "comments.yamakyu IN (:statuses)",
+      "comments.yamakyu IN (:statuses) OR " \
+      "comments.cocacola_suggestion IS NOT NULL OR " \
+      "comments.asahi_suggestion IS NOT NULL OR " \
+      "comments.itoen_suggestion IS NOT NULL OR " \
+      "comments.neos_suggestion IS NOT NULL OR " \
+      "comments.dydo_suggestion IS NOT NULL",
       statuses: ["見積提示中"]
     )
   }
+  
 end
