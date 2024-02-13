@@ -74,24 +74,15 @@ class Estimate < ApplicationRecord
       "comments.neos = :status OR " \
       "comments.dydo = :status OR " \
       "comments.yamakyu = :status OR " \
-      "comments.neos_file IS NOT NULL OR " \
-      "comments.neos_suggestion IS NOT NULL OR " \
-      "comments.neos_remarks IS NOT NULL OR " \
-      "comments.asahi_file IS NOT NULL OR " \
-      "comments.asahi_suggestion IS NOT NULL OR " \
-      "comments.asahi_remarks IS NOT NULL OR " \
-      "comments.cocacola_file IS NOT NULL OR " \
-      "comments.cocacola_suggestion IS NOT NULL OR " \
-      "comments.cocacola_remarks IS NOT NULL OR " \
-      "comments.itoen_file IS NOT NULL OR " \
-      "comments.itoen_suggestion IS NOT NULL OR " \
-      "comments.itoen_remarks IS NOT NULL OR " \
-      "comments.dydo_file IS NOT NULL OR " \
-      "comments.dydo_suggestion IS NOT NULL OR " \
-      "comments.dydo_remarks IS NOT NULL",
+      "(comments.neos_file IS NOT NULL OR comments.neos_suggestion IS NOT NULL OR comments.neos_remarks IS NOT NULL) OR " \
+      "(comments.asahi_file IS NOT NULL OR comments.asahi_suggestion IS NOT NULL OR comments.asahi_remarks IS NOT NULL) OR " \
+      "(comments.cocacola_file IS NOT NULL OR comments.cocacola_suggestion IS NOT NULL OR comments.cocacola_remarks IS NOT NULL) OR " \
+      "(comments.itoen_file IS NOT NULL OR comments.itoen_suggestion IS NOT NULL OR comments.itoen_remarks IS NOT NULL) OR " \
+      "(comments.dydo_file IS NOT NULL OR comments.dydo_suggestion IS NOT NULL OR comments.dydo_remarks IS NOT NULL)",
       status: "見積提示中"
     )
   }
+  
   
   
   
