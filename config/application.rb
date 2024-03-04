@@ -26,7 +26,7 @@ module Eatery
     domain: 'factoru.jp',
     port: 587,
     user_name: 'zihanki@factoru.jp',
-    password: 'yL4meV#3',
+    password: 'yL4meV#333',
     authentication: 'plain',
     enable_starttls_auto: true
     }
