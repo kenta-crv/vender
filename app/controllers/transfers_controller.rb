@@ -48,6 +48,7 @@ class TransfersController < ApplicationController
     :number,
     :name,
     :body,
+    :document
     )
  	end
 end

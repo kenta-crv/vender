@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_12_24_130139) do
+ActiveRecord::Schema.define(version: 2024_04_08_152239) do
 
   create_table "add_column_to_comments", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -287,6 +287,7 @@ ActiveRecord::Schema.define(version: 2023_12_24_130139) do
     t.string "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "document"
     t.index ["estimate_id"], name: "index_transfers_on_estimate_id"
   end
 

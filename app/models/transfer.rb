@@ -1,4 +1,4 @@
 class Transfer < ApplicationRecord
     belongs_to :estimate
-    #mount_uploader :image, ImagesUploader
+    mount_uploader :document, ImagesUploader
 end
