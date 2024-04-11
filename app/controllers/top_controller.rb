@@ -56,4 +56,7 @@ class TopController < ApplicationController
 
   def outside
   end
+
+  def secondhand
+  end
 end

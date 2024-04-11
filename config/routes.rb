@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   get 'co' => 'top#co'
   get 'question' => 'top#question'
 
-  get 'old' => 'top#old'
+  get 'secondhand' => 'top#secondhand'
   get 'inside' => 'top#inside'
   get 'outside' => 'top#outside'
   get 'both' => 'top#both'
