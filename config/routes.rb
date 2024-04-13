@@ -55,6 +55,13 @@ Rails.application.routes.draw do
   end
   resources :questions
 
+  resources :purchases do
+    collection do
+      post :confirm
+      post :thanks
+    end
+  end
+
   resources :estimates do
     resources :progresses
     resources :payments, except: [:index]

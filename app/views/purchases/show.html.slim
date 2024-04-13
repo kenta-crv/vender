@@ -1,0 +1,97 @@
+- set_meta_tags noindex: true
+.center
+.tops-wrapper
+br
+ h2.headline  
+   |基本情報　
+   = link_to "一覧に戻る", purchases_path, class: "btn btn-default"
+   = link_to "編集する", edit_purchase_path(@purchase), class: "btn btn-primary"
+   = link_to "削除する", purchase_path(@purchase), class: "btn btn-secondary", method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger"
+ table.company
+       colgroup
+         col width="10%"
+         col width="20%"
+         col width="70%"
+       tr
+         td
+           strong.label.label-blue.point
+            | Point
+            span.word 個人でフルネーム登録をされている場合、開示前に情報の公開を行うことになりますので、苗字のみに変更します。また、法人やマンション名がある場合、それに切り替えます。
+         td.arrow_box
+           | 会社名
+         td
+           = @purchase.co
+       tr
+         td
+           strong.label 
+         td.arrow_box
+           | 担当者名
+         td
+           = @purchase.name
+       tr
+         td
+           strong.label 
+         td.arrow_box
+           | 電話番号
+         td
+           = @purchase.tel
+       tr
+         td
+           strong.label.label-blue.point
+            | Point
+            span.word 住所が途中までの場合はヒアリングを行なってください。
+         td.arrow_box
+           | 設置先住所
+         td
+           = @purchase.address
+       tr
+         td
+           strong.label 
+         td.arrow_box
+           | メールアドレス
+         td
+           = @purchase.email
+       tr
+         td
+           strong
+         td.arrow_box
+           | 購入希望自販機
+         td
+           = @purchase.vender
+       tr
+         td
+           strong.label.label-blue 
+         td.arrow_box
+           | 購入方法
+           br
+           |（※ex.屋内・駐車場等）
+         td
+           = @purchase.installment
+       tr
+         td
+           strong.label.label-blue.point
+            | Point
+            span.word 
+               |現状10名程度では記載しているだけで設置が難しくなります。例えば建設業であればヘルプ等含めて何名ほど事務所を使うか、介護であればスタッフ・来客・入居者の総合数を明記します。
+               br/
+               |尚、外を歩く人は基本カウントしませんが、駅や商店街等、明らかな集客と判断できる場合は記載しましょう。
+         /td.arrow_box
+           | オプション希望
+         /td
+          /= @purchase.option
+       tr
+         td
+           strong.label 
+         td.arrow_box
+           | 設置希望時期
+         td
+           = @purchase.period
+       tr
+         td
+           strong.label.label-blue.point
+            | Point
+            span.word 小学校が近くにある等、補足内容を明記します。
+         td.arrow_box
+           | 要望・備考
+         td
+           = @purchase.remarks
