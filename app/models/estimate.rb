@@ -66,6 +66,22 @@ class Estimate < ApplicationRecord
     percentage_i.to_i * assumed_number.to_i
   end
 
+  def comments_blank?
+    [comment.asahi, comment.cocacola, comment.itoen, comment.dydo, comment.yamakyu, comment.neos].all?(&:blank?)
+  end
+
+  def all_comments_ng_or_blank?
+    attrs = [
+      comment.asahi,
+      comment.cocacola,
+      comment.itoen,
+      comment.dydo,
+      comment.yamakyu,
+      comment.neos,
+    ]
+    attrs.all? { |attr| attr.blank? || attr == "設置NG" }
+  end
+
   scope :with_specific_comments, -> {
     joins(:comment).where(
       "comments.asahi IN (:statuses) OR " \

@@ -397,9 +397,6 @@ table.company[width="100%"]
 
 h2.headline  
  | 新品・中古自販機進捗　
- = link_to '中古自販機', old_email_estimate_path(estimate_id: @estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-danger"
- = link_to '新品自販機', outside_email_estimate_path(estimate_id: @estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-danger" 
- = link_to 'シェアサイクル', share_email_estimate_path(estimate_id: @estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-danger" 
 table.company[width="100%"]
   = form_for([@estimate, @progress], url: estimate_progresses_path(estimate_id: @estimate)) do |f|
     tbody
