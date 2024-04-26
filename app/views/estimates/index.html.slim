@@ -48,11 +48,14 @@ br
      td = estimate.comment ? estimate.comment.net : nil
      td = estimate.comment ? estimate.comment.body : nil
      td
-      - if estimate.comment && estimate.comments_blank?
+      - if estimate.comment.nil?
        = link_to "送信", "/estimates/#{estimate.id}/select_sent", style: "color: fff", class: "btn btn-primary unsent"
       - elsif estimate.comment && estimate.all_comments_ng_or_blank?
-       = link_to '購入提案', old_email_estimate_path(estimate), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-primary"
+       = link_to "中古提案", send_mail_cfsl_estimate_path(estimate), class: "btn btn-primary", method: :post
+      - elsif estimate.comment && estimate.comments_blank?
+       = link_to "送信", "/estimates/#{estimate.id}/select_sent", style: "color: fff", class: "btn btn-primary unsent"
       - else
+        
   br
     hr.line
     br
