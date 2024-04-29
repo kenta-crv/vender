@@ -3,7 +3,7 @@ meta[http-equiv="X-UA-Compatible" content="IE=edge"]
 meta[name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"]
 = csrf_meta_tags
 = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-script[src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"]
+/script[src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"]
 = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 = display_meta_tags(default_meta_tags)
 = favicon_link_tag('favicon.ico')
@@ -25,8 +25,3 @@ script
  | function gtag(){dataLayer.push(arguments);}
  | gtag('js', new Date());
  | gtag('config', 'AW-10998015402');
-script[async src="https://s.yimg.jp/images/listing/tool/cv/ytag.js"]
-script
- | window.yjDataLayer = window.yjDataLayer || [];
- | function ytag() { yjDataLayer.push(arguments); }
- | ytag({"type":"ycl_cookie"});
