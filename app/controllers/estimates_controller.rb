@@ -111,7 +111,7 @@ class EstimatesController < ApplicationController
   end
 
   def old_email
-    estimate = Estimate.find(params[:estimate_id])
+    estimate = Estimate.find(params[:id])
     EstimateMailer.old_email(estimate).deliver_now
     redirect_to estimate_path(estimate), notice: 'Email sent successfully.'
   end
