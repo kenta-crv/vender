@@ -72,8 +72,26 @@
         td.arrow-box-cell
           | オプション希望
         td.responsive-cell
-         = f.hidden_field :option
-         = @purchase.option
+         = f.hidden_field :thousand
+         = @purchase.thousand
+         = f.label "新1000円札対応（2024年7月以降発行の1000円札に対応）"
+         br/
+         = f.hidden_field :five_hundred
+         = @purchase.five_hundred
+         = f.label "新500円玉対応（2021年11月以降発行の500円玉に対応）"
+         br/
+         = f.hidden_field :five_ensure
+         = @purchase.five_ensure
+         = f.label "5年保証対応（自然故障による無償修理対応）"
+         br/
+         = f.hidden_field :simple_wrapping
+         = @purchase.simple_wrapping
+         = f.label "自販機塗装（単色塗装）"
+         br/
+         = f.hidden_field :design_wrapping
+         = @purchase.design_wrapping
+         = f.label "デザインラッピング加工（自由にデザイン可能）"
+         br/
       tr
         td.label-cell
           strong.label 必須

@@ -69,16 +69,19 @@ br
            = @purchase.installment
        tr
          td
-           strong.label.label-blue.point
-            | Point
-            span.word 
-               |現状10名程度では記載しているだけで設置が難しくなります。例えば建設業であればヘルプ等含めて何名ほど事務所を使うか、介護であればスタッフ・来客・入居者の総合数を明記します。
-               br/
-               |尚、外を歩く人は基本カウントしませんが、駅や商店街等、明らかな集客と判断できる場合は記載しましょう。
-         /td.arrow_box
+           strong.label.label-blue 
+         td.arrow_box
            | オプション希望
-         /td
-          /= @purchase.option
+         td
+          = @purchase.thousand == "1" ? "新1000円札対応" : ""
+          br/
+          = @purchase.five_hundred == "1" ? "新500円玉対応" : ""
+          br/
+          = @purchase.five_ensure == "1" ? "5年保証対応" : ""
+          br/
+          = @purchase.simple_wrapping == "1" ? "自販機塗装" : ""
+          br/
+          = @purchase.design_wrapping == "1" ? "デザインラッピング加工" : ""
        tr
          td
            strong.label 

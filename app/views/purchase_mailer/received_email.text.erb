@@ -8,7 +8,12 @@
 メールアドレス: <%= @purchase.email%>
 購入希望自販機: <%= @purchase.vender%>
 購入方法: <%= @purchase.installment %>
-オプション希望: <%= @purchase.option %>
+オプション希望: 
+・新1000円札対応：<%= @purchase.thousand == "1" ? "希望する" : "希望しない" %>
+・新500円玉対応：<%= @purchase.five_hundred == "1" ? "希望する" : "希望しない" %>
+・5年保証対応：<%= @purchase.five_ensure == "1" ? "希望する" : "希望しない" %>
+・自販機塗装：<%= @purchase.simple_wrapping == "1" ? "希望する" : "希望しない" %>
+・デザインラッピング加工：<%= @purchase.design_wrapping == "1" ? "希望する" : "希望しない" %>
 設置希望時期: <%= @purchase.period %>
 要望・備考:<%= @purchase.remarks %>
 --------------------------

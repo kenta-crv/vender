@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_04_12_100651) do
+ActiveRecord::Schema.define(version: 2024_05_09_040907) do
 
   create_table "add_column_to_comments", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -274,6 +274,12 @@ ActiveRecord::Schema.define(version: 2024_04_12_100651) do
     t.string "remarks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "simpel_wrapping"
+    t.string "thousand"
+    t.string "five_hundred"
+    t.string "five_ensure"
+    t.string "simple_wrapping"
+    t.string "design_wrapping"
   end
 
   create_table "questions", force: :cascade do |t|

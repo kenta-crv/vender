@@ -70,6 +70,11 @@ class PurchasesController < ApplicationController
         :installment, #分割
         :period, #設置希望時期
         :remarks, #要望
+        :thousand,
+        :five_hundred,
+        :five_ensure,
+        :simple_wrapping,
+        :design_wrapping,
         {option: []}
       )
     end
