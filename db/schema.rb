@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_05_09_040907) do
+ActiveRecord::Schema.define(version: 2024_06_18_055737) do
 
   create_table "add_column_to_comments", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -258,7 +258,9 @@ ActiveRecord::Schema.define(version: 2024_05_09_040907) do
     t.integer "admin_id"
     t.string "document"
     t.date "next"
+    t.integer "purchase_id"
     t.index ["estimate_id"], name: "index_progresses_on_estimate_id"
+    t.index ["purchase_id"], name: "index_progresses_on_purchase_id"
   end
 
   create_table "purchases", force: :cascade do |t|
@@ -288,6 +290,16 @@ ActiveRecord::Schema.define(version: 2024_05_09_040907) do
     t.string "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.integer "purchase_id"
+    t.string "status"
+    t.datetime "next"
+    t.string "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["purchase_id"], name: "index_reports_on_purchase_id"
   end
 
   create_table "rooms", force: :cascade do |t|

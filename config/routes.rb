@@ -56,6 +56,7 @@ Rails.application.routes.draw do
   resources :questions
 
   resources :purchases do
+    resources :reports
     collection do
       post :confirm
       post :thanks
@@ -87,6 +88,7 @@ Rails.application.routes.draw do
     end
   end
   get 'contract' => 'estimates#contract'
+  get 'purchase' => 'estimates#purchase'
   get 'sfa' => 'estimates#sfa'
   get 'share' => 'estimates#share'
   get 'manufacturer' => 'estimates#manufacturer'

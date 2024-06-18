@@ -1,5 +1,5 @@
 class Purchase < ApplicationRecord
-  
+  has_many :reports, dependent: :destroy
     VENDER_PRICES = {
       "26セレクション（395,000円）" => 395000,
       "25セレクション（395,000円）" => 395000,

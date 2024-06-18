@@ -36,7 +36,8 @@ class PurchasesController < ApplicationController
     end
   
     def show
-      @purchase = Purchase.find_by(id: params[:id])
+      @purchase = Purchase.find(params[:id])
+      @report = Report.new
     end
   
     def edit
