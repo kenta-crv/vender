@@ -24,7 +24,7 @@ class ReportsController < ApplicationController
 
   	def destroy
   		@purchase = Purchase.find(params[:purchase_id])
-  		@report = @purchase.Reports.find(params[:id])
+  		@report = @purchase.reports.find(params[:id])
   		@report.destroy
   		redirect_to purchase_path(@purchase)
   	end
