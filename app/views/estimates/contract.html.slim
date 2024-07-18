@@ -23,6 +23,9 @@
           = link_to estimate.co, estimate_path(estimate)
          td 
           = estimate.comment.updated_at.strftime("%Y年%m月%d日")
+         td
+          - if estimate.transfer&.document
+            | 契約書添付
          td 
           - if estimate.comment.cocacola == "契約"
            | コカコーラ

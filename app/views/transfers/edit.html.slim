@@ -1,7 +1,9 @@
-br
-br
-= form_for ([@estimate, @transfer]) do |f|
- table
+.tops-wrapper
+ h2.headline 振込先・契約書添付
+ br
+ br
+ = form_for ([@estimate, @transfer]) do |f|
+  table.company
     tbody
       tr
           th
@@ -15,6 +17,7 @@ br
           th
             | メモ
           th
+            | 契約書
       tr
           td
             = f.text_field :bank
@@ -26,7 +29,9 @@ br
             = f.text_field :name
           td
             = f.text_field :body      
+          td 
+            = f.file_field :document
       tr
-        th[colspan="5"]
+        td[colspan="6"]
          .center
-          = f.submit
+          = f.submit "登録する"

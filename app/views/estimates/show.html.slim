@@ -470,7 +470,7 @@ table.company[width="100%"]
 
 - if @estimate.comment&.neos == "契約"
   h2.headline  
-   | 振込口座
+   | 振込口座・契約書添付
   table.company[width="100%"]
    = form_for([@estimate, @transfer], url: estimate_transfers_path(estimate_id: @estimate)) do |f|
     tbody
