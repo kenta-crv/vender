@@ -98,23 +98,23 @@ class EstimatesController < ApplicationController
     end
   end
 
-  def share_email
-    estimate = Estimate.find(params[:estimate_id])
-    EstimateMailer.share_email(estimate).deliver_now
-    redirect_to estimate_path(estimate), notice: 'Email sent successfully.'
-  end
+  #def share_email 終了
+   # estimate = Estimate.find(params[:estimate_id])
+   # EstimateMailer.share_email(estimate).deliver_now
+   # redirect_to estimate_path(estimate), notice: 'Email sent successfully.'
+  #end
 
-  def outside_email
-    estimate = Estimate.find(params[:estimate_id])
-    EstimateMailer.outside_email(estimate).deliver_now
-    redirect_to estimate_path(estimate), notice: 'Email sent successfully.'
-  end
+  #def outside_email 終了
+   # estimate = Estimate.find(params[:estimate_id])
+   # EstimateMailer.outside_email(estimate).deliver_now
+   # redirect_to estimate_path(estimate), notice: 'Email sent successfully.'
+  #end
 
-  def old_email
-    estimate = Estimate.find(params[:id])
-    EstimateMailer.old_email(estimate).deliver_now
-    redirect_to estimate_path(estimate), notice: 'Email sent successfully.'
-  end
+  #def old_email　終了
+   # estimate = Estimate.find(params[:id])
+    #EstimateMailer.old_email(estimate).deliver_now
+    #redirect_to estimate_path(estimate), notice: 'Email sent successfully.'
+  #end
 
   def send_mail
     @estimate = Estimate.find(params[:id])
