@@ -132,6 +132,14 @@
         td.responsive-cell
           = f.hidden_field :remarks
           = @estimate.remarks
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 自販機購入及び貸出の検討
+        td.responsive-cell
+          = f.hidden_field :attracting
+          = @estimate.attracting
       /tr
         td.label-cell
           strong.label.label-orange 提案

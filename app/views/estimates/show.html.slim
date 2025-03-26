@@ -154,6 +154,12 @@ br
        -if admin_signed_in?
         tr
          td
+         td.arrow_box
+          | 自販機購入及び貸出の検討
+         td
+          = @estimate.attracting
+        tr
+         td
            strong.label.label-blue.point
             | Point
             span.word ヒアリングを行った際にメーカー等には開示しない内容を記載できます。例えば『マージンがお客様で望んでいない』等

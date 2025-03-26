@@ -31,7 +31,7 @@ br
      th 山久
      th ネオス
      th 収益型
-     th その他
+     th 購入検討
      th 送信
    - @estimates_for_view.each do |estimate|
     tr
@@ -46,7 +46,7 @@ br
      td = estimate.comment ? estimate.comment.yamakyu : nil
      td = estimate.comment ? estimate.comment.neos : nil
      td = estimate.comment ? estimate.comment.net : nil
-     td = estimate.comment ? estimate.comment.body : nil
+     td = estimate.attracting
      td
       - if estimate.comment.nil?
        = link_to "送信", "/estimates/#{estimate.id}/select_sent", style: "color: fff", class: "btn btn-primary unsent"

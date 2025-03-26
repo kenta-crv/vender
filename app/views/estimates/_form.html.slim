@@ -329,6 +329,19 @@
           = f.text_area :remarks, placeholder:"※周辺に高校がある・駅が近い等、周辺状況等明記・その他要望等"
           br/
           small 既存自販機交換の場合、メーカー・売上本数（おおよそでも可）・交換理由を記載してください。
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 自販機メーカー設置ができない場合、自販機自体の購入や貸出も検討しますか？
+        td.responsive-cell
+          .input-container
+           = f.label :assumed_number_yes do
+             = f.radio_button :attracting, 'yes'
+             | はい
+           = f.label :assumed_number_no do
+             = f.radio_button :attracting, 'no'
+             | いいえ
       -if admin_signed_in?
        tr
         td.label-cell
