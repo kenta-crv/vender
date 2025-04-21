@@ -88,7 +88,7 @@ class CommentsController < ApplicationController
       comment.update(itoen: status)
     when "ダイドードリンコ株式会社"
       comment.update(dydo: status)
-    when "合同会社ファクトル"
+    when " 株式会社朝日ビバレッジ"
       comment.update(yamakyu: status)
     when "ネオス株式会社"
       comment.update(neos: status)

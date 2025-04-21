@@ -233,32 +233,6 @@ table.company[width="100%"]
             = @estimate.comment&.cocacola_remarks
       tr 
           td
-            = image_tag "neos-rogo.webp", width:"100px"
-          td 
-            = f.select(:neos,[\
-              ["依頼中","依頼中"],\
-              ["現地調査中","現地調査中"],\
-              ["見積提示中","見積提示中"],\
-              ["契約","契約"],\
-              ["設置NG","設置NG"],\
-              ["見送りNG","見送りNG"],\
-             ], include_blank: "選択してください")          
-          td.comment-mail-box
-            label[for="neos_mail"]
-              | メールを送る
-            input[type="checkbox" id="neos_mail" name="neos_mail" disabled]
-          td
-            = @estimate.comment&.neos
-          td 
-            - if @estimate.comment&.neos_file?
-              = link_to '提案資料', @estimate.comment.neos_file.url, class:"btn btn-primary"
-            - else
-          td 
-            = @estimate.comment&.neos_suggestion
-          td 
-            = @estimate.comment&.neos_remarks
-      tr 
-          td
             = image_tag "itoen-rogo.webp", width:"100px"
           td 
             = f.select(:itoen,[\
@@ -283,32 +257,6 @@ table.company[width="100%"]
             = @estimate.comment&.itoen_suggestion
           td 
             = @estimate.comment&.itoen_remarks
-      tr
-          td
-            = image_tag "asahi-rogo.webp", width:"100px"
-          td 
-            = f.select(:asahi,[\
-              ["依頼中","依頼中"],\
-              ["現地調査中","現地調査中"],\
-              ["見積提示中","見積提示中"],\
-              ["契約","契約"],\
-              ["設置NG","設置NG"],\
-              ["見送りNG","見送りNG"],\
-             ], include_blank: "選択してください")          
-          td.comment-mail-box
-            label[for="asahimail"]
-              | メールを送る
-            input[type="checkbox" id="asahi_mail" name="asahi_mail" disabled]
-          td
-            = @estimate.comment&.asahi
-          td 
-            - if @estimate.comment&.asahi_file?
-              = link_to '提案資料', @estimate.comment.asahi_file.url, class:"btn btn-primary"
-            - else
-          td 
-            = @estimate.comment&.asahi_suggestion
-          td 
-            = @estimate.comment&.asahi_remarks          
       tr
           td
             = image_tag "dydo-rogo.webp", width:"100px"
@@ -337,7 +285,7 @@ table.company[width="100%"]
             = @estimate.comment&.dydo_remarks   
       tr
           td
-            = image_tag "yamakyu-rogo.webp", width:"100px"
+            朝日ビバレッジ
           td 
             = f.select(:yamakyu,[\
               ["依頼中","依頼中"],\
@@ -363,7 +311,7 @@ table.company[width="100%"]
             = @estimate.comment&.yamakyu_remarks   
       tr
           td
-            = image_tag "rogo.webp", width:"100px"
+            中古ベンダー
           td 
             = f.select(:net,[\
               ["未提案","未提案"],\
@@ -375,22 +323,8 @@ table.company[width="100%"]
              ], include_blank: "選択してください") 
           td
             = @estimate.comment&.net
-      tr
-          td
-            | その他
-          td 
-            = f.select(:body,[\
-              ["不在","不在"],\
-              ["明細待","明細待"],\
-              ["NG","NG"],\
-             ], include_blank: "選択してください")
-          td.comment-mail-box
-            label[for="body_mail"]
-              | メールを送る
-            input[type="checkbox" id="body_mail" name="body_mail" disabled]
           td
             = @estimate.comment&.body
-  
       tr 
           td[colspan="6"]
            .center

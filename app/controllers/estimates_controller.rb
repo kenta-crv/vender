@@ -147,7 +147,7 @@ class EstimatesController < ApplicationController
           @comment.update(itoen: "依頼中")
         when "ダイドードリンコ株式会社"
           @comment.update(dydo: "依頼中")
-        when "合同会社ファクトル"
+        when " 株式会社朝日ビバレッジ"
           @comment.update(yamakyu: "依頼中")
         when "ネオス株式会社"
           @comment.update(neos: "依頼中")
@@ -175,7 +175,7 @@ class EstimatesController < ApplicationController
       comment.update(itoen: "現地調査中")
     when "ダイドードリンコ株式会社"
       comment.update(dydo: "現地調査中")
-    when "合同会社ファクトル"
+    when " 株式会社朝日ビバレッジ"
       comment.update(yamakyu: "現地調査中")
     when "ネオス株式会社"
       comment.update(neos: "現地調査中")
@@ -201,7 +201,7 @@ class EstimatesController < ApplicationController
       comment.update(itoen: "設置NG")
     when "ダイドードリンコ株式会社"
       comment.update(dydo: "設置NG")
-    when "合同会社ファクトル"
+    when " 株式会社朝日ビバレッジ"
       comment.update(yamakyu: "設置NG")
     when "ネオス株式会社"
       comment.update(neos: "設置NG")
