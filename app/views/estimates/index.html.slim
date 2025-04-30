@@ -16,6 +16,7 @@ br
      th 伊藤園
      th ダイドー
      th 朝日ビバレッジ
+     th 中山商事
      th 購入検討
      th 送信
    - @estimates_for_view.each do |estimate|
@@ -28,6 +29,7 @@ br
      td = estimate.comment ? estimate.comment.itoen : nil
      td = estimate.comment ? estimate.comment.dydo : nil
      td = estimate.comment ? estimate.comment.yamakyu : nil
+     td = estimate.comment ? estimate.comment.asahi : nil
      td = estimate.attracting
      td
       - if estimate.comment.nil?

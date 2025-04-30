@@ -139,7 +139,7 @@ class EstimatesController < ApplicationController
   
         # コメントの更新
         case client.company
-        when "アサヒ飲料株式会社 中部支社", "アサヒ飲料株式会社 関西支社", "アサヒ飲料株式会社"
+        when "株式会社中山商事"
           @comment.update(asahi: "依頼中")
         when "コカ･コーラボトラーズジャパン株式会社"
           @comment.update(cocacola: "依頼中")
@@ -167,7 +167,7 @@ class EstimatesController < ApplicationController
     comment.inspection_start_date = Date.today
 
     case client.company
-    when "アサヒ飲料株式会社 中部支社", "アサヒ飲料株式会社 関西支社", "アサヒ飲料株式会社"
+    when "株式会社中山商事"
       comment.update(asahi: "現地調査中")
     when "コカ･コーラボトラーズジャパン株式会社"
       comment.update(cocacola: "現地調査中")
@@ -193,7 +193,7 @@ class EstimatesController < ApplicationController
     client = Client.find(params[:client_id])
     comment = Comment.find_or_initialize_by(estimate_id: estimate.id)
     case client.company
-    when "アサヒ飲料株式会社 中部支社", "アサヒ飲料株式会社 関西支社", "アサヒ飲料株式会社"
+    when "株式会社中山商事"
       comment.update(asahi: "設置NG")
     when "コカ･コーラボトラーズジャパン株式会社"
       comment.update(cocacola: "設置NG")

@@ -311,9 +311,9 @@ table.company[width="100%"]
             = @estimate.comment&.yamakyu_remarks   
       tr
           td
-            中古ベンダー
+            株式会社中山商事
           td 
-            = f.select(:net,[\
+            = f.select(:asahi,[\
               ["未提案","未提案"],\
               ["提案中","提案中"],\
               ["検討中","検討中"],\
@@ -321,10 +321,21 @@ table.company[width="100%"]
               ["設置NG","設置NG"],\
               ["見送りNG","見送りNG"],\
              ], include_blank: "選択してください") 
+          td.comment-mail-box
+            label[for="asahi_mail"]
+              | メールを送る
+            input[type="checkbox" id="asahi_mail" name="asahi_mail" disabled]
           td
-            = @estimate.comment&.net
-          td
-            = @estimate.comment&.body
+            = @estimate.comment&.asahi
+          td 
+            - if @estimate.comment&.asahi_file?
+              = link_to '提案資料', @estimate.comment.asahi_file.url, class:"btn btn-primary"
+            - else
+          td 
+            = @estimate.comment&.asahi_suggestion
+          td 
+            = @estimate.comment&.asahi_remarks   
+
       tr 
           td[colspan="6"]
            .center
