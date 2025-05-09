@@ -34,8 +34,7 @@ br
      td = estimate.comment ? estimate.comment.asahi : nil
      td = estimate.attracting
      td
-      - if estimate.comment.nil?
-       = link_to "送信", "/estimates/#{estimate.id}/select_sent", style: "color: fff", class: "btn btn-primary unsent"
+      = link_to "送信", "/estimates/#{estimate.id}/select_sent", style: "color: fff", class: "btn btn-primary unsent"
      / - elsif estimate.comment && estimate.all_comments_ng_or_blank?
        = link_to '中古提案', old_email_estimate_path(id: estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-primary"
      / - elsif estimate.comment && estimate.comments_blank?
