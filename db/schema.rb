@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_06_18_055737) do
+ActiveRecord::Schema.define(version: 2025_05_21_055936) do
 
   create_table "add_column_to_comments", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -150,6 +150,14 @@ ActiveRecord::Schema.define(version: 2024_06_18_055737) do
     t.string "yamakyu_file"
     t.string "dydo_file"
     t.date "inspection_start_date"
+    t.string "sanritsu"
+    t.string "sanritsu_suggestion"
+    t.string "sanritsu_file"
+    t.string "sanritsu_remarks"
+    t.string "ums"
+    t.string "ums_suggestion"
+    t.string "ums_file"
+    t.string "ums_remarks"
     t.index ["estimate_id"], name: "index_comments_on_estimate_id"
     t.index ["token"], name: "index_comments_on_token", unique: true
   end

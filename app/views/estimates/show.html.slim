@@ -311,9 +311,9 @@ table.company[width="100%"]
             = @estimate.comment&.yamakyu_remarks   
       tr
           td
-            株式会社中山商事
+            三立
           td 
-            = f.select(:asahi,[\
+            = f.select(:sanritsu,[\
               ["未提案","未提案"],\
               ["提案中","提案中"],\
               ["検討中","検討中"],\
@@ -322,20 +322,46 @@ table.company[width="100%"]
               ["見送りNG","見送りNG"],\
              ], include_blank: "選択してください") 
           td.comment-mail-box
-            label[for="asahi_mail"]
+            label[for="sanritsu_mail"]
               | メールを送る
-            input[type="checkbox" id="asahi_mail" name="asahi_mail" disabled]
+            input[type="checkbox" id="sanritsu_mail" name="sanritsu_mail" disabled]
           td
-            = @estimate.comment&.asahi
+            = @estimate.comment&.sanritsu
           td 
-            - if @estimate.comment&.asahi_file?
-              = link_to '提案資料', @estimate.comment.asahi_file.url, class:"btn btn-primary"
+            - if @estimate.comment&.sanritsu_file?
+              = link_to '提案資料', @estimate.comment.sanritsu_file.url, class:"btn btn-primary"
             - else
           td 
-            = @estimate.comment&.asahi_suggestion
+            = @estimate.comment&.sanritsu_suggestion
           td 
-            = @estimate.comment&.asahi_remarks   
-
+            = @estimate.comment&.sanritsu_remarks   
+      tr
+          td
+            |UMs
+          td 
+            = f.select(:ums,[\
+              ["未提案","未提案"],\
+              ["提案中","提案中"],\
+              ["検討中","検討中"],\
+              ["契約","契約"],\
+              ["設置NG","設置NG"],\
+              ["見送りNG","見送りNG"],\
+             ], include_blank: "選択してください") 
+          td.comment-mail-box
+            label[for="ums_mail"]
+              | メールを送る
+            input[type="checkbox" id="ums_mail" name="ums_mail" disabled]
+          td
+            = @estimate.comment&.ums
+          td 
+            - if @estimate.comment&.ums_file?
+              = link_to '提案資料', @estimate.comment.ums_file.url, class:"btn btn-primary"
+            - else
+          td 
+            = @estimate.comment&.ums_suggestion
+          td 
+            = @estimate.comment&.ums_remarks   
+ 
       tr 
           td[colspan="6"]
            .center

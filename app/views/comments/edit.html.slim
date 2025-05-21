@@ -141,20 +141,48 @@ br/
             = f.text_area :yamakyu_remarks
       tr
           th
-            = image_tag "rogo.webp", width:"100px"
+            | 三立
           td
-            = f.select(:asahi,[\
-              ["未提案","未提案"],\
-              ["提案中","提案中"],\
-              ["検討中","検討中"],\
+            = f.select(:sanritsu,[\
+              ["依頼中","依頼中"],\
+              ["現地調査中","現地調査中"],\
+              ["見積提示中","見積提示中"],\
               ["契約","契約"],\
               ["設置NG","設置NG"],\
               ["見送りNG","見送りNG"],\
              ], include_blank: "選択してください")
           td.comment-mail-box
-            label[for="body_mail"]
+            label[for="sanritsu_mail"]
               | メールを送る
-            input[type="checkbox" id="body_mail" name="body_mail" disabled]
+            input[type="checkbox" id="sanritsu_mail" name="sanritsu_mail" disabled]
+          td 
+            = f.file_field :sanritsu_file
+          td 
+            = f.text_area :sanritsu_suggestion
+          td 
+            = f.text_area :sanritsu_remarks
+      tr
+          th
+            | UMs
+          td
+            = f.select(:ums,[\
+              ["依頼中","依頼中"],\
+              ["現地調査中","現地調査中"],\
+              ["見積提示中","見積提示中"],\
+              ["契約","契約"],\
+              ["設置NG","設置NG"],\
+              ["見送りNG","見送りNG"],\
+             ], include_blank: "選択してください")
+          td.comment-mail-box
+            label[for="ums_mail"]
+              | メールを送る
+            input[type="checkbox" id="ums_mail" name="ums_mail" disabled]
+          td 
+            = f.file_field :ums_file
+          td 
+            = f.text_area :ums_suggestion
+          td 
+            = f.text_area :ums_remarks            
       tr 
           td[colspan="5"]
            .center

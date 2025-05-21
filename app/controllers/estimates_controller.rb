@@ -139,8 +139,6 @@ class EstimatesController < ApplicationController
   
         # コメントの更新
         case client.company
-        when "株式会社中山商事"
-          @comment.update(asahi: "依頼中")
         when "コカ･コーラボトラーズジャパン株式会社"
           @comment.update(cocacola: "依頼中")
         when "株式会社伊藤園"
@@ -150,6 +148,10 @@ class EstimatesController < ApplicationController
         when "株式会社朝日ビバレッジ"
           @comment.update(yamakyu: "依頼中")
         when "ネオス株式会社"
+          @comment.update(neos: "依頼中")
+        when "株式会社三立"
+          @comment.update(neos: "依頼中")
+        when "UMs合同会社"
           @comment.update(neos: "依頼中")
         when "合同会社ファクトル"
           @comment.update(body: "依頼中")
@@ -167,8 +169,6 @@ class EstimatesController < ApplicationController
     comment.inspection_start_date = Date.today
 
     case client.company
-    when "株式会社中山商事"
-      comment.update(asahi: "現地調査中")
     when "コカ･コーラボトラーズジャパン株式会社"
       comment.update(cocacola: "現地調査中")
     when "株式会社伊藤園"
@@ -179,6 +179,10 @@ class EstimatesController < ApplicationController
       comment.update(yamakyu: "現地調査中")
     when "ネオス株式会社"
       comment.update(neos: "現地調査中")
+    when "株式会社三立"
+      comment.update(asahi: "現地調査中")
+    when "UMs合同会社"
+      comment.update(asahi: "現地調査中")
     when "合同会社ファクトル"
       comment.update(body: "現地調査中")
     end
@@ -193,8 +197,6 @@ class EstimatesController < ApplicationController
     client = Client.find(params[:client_id])
     comment = Comment.find_or_initialize_by(estimate_id: estimate.id)
     case client.company
-    when "株式会社中山商事"
-      comment.update(asahi: "設置NG")
     when "コカ･コーラボトラーズジャパン株式会社"
       comment.update(cocacola: "設置NG")
     when "株式会社伊藤園"
@@ -205,6 +207,10 @@ class EstimatesController < ApplicationController
       comment.update(yamakyu: "設置NG")
     when "ネオス株式会社"
       comment.update(neos: "設置NG")
+    when "株式会社三立"
+      comment.update(asahi: "設置NG")
+    when "UMs合同会社"
+      comment.update(asahi: "設置NG")
     when "合同会社ファクトル"
       comment.update(body: "設置NG")
     end

@@ -39,6 +39,10 @@
            | 山久
           - elsif estimate.comment.neos == "契約"
            | ネオス
+          - elsif estimate.comment.sanritsu == "契約"
+           | 三立
+          - elsif estimate.comment.ums == "契約"
+           | UMs
          td  
           = estimate.sales_price
          td  

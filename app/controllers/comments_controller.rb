@@ -80,8 +80,6 @@ class CommentsController < ApplicationController
 
   def update_comment_status(company, status, comment)
     case company
-    when "株式会社中山商事"
-      comment.update(asahi: status)
     when "コカ･コーラボトラーズジャパン株式会社"
       comment.update(cocacola: status)
     when "株式会社伊藤園"
@@ -92,6 +90,10 @@ class CommentsController < ApplicationController
       comment.update(yamakyu: status)
     when "ネオス株式会社"
       comment.update(neos: status)
+    when "株式会社三立"
+      comment.update(sanritsu: status)
+    when "UMs合同会社"
+      comment.update(ums: status)
     when "合同会社ファクトル"
       comment.update(body: status)
     end
@@ -138,6 +140,14 @@ class CommentsController < ApplicationController
     :dydo_suggestion,
     :dydo_file,
     :dydo_remarks,
+    :sanritsu,
+    :sanritsu_suggestion,
+    :sanritsu_file,
+    :sanritsu_remarks,
+    :ums,
+    :ums_suggestion,
+    :ums_file,
+    :ums_remarks,
     )
  	end
 
