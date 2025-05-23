@@ -59,4 +59,7 @@ class TopController < ApplicationController
 
   def secondhand
   end
+
+  def food 
+  end
 end

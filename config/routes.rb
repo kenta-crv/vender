@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get 'question' => 'top#question'
 
   get 'secondhand' => 'top#secondhand'
+  get 'food' => 'top#food'
   get 'inside' => 'top#inside'
   get 'outside' => 'top#outside'
   get 'both' => 'top#both'
