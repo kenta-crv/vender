@@ -90,6 +90,7 @@ Rails.application.routes.draw do
   end
   get 'contract' => 'estimates#contract'
   get 'purchase' => 'estimates#purchase'
+  get 'progress' => 'estimates#progress'
   get 'sfa' => 'estimates#sfa'
   get 'share' => 'estimates#share'
   get 'manufacturer' => 'estimates#manufacturer'

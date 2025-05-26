@@ -1,6 +1,6 @@
 class EstimatesController < ApplicationController
   before_action :check_admin, except: [:decline, :accept, :update_status, :new, :confirm, :thanks]
-  before_action :check_client, only: [:decline, :accept, :update_status]
+  before_action :check_client, only: [:decline, :accept, :update_status, :progress]
   add_breadcrumb "フォーム入力ページ", :new_estimate_path, only: [:confirm]
   def index
     @q = Estimate.ransack(params[:q])
@@ -247,6 +247,12 @@ class EstimatesController < ApplicationController
     redirect_to estimates_url, notice:"#{cnt}件登録されました。"
   end
 
+  def progress
+    @q = Estimate.ransack(params[:q])
+    @estimates = @q.result.order(created_at: :desc)
+    @estimates_for_view = @estimates.joins(:comment).where(comments: { yamakyu: '1' }).page(params[:page]).per(100)
+  end
+  
   private
   def estimate_params
     params.require(:estimate).permit(
