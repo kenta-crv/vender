@@ -249,8 +249,12 @@ class EstimatesController < ApplicationController
 
   def progress
     @q = Estimate.ransack(params[:q])
-    @estimates = @q.result.order(created_at: :desc)
-    @estimates_for_view = @estimates.joins(:comment).where(comments: { yamakyu: '1' }).page(params[:page]).per(100)
+    base = @q.result.order(created_at: :desc).left_joins(:comment)
+  
+    @estimates_for_view = base
+      .where(comments: { yamakyu: ["依頼中", "現地調査中", "見積提示中"] })
+      .page(params[:page])
+      .per(100)
   end
   
   private
