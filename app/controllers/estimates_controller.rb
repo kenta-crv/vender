@@ -76,6 +76,7 @@ class EstimatesController < ApplicationController
 
   def edit
     @estimate = Estimate.find(params[:id])
+    @client = Client.find(params[:client_id]) if params[:client_id].present?
   end
 
   def select_sent
