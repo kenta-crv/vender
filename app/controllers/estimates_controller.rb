@@ -1,5 +1,5 @@
 class EstimatesController < ApplicationController
-  before_action :check_admin, except: [:decline, :accept, :update_status, :new, :confirm, :thanks]
+  before_action :check_admin, except: [:decline, :accept, :update_status, :new, :confirm, :thanks,:progress]
   before_action :check_client, only: [:decline, :accept, :update_status, :progress]
   add_breadcrumb "フォーム入力ページ", :new_estimate_path, only: [:confirm]
   def index
