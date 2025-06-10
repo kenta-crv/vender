@@ -19,8 +19,9 @@ class EstimateMailer < ActionMailer::Base
 
   def old_email(estimate)
     @estimate = estimate
+    @document_url = "https://xn--new351c2sh.net/documents?from=#{estimate.id}"
     mail to: estimate.email
-    mail(subject: '最長5年保証で運営出来る新中古自販機のご案内') do |format|
+    mail(subject: '【自販機ねっと】中古自販機のご案内') do |format|
       format.text
     end
   end

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  estimate: one
+  email_type: MyString
+  sent_at: 2025-06-10 15:53:56
+
+two:
+  estimate: two
+  email_type: MyString
+  sent_at: 2025-06-10 15:53:56

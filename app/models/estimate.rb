@@ -11,6 +11,13 @@ class Estimate < ApplicationRecord
   validates :address, presence: { message: '住所が入力されていません。' }, on: :create
   validates :attracting, presence: { message: '自販機購入・貸出の検討有無を選択してください。' }, on: :create
 
+  def document_viewed?
+    AccessLog.exists?(source: id.to_s, path: "/documents")
+  end
+
+  def email_sent?
+    EmailLog.exists?(source: id.to_s, path: "/old_email_sent")
+  end
 
   def self.import(file)
     save_cont = 0

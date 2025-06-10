@@ -14,15 +14,14 @@ class TopController < ApplicationController
   def documents
     if params[:from].present?
       AccessLog.create!(
-        source: params[:from],
-        path: request.path,
-        ip: request.remote_ip,
-        accessed_at: Time.current
+        source: params[:from],             # 例: estimate.id（文字列）
+        path: request.path,                # 例: "/documents"
+        ip: request.remote_ip,             # アクセス元のIP
+        accessed_at: Time.current          # アクセス日時
       )
     end
-  
+
     pdf_path = Rails.root.join('public', 'secondhands.pdf')
-  
     if File.exist?(pdf_path)
       send_file pdf_path, filename: 'secondhands.pdf', type: 'application/pdf', disposition: 'attachment'
     else

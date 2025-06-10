@@ -111,11 +111,18 @@ class EstimatesController < ApplicationController
    # redirect_to estimate_path(estimate), notice: 'Email sent successfully.'
   #end
 
-  #def old_email　終了
-   # estimate = Estimate.find(params[:id])
-    #EstimateMailer.old_email(estimate).deliver_now
-    #redirect_to estimate_path(estimate), notice: 'Email sent successfully.'
-  #end
+  def old_email
+    estimate = Estimate.find(params[:id])
+    EstimateMailer.old_email(estimate).deliver_now
+        # 送信ログをEmailLogに保存
+        EmailLog.create!(
+          source: estimate.id.to_s,
+          path: "/old_email_sent",
+          ip: request.remote_ip,
+          accessed_at: Time.current
+        )
+    redirect_to estimate_path(estimate), notice: 'Email sent successfully.'
+  end
 
   def send_mail
     @estimate = Estimate.find(params[:id])
