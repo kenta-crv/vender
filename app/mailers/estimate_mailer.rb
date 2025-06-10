@@ -111,53 +111,56 @@ class EstimateMailer < ActionMailer::Base
   end
 
   # ステータスが依頼中の場合の催促メール送信
-  def requested_status_remaind(comment, client)
-    @comment = comment
-    @estimate = comment.estimate
-    @client = client
-    to = @client.email
+  #def requested_status_remaind(comment, client)
+  #  @comment = comment
+  #  @estimate = comment.estimate
+  #  @client = client
+  #  to = @client.email
 
-    mail(to: to, subject: "#{@estimate.co}様の依頼判断可否について")
-  end
+  #  mail(to: to, subject: "#{@estimate.co}様の依頼判断可否について")
+  #end
 
   # ステータスが現地調査中の場合の催促メール送信
-  def investigated_status_remaind(comment, client)
-    @comment = comment
-    @estimate = comment.estimate
-    @client = client
-    to = @client.email
+  #def investigated_status_remaind(comment, client)
+  #  @comment = comment
+  #  @estimate = comment.estimate
+  #  @client = client
+  #  to = @client.email#
 
-    mail(to: to, subject: "#{@estimate.co}様の現地結果について")
-  end
+#    mail(to: to, subject: "#{@estimate.co}様の現地結果について")
+ # end
 
-  # ステータスが見積提示中となった場合の通知メール送信
-  def estimate_status_notification(comment, client)
-    @comment = comment
-    @estimate = comment.estimate
-    @client = client
-    to = @client.email
+def estimate_status_notification(comment, client)
+  @comment = comment
+  @estimate = comment.estimate
+  @client = client
 
-    mail(to: to, subject: "#{@client.company}より#{@estimate.co}の提案がありました。")
-  end
+  mail(
+    to: 'zihanki@factoru.jp',
+    subject: "#{@client.company}より#{@estimate.co}の提案がありました。"
+  )
+end
 
-  # ステータスが契約となった場合の通知メール送信
-  def contracted_status_notification(comment, client)
-    @comment = comment
-    @estimate = comment.estimate
-    @client = client
-    to = @client.email
+def contracted_status_notification(comment, client)
+  @comment = comment
+  @estimate = comment.estimate
+  @client = client
 
-    mail(to: to, subject: "#{@estimate.co}様の契約のお知らせ")
-  end
+  mail(
+    to: 'zihanki@factoru.jp',
+    subject: "#{@estimate.co}様の契約のお知らせ"
+  )
+end
 
-  # ステータスが見送りNGとなった場合の通知メール送信
-  def send_off_status_notification(comment, client)
-    @comment = comment
-    @estimate = comment.estimate
-    @client = client
-    to = @client.email
+def send_off_status_notification(comment, client)
+  @comment = comment
+  @estimate = comment.estimate
+  @client = client
 
-    mail(to: to, subject: "#{@estimate.co}様より見送りのお知らせ")
-  end
+  mail(
+    to: 'zihanki@factoru.jp',
+    subject: "#{@estimate.co}様より見送りのお知らせ"
+  )
+end
 
 end

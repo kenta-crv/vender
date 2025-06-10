@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'inside' => 'top#inside'
   get 'outside' => 'top#outside'
   get 'both' => 'top#both'
+  get 'documents', to: 'top#documents'
 
   get 'lp' => 'top#lp'
 

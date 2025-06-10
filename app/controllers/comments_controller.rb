@@ -64,15 +64,17 @@ class CommentsController < ApplicationController
     estimate = Estimate.find(params[:id])
     client = Client.find(params[:client_id])
     comment = Comment.find_or_initialize_by(estimate_id: estimate.id)
-
-    # ステータスを更新する条件に基づいたロジック（例：params[:status_type]）
+  
     case params[:status_type]
     when "contract"
       update_comment_status(client.company, "契約", comment)
+      EstimateMailer.contracted_status_notification(comment, client).deliver_now
     when "presentation"
       update_comment_status(client.company, "見積提示中", comment)
+      EstimateMailer.estimate_status_notification(comment, client).deliver_now
     when "conflict"
       update_comment_status(client.company, "見送りNG", comment)
+      EstimateMailer.send_off_status_notification(comment, client).deliver_now
     end
   end
 
@@ -107,6 +109,11 @@ class CommentsController < ApplicationController
     #削除
   def send_status_update_email(comment)
     EstimateMailer.status_update_email(comment).deliver_now
+  end
+
+  def check_client
+    return if current_admin.present?  # ← admin の場合はスキップ
+
   end
 
  	def comment_params
