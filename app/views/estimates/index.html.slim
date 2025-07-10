@@ -38,15 +38,12 @@ br
      td = estimate.attracting
      td
       = link_to "送信", "/estimates/#{estimate.id}/select_sent", style: "color: fff", class: "btn btn-primary unsent"
-     td 
-      - if estimate.document_viewed?
-       - if AccessLog.exists?(source: estimate.id.to_s, path: "/documents")
-        | 閲覧済
-       - else
-        | 送信済
-      - else
-       - if estimate.attracting == "Yes"
-        = link_to '中古', old_email_estimate_path(id: estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-primary"
+     td
+       - if estimate.document_viewed?
+         - if AccessLog.exists?(source: estimate.id.to_s, path: "/documents")
+           | 閲覧済
+       - elsif estimate.attracting == nil
+           = link_to '中古', old_email_estimate_path(id: estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-primary"
      / - elsif estimate.comment && estimate.comments_blank?
        = link_to "送信", "/estimates/#{estimate.id}/select_sent", style: "color: fff", class: "btn btn-primary unsent"
      / - else
