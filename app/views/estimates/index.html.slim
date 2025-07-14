@@ -17,8 +17,6 @@ br
      th 伊藤園
      th ダイドー
      th 朝日ビバレッジ
-     th 三立
-     th UMs
      th 購入検討
      th 送信
      th 中古
@@ -33,20 +31,16 @@ br
      td = estimate.comment ? estimate.comment.itoen : nil
      td = estimate.comment ? estimate.comment.dydo : nil
      td = estimate.comment ? estimate.comment.yamakyu : nil
-     td = estimate.comment ? estimate.comment.sanritsu : nil
-     td = estimate.comment ? estimate.comment.ums : nil
      td = estimate.attracting
      td
       = link_to "送信", "/estimates/#{estimate.id}/select_sent", style: "color: fff", class: "btn btn-primary unsent"
      td
-       - if estimate.document_viewed?
-         - if AccessLog.exists?(source: estimate.id.to_s, path: "/documents")
-           | 閲覧済
-       - elsif estimate.attracting == "yes"
-           = link_to '中古', old_email_estimate_path(id: estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-primary"
-     / - elsif estimate.comment && estimate.comments_blank?
-       = link_to "送信", "/estimates/#{estimate.id}/select_sent", style: "color: fff", class: "btn btn-primary unsent"
-     / - else
+      - if estimate.document_viewed? && AccessLog.exists?(source: estimate.id.to_s, path: "/documents")
+        | 閲覧済
+      - elsif estimate.old_email_sent_at.present?
+        | 送信済
+      - elsif estimate.attracting == "yes"
+        = link_to '中古', old_email_estimate_path(id: estimate.id), method: :post, data: { confirm: '送信しますか？' }, class: "btn btn-primary"
         
   br
     hr.line
@@ -84,6 +78,10 @@ br/
                   | 住所
                 td
                   = f.search_field :address_cont, type: "text"
+              tr
+                th 送信済み
+                td
+                    = f.select :old_email_sent_at_null, options_for_select([['指定なし', ''], ['送信済みのみ', 'false'], ['未送信のみ', 'true']]), include_blank: false
               tr
                 td.center[colspan="4"]
                   = f.submit "検索する"

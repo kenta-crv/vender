@@ -1,4 +1,11 @@
 class Estimate < ApplicationRecord
+
+  ransacker :document_viewed, formatter: proc { |v|
+  v == 'true' ? true : false
+} do |parent|
+  # ここは常に真を返すSQL（テスト用）
+  Arel.sql("1=1")
+end
   #belongs_to :client
   has_one :comment, dependent: :destroy
   has_one :transfer, dependent: :destroy
@@ -103,3 +110,4 @@ class Estimate < ApplicationRecord
     )
   }
 end
+

@@ -114,6 +114,7 @@ class EstimatesController < ApplicationController
   def old_email
     estimate = Estimate.find(params[:id])
     EstimateMailer.old_email(estimate).deliver_now
+    estimate.update_column(:old_email_sent_at, Time.current)
     redirect_to estimate_path(estimate), notice: 'Email sent successfully.'
   end
 
@@ -285,6 +286,7 @@ class EstimatesController < ApplicationController
       :attracting, #集客
       :chagnge_remarks, #交換詳細
       :industry, #業種
+      :old_email_sent_at
     )
   end
 end

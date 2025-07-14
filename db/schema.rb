@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_06_10_065356) do
+ActiveRecord::Schema.define(version: 2025_07_14_104150) do
 
   create_table "access_logs", force: :cascade do |t|
     t.string "source"
@@ -243,6 +243,7 @@ ActiveRecord::Schema.define(version: 2025_06_10_065356) do
     t.boolean "disclosed"
     t.boolean "accepted_by_client"
     t.integer "client_id"
+    t.datetime "old_email_sent_at"
   end
 
   create_table "images", force: :cascade do |t|
