@@ -1,0 +1,44 @@
+- set_meta_tags noindex: true
+.center
+.tops-wrapper
+  table.company.responsive-table
+      colgroup
+        col.col-1
+        col.col-2
+        col.col-3
+      tr
+        td.arrow-box-cell
+          | 商品名
+        td.responsive-cell
+         .input-container
+          = @item.name
+      tr
+        td.arrow-box-cell
+          | メーカー
+        td.responsive-cell
+         .input-container
+          = @item.manufacturer
+      tr
+        td.arrow-box-cell
+          | 卸価格
+        td.responsive-cell
+         .input-container
+          = @item.purchase_price
+      tr
+        td.arrow-box-cell
+          | 販売価格
+        td.responsive-cell
+         .input-container
+          = @item.sales_price
+      tr
+        td.arrow-box-cell
+          | 最低販売本数
+        td.responsive-cell
+         .input-container
+          = @item.numbers
+      tr
+        td.arrow-box-cell
+          | 写真
+        td.responsive-cell
+         .input-container
+          = @item.image

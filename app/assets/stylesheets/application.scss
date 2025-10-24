@@ -1196,3 +1196,36 @@ table.price {
   font-size: 21px;
   margin-bottom: -5px;
 }
+
+
+
+.item-card {
+  background-color: #ffffff;
+  border: 2px solid #0000ff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 255, 0.2);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.item-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 255, 0.3);
+}
+
+.item-card h4 {
+  color: #0000ff;
+  margin-bottom: 8px;
+}
+
+.item-card p {
+  margin: 4px 0;
+}
+
+.item-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}

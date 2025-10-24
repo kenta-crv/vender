@@ -14,25 +14,40 @@
         col.col-3
       tr
         td.arrow-box-cell
-          | 質問
-      tr
+          | 商品名
         td.responsive-cell
          .input-container
-          = f.text_area :whats
+          = f.text_field :name
       tr
         td.arrow-box-cell
-          | カテゴリー
-      tr
+          | メーカー
         td.responsive-cell
          .input-container
-          = f.text_field :category
+          = f.text_field :manufacturer
       tr
         td.arrow-box-cell
-          | answer
-      tr
+          | 卸価格
         td.responsive-cell
          .input-container
-          = f.text_area :answer
+          = f.number_field :purchase_price
+      tr
+        td.arrow-box-cell
+          | 販売価格
+        td.responsive-cell
+         .input-container
+          = f.number_field :sales_price
+      tr
+        td.arrow-box-cell
+          | 最低販売本数
+        td.responsive-cell
+         .input-container
+          = f.number_field :numbers
+      tr
+        td.arrow-box-cell
+          | 写真
+        td.responsive-cell
+         .input-container
+          = f.file_field :image
       tr
         td colspan="3"
          .center

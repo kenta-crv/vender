@@ -65,6 +65,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :items
+
   resources :estimates do
     resources :progresses
     resources :payments, except: [:index]

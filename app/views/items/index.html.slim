@@ -1,0 +1,12 @@
+br/
+br/
+.row
+  - @items.each do |item|
+    .col-12.col-md-4.mb-4
+      .item-card
+        h4 = item.name
+        p = item.manufacturer
+        - if item.image.present?
+          = image_tag item.image.url, class: "item-image"
+        p 販売定価: ¥#{item.sales_price}
+        p 最低販売本数: #{item.numbers}

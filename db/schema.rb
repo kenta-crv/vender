@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_07_14_104150) do
+ActiveRecord::Schema.define(version: 2025_09_27_111449) do
 
   create_table "access_logs", force: :cascade do |t|
     t.string "source"
@@ -253,6 +253,17 @@ ActiveRecord::Schema.define(version: 2025_07_14_104150) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_images_on_company_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.string "sales_price"
+    t.string "purchase_price"
+    t.string "image"
+    t.string "numbers"
+    t.string "manufacturer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "messages", force: :cascade do |t|
