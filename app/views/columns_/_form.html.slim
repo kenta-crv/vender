@@ -1,0 +1,181 @@
+= form_for @column do |f|
+   table.company
+     tbody
+      tr
+        th.arrow_box タイトル
+      tr
+        td colspan="2" = text_field :column, :title, class:"title"
+      tr
+        th.arrow_box カテゴリー選択
+      tr
+        td = f.select(:kategory, Column.KategoryStatus)
+      tr
+        th.arrow_box  完結分（100文字以内）
+      tr
+        td = text_area :column, :description, class:"description"
+      tr
+        th.arrow_box 見出し（h1~h6を選択）・画像・本文
+      tr
+        td = text_area :column, :heading_1, id:"column"
+      tr
+        td  = f.file_field :file_1
+      tr
+        td = text_area :column, :content_1, id:"column"
+      tr
+        th.arrow_box 見出し（h1~h6を選択）・画像・本文
+      tr
+        td = text_area :column, :heading_2, id:"column"
+      tr
+        td  = f.file_field :file_2
+      tr
+        td = text_area :column, :content_2, id:"column"
+      tr
+        th.arrow_box 見出し（h1~h6を選択）・画像・本文
+      tr
+        td = text_area :column, :heading_3, id:"column"
+      tr
+        td  = f.file_field :file_3
+      tr
+        td = text_area :column, :content_3, id:"column"
+      tr
+        th.arrow_box 見出し（h1~h6を選択）・画像・本文
+      tr
+        td = text_area :column, :heading_4, id:"column"
+      tr
+        td  = f.file_field :file_4
+      tr
+        td = text_area :column, :content_4, id:"column"
+      tr
+        th.arrow_box 見出し（h1~h6を選択）・画像・本文
+      tr
+        td = text_area :column, :heading_5, id:"column"
+      tr
+        td  = f.file_field :file_5
+      tr
+        td = text_area :column, :content_5, id:"column"
+      tr
+        th.arrow_box 見出し（h1~h6を選択）・画像・本文
+      tr
+        td = text_area :column, :heading_6, id:"column"
+      tr
+        td  = f.file_field :file_6
+      tr
+        td = text_area :column, :content_6, id:"column"
+      tr
+        th.arrow_box 見出し（h1~h6を選択）・画像・本文
+      tr
+        td = text_area :column, :heading_7, id:"column"
+      tr
+        td  = f.file_field :file_7
+      tr
+        td = text_area :column, :content_7, id:"column"
+      tr
+        th.arrow_box 見出し（h1~h6を選択）・画像・本文
+      tr
+        td = text_area :column, :heading_8, id:"column"
+      tr
+        td  = f.file_field :file_8
+      tr
+        td = text_area :column, :content_8, id:"column"
+      tr
+        th.arrow_box 見出し（h1~h6を選択）・画像・本文
+      tr
+        td = text_area :column, :heading_9, id:"column"
+      tr
+        td  = f.file_field :file_9
+      tr
+        td = text_area :column, :content_9, id:"column"
+      tr
+        th.arrow_box 見出し（h1~h6を選択）・画像・本文
+      tr
+        td = text_area :column, :heading_10, id:"column"
+      tr
+        td  = f.file_field :file_10
+      tr
+        td = text_area :column, :content_10, id:"column"
+      tr
+        th.arrow_box 見出し（h1~h6を選択）・画像・本文
+      tr
+        td = text_area :column, :heading_11, id:"column"
+      tr
+        td  = f.file_field :file_11
+      tr
+        td = text_area :column, :content_11, id:"column"
+      tr
+        th.arrow_box 見出し（h1~h6を選択）・画像・本文
+      tr
+        td = text_area :column, :heading_12, id:"column"
+      tr
+        td  = f.file_field :file_12
+      tr
+        td = text_area :column, :content_12, id:"column"
+      tr
+        th.arrow_box 見出し（h1~h6を選択）・画像・本文
+      tr
+        td = text_area :column, :heading_13, id:"column"
+      tr
+        td  = f.file_field :file_13
+      tr
+        td = text_area :column, :content_13, id:"column"
+      tr
+        th.arrow_box 見出し（h1~h6を選択）・画像・本文
+      tr
+        td = text_area :column, :heading_14, id:"column"
+      tr
+        td  = f.file_field :file_14
+      tr
+        td = text_area :column, :content_14, id:"column"
+      tr
+        th.arrow_box 見出し（h1~h6を選択）・画像・本文
+      tr
+        td = text_area :column, :heading_15, id:"column"
+      tr
+        td  = f.file_field :file_15
+      tr
+        td = text_area :column, :content_15, id:"column"
+      tr
+        th.arrow_box 見出し（h1~h6を選択）・画像・本文
+      tr
+        td = text_area :column, :heading_16, id:"column"
+      tr
+        td  = f.file_field :file_16
+      tr
+        td = text_area :column, :content_16, id:"column"
+      tr
+        th.arrow_box 見出し（h1~h6を選択）・画像・本文
+      tr
+        td = text_area :column, :heading_17, id:"column"
+      tr
+        td  = f.file_field :file_17
+      tr
+        td = text_area :column, :content_17, id:"column"
+      tr
+        th.arrow_box 見出し（h1~h6を選択）・画像・本文
+      tr
+        td = text_area :column, :heading_18, id:"column"
+      tr
+        td  = f.file_field :file_18
+      tr
+        td = text_area :column, :content_18, id:"column"
+      tr
+        th.arrow_box 見出し（h1~h6を選択）・画像・本文
+      tr
+        td = text_area :column, :heading_19, id:"column"
+      tr
+        td  = f.file_field :file_19
+      tr
+        td = text_area :column, :content_19, id:"column"
+      tr
+        th.arrow_box 見出し（h1~h6を選択）・画像・本文
+      tr
+        td = text_area :column, :heading_20, id:"column"
+      tr
+        td  = f.file_field :file_20
+      tr
+        td = text_area :column, :content_20, id:"column"
+
+      tr
+        td = f.submit '投稿する'
+
+script
+  | var editor = new FroalaEditor('#column')

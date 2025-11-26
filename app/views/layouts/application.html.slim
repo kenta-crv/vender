@@ -1,74 +1,15 @@
 doctype html
-html
+html lang="ja"
   head
-   = render template: 'layouts/_head.html.slim'
-  header
-      .row
-        .col-xs-3
-           = link_to "/"
-            =image_tag "rogo.webp", class:"header-image", alt:"自動販売機の設置なら一括見積もりの自販機ねっと"
-        .col-xs-7
-         
-        .col-xs-2
-                .navToggle
-                  span
-                  span
-                  span
-                  span menu
-      .navi
-       - if admin_signed_in? && current_page?(estimates_path)
-         .row
-           .col-sm-1
-           .col-sm-2
-             = link_to  '新品・中古自販機', '/sfa' , class: "col-md"
-           .col-sm-2
-             = link_to  'シェアサイクル', '/share' , class: "col-md"
-           .col-sm-2 
-             = link_to  'メーカー提案中',"/manufacturer" , :class=>"col-md"
-           .col-sm-2 
-             = link_to  'クライアント一覧',"/estimates/info" , :class=>"col-md"
-           .col-sm-2 
-             = link_to  'FAQ',"/questions" , :class=>"col-md"
-           .col-sm-1
-       -else
-        .bread
-          = render_breadcrumbs separator: ' > '
-        .col-xs-12.center
-          p.notice.alert
-           = alert
-           = notice
-
-
-        nav.globalMenuSp
-          ul
-           li
-             = link_to  'トップページ', '/' , class: "col-md"
-           li
-             = link_to "アサヒ自動販売機", asahi_path
-           li
-             = link_to "コカコーラ自動販売機", cocacola_path
-           li
-             = link_to "伊藤園自動販売機", itoen_path
-           li
-             = link_to "ダイドー自動販売機", dydo_path
-           li
-             = link_to "キリン自動販売機", kirin_path
-           li
-             = link_to "大塚自動販売機", otsuka_path
-           li
-             = link_to  '自販機記事一覧', '/estimates'
-           li
-             = link_to  '自販機設置相談', '/estimates/new'
-
-
-
+    = render "layouts/head"
 
   body
-    main
-      = yield
-  br
-  br
-  - if client_signed_in? 
-  - else
-   footer
-    = render template: 'layouts/_footer.html.slim'
+    / --- ここで notice を全幅で表示 ---
+    - if flash[:notice]
+      .global-notice
+        = flash[:notice]
+    / -----------------------------------
+
+    = render "layouts/header"
+    = yield
+    = javascript_include_tag "application", "data-turbolinks-track": "reload"

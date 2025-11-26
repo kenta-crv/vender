@@ -1,6 +1,6 @@
 class EstimatesController < ApplicationController
-  before_action :check_admin, except: [:decline, :accept, :update_status, :new, :confirm, :thanks,:progress]
-  before_action :check_client, only: [:decline, :accept, :update_status, :progress]
+  #before_action :check_admin, except: [:decline, :accept, :update_status, :new, :confirm, :thanks,:progress]
+  #before_action :check_client, only: [:decline, :accept, :update_status, :progress]
   add_breadcrumb "フォーム入力ページ", :new_estimate_path, only: [:confirm]
   def index
     @q = Estimate.ransack(params[:q])
@@ -19,22 +19,22 @@ class EstimatesController < ApplicationController
     @estimate = Estimate.new
   end
 
-  def confirm
-    @estimate = Estimate.new(estimate_params)
-    add_breadcrumb "入力内容確認"
-    if @estimate.valid?
-      render :action =>  'confirm'
-    else
-      render :action => 'new'
-    end
-  end
+  #def confirm
+  #  @estimate = Estimate.new(estimate_params)
+  #  add_breadcrumb "入力内容確認"
+  #  if @estimate.valid?
+  #    render :action =>  'confirm'
+  #  else
+  #    render :action => 'new'
+  #  end
+  #end
 
-  def thanks
-    @estimate = Estimate.new(estimate_params)
-    @estimate.save
-    EstimateMailer.received_email(@estimate).deliver # 管理者に通知
-    EstimateMailer.send_email(@estimate).deliver # 送信者に通知
-  end
+  #def thanks
+  #  @estimate = Estimate.new(estimate_params)
+  #  @estimate.save
+  #  EstimateMailer.received_email(@estimate).deliver # 管理者に通知
+  #  EstimateMailer.send_email(@estimate).deliver # 送信者に通知
+  #end
 
   def contract
     @estimates = Estimate.joins(:comment).where.not(sales_price: nil).where("comments.cocacola = ? OR comments.asahi = ? OR comments.itoen = ? OR comments.dydo = ? OR comments.yamakyu = ? OR comments.neos = ?", "契約", "契約", "契約", "契約", "契約", "契約")
@@ -44,11 +44,26 @@ class EstimatesController < ApplicationController
     @estimates = Estimate.joins(:comment).where.not(percentage_other: 0).where("comments.neos": "契約")
   end
 
-  def create
+def create
     @estimate = Estimate.new(estimate_params)
-    @estimate.save
-    redirect_to thanks_estimates_path
+    
+    # モデルの保存に成功した場合のみ、通知メールを送りrootにリダイレクトします
+    if @estimate.save
+      # 保存成功後の通知メール送信（ここではthanksアクションから移動させました）
+       EstimateMailer.received_email(@estimate).deliver # 管理者に通知
+       EstimateMailer.send_email(@estimate).deliver # 送信者に通知
+      redirect_to root_path, notice: "お問い合わせが完了しました。担当者より改めてご連絡いたします。"
+    else
+     # 失敗時:
+     # 1. エラーメッセージを組み立てる
+     error_messages = @estimate.errors.full_messages.join("、")
+     # 2. new アクションをレンダリング（リダイレクトではない）
+     #    alert フラッシュに失敗理由を格納
+     flash.now[:alert] = "入力内容に不備があります：#{error_messages}"
+     # 3. 入力画面（new.html.slim）を再表示
+     render :new
   end
+end
 
   def show
     @estimate = Estimate.find_by(id: params[:id])

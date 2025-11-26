@@ -1,5 +1,6 @@
 class TopController < ApplicationController
   def index
+    @estimate = Estimate.new
   end
 
   def lp

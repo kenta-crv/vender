@@ -1,63 +1,30 @@
-- set_meta_tags  title: '自動販売機のコラムなら『自販機ねっと』'
-- set_meta_tags  description: '自販機ねっとでは、自動販売機に関する記事を執筆しています。'
+/- set_meta_tags  title: ''
+/- set_meta_tags  description: ''
 
-.index-wrapper
-      h1.headline
-        | 自販機設置記事一覧
-      .row.all-width
-       - @columns.each do |column|
-        .col-sm-6
-         .each-width
-            .put
-             p.prefecture
-              = column.created_at.strftime("%Y年%m月%d日")
-            = link_to column_path(column.id) do 
-             = image_tag column&.file_1&.to_s, width:"100%"
-            .column-title
-              = link_to column.title, column_path(column.id), class:"store"
-            br
-            .description
-              = column.description.to_s.html_safe
+- if admin_signed_in?
+ - if column.status == "draft"
+   = link_to "承認", approve_column_path(column), method: :patch, class: "btn btn-success"
 
-              - if admin_signed_in?
-               = link_to '編集  ', edit_column_path(column.id)
-               = link_to '削除',
-                column_path(column),
-                method: :delete,
-                data: { confirm: '本当に削除しますか？'}
-         hr.line
-            
-= paginate(@columns)
-.inquiry
- hr
- br
- p.push
-         span
-           | 自販機を簡単一括比較見積
-           br
-           br
-           | 以下よりお問い合わせください
- br
- br
- .center  
-  = link_to "/" do 
-    = image_tag "all-vender.webp", width:"80%"
- .center 
-   = link_to "/estimates/new", target:"_blank" do  
-    = image_tag "click3.webp", width:"70%"
- hr
- br
+.section-knowhow
+  .container
+    h1.section-title
+      | 新着記事
 
+    .columns-grid
+      - @columns.presence&.each do |column|
+        .column-card
+          .column-image
+            = link_to image_tag(column.file.to_s, class: 'column-thumb', alt: column.title), column_path(column)
+          .column-content
+            h2.column-title
+              = link_to column.title, column_path(column)
+            .column-description
+              - if column.description.present?
+                = truncate(strip_tags(column.description), length: 120)
+            /- if admin_signed_in?
+              .column-admin-links
+                = link_to '編集', edit_column_path(column), class: 'btn-edit'
+                = link_to '削除', column_path(column), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn-delete'
 
--if admin_signed_in?
- = form_with(url: import_columns_path, method: :post, local: true, multipart: true) do |f|
-  table.company[width="90%"]
-    tbody
-      tr
-        th[colspan="2"]
-          | 記事_CSVファイルインポート
-      tr
-        td
-          = f.file_field :file
-        th
-          = submit_tag "インポート",  class: 'btn btn-primary'
+    .pagination-wrapper
+      = paginate @columns if @columns.present?

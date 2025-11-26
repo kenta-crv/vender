@@ -16,7 +16,7 @@ end
   validates :tel, presence: { message: '電話番号が入力されていません。' }, on: :create
   validates :email, presence: { message: 'メールアドレスが入力されていません。' }, on: :create
   validates :address, presence: { message: '住所が入力されていません。' }, on: :create
-  validates :attracting, presence: { message: '自販機購入・貸出の検討有無を選択してください。' }, on: :create
+  #validates :attracting, presence: { message: '自販機購入・貸出の検討有無を選択してください。' }, on: :create
 
   def document_viewed?
     AccessLog.exists?(source: id.to_s, path: "/documents")

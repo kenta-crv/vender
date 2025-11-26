@@ -115,7 +115,12 @@ class ColumnsController < ApplicationController
       :content_19, #本文
       :heading_20, #見出し
       :file_20, #ファイル
-      :content_20 #本文
+      :content_20, #本文
+      :file, #ファイル
+      :choice, #選択
+      :keyword, #キーワード
+      :status, #説明
+      :body #本文
       )
   end
 end

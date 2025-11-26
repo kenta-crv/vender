@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_09_27_111449) do
+ActiveRecord::Schema.define(version: 2025_11_25_152138) do
 
   create_table "access_logs", force: :cascade do |t|
     t.string "source"
@@ -121,6 +121,11 @@ ActiveRecord::Schema.define(version: 2025_09_27_111449) do
     t.string "content_20"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "file"
+    t.string "choice"
+    t.string "keyword"
+    t.string "status", default: "draft"
+    t.text "body"
   end
 
   create_table "comments", force: :cascade do |t|
