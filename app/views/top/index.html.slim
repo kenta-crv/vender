@@ -74,7 +74,7 @@
               | ＼自販機設置 見積もり依頼／
             
             / Railsのフォームとして機能させるため、form_withを使用します。
-            = form_with(model: @estimate, url: estimates_path, local: true, html: { id: 'hero-main-form', class: 'hero-main-form mt-3 p-4 rounded-3' }) do |f|
+            = form_with(model: @estimate, url: estimates_path, local: true, data: { turbo: false }, html: { id: 'hero-main-form', class: 'hero-main-form mt-3 p-4 rounded-3' }) do |f|
               .row.g-3
                 
                 / 会社名 (:co)
