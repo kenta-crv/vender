@@ -66,94 +66,12 @@
          - (1..12).each do |i|
            - filename = "vender#{i}.webp"
            = image_tag filename, alt: filename
-    section#inquiry
-      .container
-        .col-lg-12
-          .hero-main-right.p-4.rounded-3
-            h3.hero-main-trial2.text-center
-              | ＼自販機設置 見積もり依頼／
-            
-            / Railsのフォームとして機能させるため、form_withを使用します。
-            = form_with(model: @estimate, url: estimates_path, local: true, data: { turbo: false }, html: { id: 'hero-main-form', class: 'hero-main-form mt-3 p-4 rounded-3' }) do |f|
-              .row.g-3
-                
-                / 会社名 (:co)
-                .col-12
-                  label.form-label.hero-main-label
-                    | 会社名 
-                    span.required-badge 必須
-                  = f.text_field :co, class: 'form-control hero-main-input', placeholder: '※個人の場合は担当者名・アパート設置はアパート名を記載', required: true
-    
-                / 担当者名 (:name)
-                .col-12
-                  label.form-label.hero-main-label
-                    | 担当者名 
-                    span.required-badge 必須
-                  = f.text_field :name, class: 'form-control hero-main-input', required: true
-    
-                / 電話番号 (:tel)
-                .col-12
-                  label.form-label.hero-main-label
-                    | 電話番号 
-                    span.required-badge 必須
-                  = f.telephone_field :tel, class: 'form-control hero-main-input', required: true
-    
-                / 設置先住所 (:address)
-                .col-12
-                  label.form-label.hero-main-label
-                    | 設置先住所 
-                    span.required-badge 必須
-                  = f.text_field :address, class: 'form-control hero-main-input', placeholder: '※必ず番地まで記載をお願い致します。', required: true
-    
-                / メールアドレス (:email)
-                .col-12
-                  label.form-label.hero-main-label
-                    | メールアドレス 
-                    span.required-badge 必須
-                  = f.email_field :email, class: 'form-control hero-main-input', required: true
-        
-                / 設置箇所 (:installation)
-                .col-12
-                  label.form-label.hero-main-label
-                    | 設置箇所 
-                    span.required-badge.required-blue ある場合必須
-                  = f.select :installation, [["屋内","屋内"], ["屋外","屋外"], ["未定","未定"]], { include_blank: "選択してください" }, { class: 'form-control hero-main-input', required: true }
-    
-                / 自販機について (:chenge)
-                .col-12
-                  label.form-label.hero-main-label
-                    | 自販機について 
-                    span.required-badge 必須
-                  = f.select :chenge, [["新規設置","新規設置"], ["交換","交換"], ["追加","追加"]], { include_blank: "選択してください" }, { class: 'form-control hero-main-input', required: true }
-    
-                / 設置目的 (:aim)
-                .col-12
-                  label.form-label.hero-main-label
-                    | 設置目的 
-                    span.required-badge 必須
-                  = f.select :aim, [["副収入目的","副収入目的"], ["福利厚生や周辺の方のサービス","福利厚生や周辺の方のサービス"], ["どちらも希望","どちらも希望"], ["未定","未定"]], { include_blank: "選択してください" }, { class: 'form-control hero-main-input', required: true }
-    
-                / 設置希望時期 (:period)
-                .col-12
-                  label.form-label.hero-main-label
-                    | 設置希望時期 
-                    span.required-badge 必須
-                  = f.select :period, [["すぐにでも","すぐにでも"], ["１ヶ月以内","１ヶ月以内"], ["３ヶ月以内","３ヶ月以内"]], { include_blank: "選択してください" }, { class: 'form-control hero-main-input', required: true }
-    
-                / 要望・備考 (:remarks)
-                .col-12
-                  label.form-label.hero-main-label
-                    | 要望・備考 
-                    span.required-badge.required-blue 任意
-                  = f.text_area :remarks, class: 'form-control hero-main-input', placeholder: '※周辺に高校がある・駅が近い等、周辺状況等明記・その他要望等'
-                  small.form-text.text-muted 既存自販機交換の場合、メーカー・売上本数（おおよそでも可）・交換理由を記載してください。
-    
-                / 確認画面ボタン
-                .col-12
-                  = f.submit "確認画面", class: 'btn hero-main-submit w-100'              
 
-      .hero-main-overlay
-   
+    br/
+    a.big-font href="javascript:void(0)" data-target="inquiry" 【2026年2月予約受付分】自販機ねっとの自販機ならだれでも設置OK
+    br/
+    .hero-main-overlay
+    br/
     section#service.japan-notyo-section
       .japan-notyo-container
         .japan-notyo-column.japan-notyo-text-column
