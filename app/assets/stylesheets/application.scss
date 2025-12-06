@@ -501,6 +501,42 @@ body {
 }
 
 @media (max-width: 991px) {
+  /*
+  * 【修正点】
+  * 1. 重なり解消のため、メインセクションの背景画像を非表示にする。
+  * 2. 親要素の順序反転を維持し、「画像が上、文字が下」を維持。
+  * 3. 画像の高さ（.col-lg-6.d-none.d-lg-block）を400pxに維持（画像を大きく）。
+  * 4. ★文字色を前々回の修正（黒）に戻す★
+  */
+  
+  .hero-main-section {
+    background-image: none !important; /* 背景画像を非表示にし、重なりを解消 */
+    background-color: #ffffff;        /* 背景は白にしておく */
+  }
+
+  .hero-main-section .container .row {
+    flex-direction: column-reverse; /* カラムの順序を反転（画像が上、文字が下） */
+  }
+
+  /* 非表示になっていた右側のカラム (.col-lg-6.d-none.d-lg-block) を表示し、画像として代替配置 */
+  .col-lg-6.d-none.d-lg-block {
+    display: block !important;
+    height: 400px; /* 画像の大きさを維持 */
+    margin-bottom: 30px; /* 文字との隙間 */
+    /* 背景画像を再利用して、画像要素として代替表示（背景画像が消えたことによる対応） */
+    background-image: url(#{asset_path('vender.webp')}); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  .hero-main-title span.noto,
+  .hero-main-subtitle span.noto {
+    color: #111; /* ★文字色を黒（#111）に戻す★ */
+    text-shadow: none; /* 影を解除 */
+  }
+  
+  /* 以下、元のレスポンシブ設定を維持 */
   .hero-main-badge-text,
   .hero-main-top-btn {
     display: none !important;
@@ -534,6 +570,7 @@ body {
   
   .hero-main-left {
     text-align: center;
+    margin-top: -50px;
     margin-bottom: 30px;
   }
   
@@ -1421,13 +1458,40 @@ button:focus, input:focus, .btn:focus { outline: 3px solid rgba(25,140,222,0.12)
   .pricing-cards-card {
     width:100%;
     margin-top:10px;
+    /* カード内のパディングを減らすことで、小さな画面でコンテンツがはみ出すのを防ぐ */
+    padding: 25px 20px; 
   }
   
   .pricing-cards-section .container {
-    overflow: hidden;
+    /* 修正: overflow: hidden; を解除し、文字切れを解消 */
+    overflow: visible; 
   }
 }
 
+/* @media (max-width: 768px) にも同様の調整を適用 */
+@media (max-width: 768px) {
+  .pricing-cards-title {
+    font-size: 24px;
+    line-height: 1.5;
+  }
+  
+  .pricing-cards-plan-title {
+    font-size: 16px;
+  }
+  
+  .pricing-cards-price {
+    font-size: 24px;
+  }
+  
+  .pricing-cards-feature {
+    font-size: 13px;
+  }
+  
+  .pricing-cards-card {
+    /* カード内のパディングをさらに調整 */
+    padding: 20px 15px; 
+  }
+}
 .swiper {
   width: 100%;
   padding: 20px 0 50px 0;
@@ -1753,6 +1817,13 @@ button:focus, input:focus, .btn:focus { outline: 3px solid rgba(25,140,222,0.12)
   opacity: 0;
   transform: scale(0.9);
   transition: all 0.8s ease 0.5s;
+}
+
+/* スマホ向け（幅480px以下） */
+@media (max-width: 480px) {
+  .japan-notyo-image {
+    max-width: 250px;
+  }
 }
 
 .japan-notyo-visible .japan-notyo-heading,
@@ -2470,27 +2541,43 @@ small {
 
 
 .big-font {
-  font-size:48px;
-  font-weight:bold;
-  width:80%;
-  text-align:center;
-
-  display:block;
-  margin:0 auto;
-
-  background-color:#007aff; /* 青背景 */
-  color:white;
-  padding:20px 40px;
-  border-radius:20px;
-
-  /* ← これが青のブロックの黄色いふち */
-  border:6px solid #ADD8E6;
-
-  font-family:"Hiragino Maru Gothic ProN","Arial Rounded MT Bold",sans-serif;
-
-  /* 浮き上がる影 */
-  box-shadow:0 6px 20px rgba(0,0,0,0.25);
+  font-size: 48px;
+  font-weight: bold;
+  width: 80%;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  background-color: #007aff; /* 青背景 */
+  color: white;
+  padding: 20px 40px;
+  border-radius: 20px; /* 青のブロックの角丸 */
+  border: 6px solid #ADD8E6;
+  font-family: "Hiragino Maru Gothic ProN","Arial Rounded MT Bold",sans-serif;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  transition: all 0.3s ease; /* アニメーションでサイズ変化を滑らかに */
 }
+
+/* タブレット向け（幅768px以下） */
+@media (max-width: 768px) {
+  .big-font {
+    font-size: 24px;
+    padding: 16px 32px;
+    border-radius: 16px;
+    border-width: 4px;
+  }
+}
+
+/* スマホ向け（幅480px以下） */
+@media (max-width: 480px) {
+  .big-font {
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 12px;
+    border-width: 3px;
+    width: 90%;
+  }
+}
+
 
 
 .global-notice {
