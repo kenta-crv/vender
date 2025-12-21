@@ -652,6 +652,7 @@
                 |  自動販売機を過去自分で発注していましたが、今回一新して自販機ねっとさんで注文しました。とてもおしゃれで印象的なデザインを叶えていただき、更にドリンクも定期配送で送られてくるので運用がとても楽になりました。
 
 
+    
     section#inquiry
       .container
         .col-lg-12
@@ -659,7 +660,6 @@
             h3.hero-main-trial2.text-center
               | ＼自販機設置 見積もり依頼／
             
-            / Railsのフォームとして機能させるため、form_withを使用します。
             = form_with(model: @estimate, url: estimates_path, id: 'estimate-form', local: true, class: 'hero-main-form mt-3 p-4 rounded-3') do |f|
               - if @estimate.errors.any?
                   .alert.alert-danger
@@ -721,7 +721,7 @@
                   label.form-label.hero-main-label
                     | 設置目的 
                     span.required-badge 必須
-                  = f.select :aim, [["副収入目的","副収入目的"], ["福利厚生や周辺の方のサービス","福利厚生や周辺の方のサービス"], ["どちらも希望","どちらも希望"], ["未定","未定"]], { include_blank: "選択してください" }, { class: 'form-control hero-main-input' }
+                  = f.select :aim, [["副収入目的","副収入目的"], ["福利厚生や周辺の方のサービス","福利厚生や周辺の方 service"], ["どちらも希望","どちらも希望"], ["未定","未定"]], { include_blank: "選択してください" }, { class: 'form-control hero-main-input' }
     
                 / 設置希望時期 (:period)
                 .col-12
@@ -738,25 +738,28 @@
                   = f.text_area :remarks, class: 'form-control hero-main-input', placeholder: '※周辺に高校がある・駅が近い等、周辺状況等明記・その他要望等'
                   small.form-text.text-muted 既存自販機交換の場合、メーカー・売上本数（おおよそでも可）・交換理由を記載してください。
     
-                / 確認画面ボタン
+                / 確認画面ボタン (onclickを追加)
                 .col-12
-                  = f.submit "送信する", class: 'btn hero-main-submit w-100'              
+                  = f.submit "送信する", class: 'btn hero-main-submit w-100', onclick: "return gtag_report_conversion();"
+    
     script[src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"]
     script[src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"]
-    / フォーム送信時に Google コンバージョンイベントを発火
+    
     script
       |
         function gtag_report_conversion(url) {
-          var callback = function () {
-            if (typeof(url) != 'undefined') {
-              window.location = url;
-            }
-          };
-          gtag('event', 'conversion', {
-              'send_to': 'AW-10998015402/zpSdCInGhdUbEKrLofwo',
-              'value': 1.0,
-              'currency': 'JPY',
-              'event_callback': callback
-          });
-          return false;
+          // gtagが定義されていない（広告ブロック等）場合でもフォーム送信を止めないための処理
+          if (typeof gtag === 'function') {
+            gtag('event', 'conversion', {
+                'send_to': 'AW-10998015402/zpSdCInGhdUbEKrLofwo',
+                'value': 1.0,
+                'currency': 'JPY',
+                'event_callback': function () {
+                  if (typeof(url) != 'undefined') {
+                    window.location = url;
+                  }
+                }
+            });
+          }
+          return true; // フォームの送信を続行させる
         }
