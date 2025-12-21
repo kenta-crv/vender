@@ -3,6 +3,17 @@ html lang="ja"
   head
     = render "layouts/head"
 
+  script
+   |
+    function gtag_report_conversion() {
+      gtag('event', 'conversion', {
+        'send_to': 'AW-10998015402/XXXXXXXXXXX',
+        'event_callback': function() {
+          document.getElementById('estimate-form').submit();
+        }
+      });
+      return false;
+    }
   body
     / --- ここで notice を全幅で表示 ---
     - if flash[:notice]
