@@ -745,21 +745,3 @@
     script[src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"]
     script[src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"]
     
-    script
-      |
-        function gtag_report_conversion(url) {
-          // gtagが定義されていない（広告ブロック等）場合でもフォーム送信を止めないための処理
-          if (typeof gtag === 'function') {
-            gtag('event', 'conversion', {
-                'send_to': 'AW-10998015402/zpSdCInGhdUbEKrLofwo',
-                'value': 1.0,
-                'currency': 'JPY',
-                'event_callback': function () {
-                  if (typeof(url) != 'undefined') {
-                    window.location = url;
-                  }
-                }
-            });
-          }
-          return true; // フォームの送信を続行させる
-        }
