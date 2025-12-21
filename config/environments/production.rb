@@ -5,6 +5,7 @@ Rails.application.configure do
   config.cache_classes = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = {host: "xn--new351c2sh.net"}
+  config.hosts << "xn--new351c2sh.net"
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
