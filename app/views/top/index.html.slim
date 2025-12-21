@@ -660,71 +660,75 @@
               | ＼自販機設置 見積もり依頼／
             
             / Railsのフォームとして機能させるため、form_withを使用します。
-            = form_with(model: @estimate, url: estimates_path, local: true, html: { id: 'hero-main-form', class: 'hero-main-form mt-3 p-4 rounded-3' }) do |f|
+            = form_with(model: @estimate, url: estimates_path, local: true, class: 'hero-main-form mt-3 p-4 rounded-3') do |f|
+              - if @estimate.errors.any?
+                  .alert.alert-danger
+                    ul
+                      - @estimate.errors.full_messages.each do |message|
+                        li = message
               .row.g-3
-                
                 / 会社名 (:co)
                 .col-12
                   label.form-label.hero-main-label
                     | 会社名 
                     span.required-badge 必須
-                  = f.text_field :co, class: 'form-control hero-main-input', placeholder: '※個人の場合は担当者名・アパート設置はアパート名を記載', required: true
+                  = f.text_field :co, class: 'form-control hero-main-input', placeholder: '※個人の場合は担当者名・アパート設置はアパート名を記載'
     
                 / 担当者名 (:name)
                 .col-12
                   label.form-label.hero-main-label
                     | 担当者名 
                     span.required-badge 必須
-                  = f.text_field :name, class: 'form-control hero-main-input', required: true
+                  = f.text_field :name, class: 'form-control hero-main-input'
     
                 / 電話番号 (:tel)
                 .col-12
                   label.form-label.hero-main-label
                     | 電話番号 
                     span.required-badge 必須
-                  = f.telephone_field :tel, class: 'form-control hero-main-input', required: true
+                  = f.telephone_field :tel, class: 'form-control hero-main-input'
     
                 / 設置先住所 (:address)
                 .col-12
                   label.form-label.hero-main-label
                     | 設置先住所 
                     span.required-badge 必須
-                  = f.text_field :address, class: 'form-control hero-main-input', placeholder: '※必ず番地まで記載をお願い致します。', required: true
+                  = f.text_field :address, class: 'form-control hero-main-input', placeholder: '※必ず番地まで記載をお願い致します。'
     
                 / メールアドレス (:email)
                 .col-12
                   label.form-label.hero-main-label
                     | メールアドレス 
                     span.required-badge 必須
-                  = f.email_field :email, class: 'form-control hero-main-input', required: true
+                  = f.email_field :email, class: 'form-control hero-main-input'
         
                 / 設置箇所 (:installation)
                 .col-12
                   label.form-label.hero-main-label
                     | 設置箇所 
                     span.required-badge.required-blue ある場合必須
-                  = f.select :installation, [["屋内","屋内"], ["屋外","屋外"], ["未定","未定"]], { include_blank: "選択してください" }, { class: 'form-control hero-main-input', required: true }
+                  = f.select :installation, [["屋内","屋内"], ["屋外","屋外"], ["未定","未定"]], { include_blank: "選択してください" }, { class: 'form-control hero-main-input'}
     
                 / 自販機について (:chenge)
                 .col-12
                   label.form-label.hero-main-label
                     | 自販機について 
                     span.required-badge 必須
-                  = f.select :chenge, [["新規設置","新規設置"], ["交換","交換"], ["追加","追加"]], { include_blank: "選択してください" }, { class: 'form-control hero-main-input', required: true }
+                  = f.select :chenge, [["新規設置","新規設置"], ["交換","交換"], ["追加","追加"]], { include_blank: "選択してください" }, { class: 'form-control hero-main-input' }
     
                 / 設置目的 (:aim)
                 .col-12
                   label.form-label.hero-main-label
                     | 設置目的 
                     span.required-badge 必須
-                  = f.select :aim, [["副収入目的","副収入目的"], ["福利厚生や周辺の方のサービス","福利厚生や周辺の方のサービス"], ["どちらも希望","どちらも希望"], ["未定","未定"]], { include_blank: "選択してください" }, { class: 'form-control hero-main-input', required: true }
+                  = f.select :aim, [["副収入目的","副収入目的"], ["福利厚生や周辺の方のサービス","福利厚生や周辺の方のサービス"], ["どちらも希望","どちらも希望"], ["未定","未定"]], { include_blank: "選択してください" }, { class: 'form-control hero-main-input' }
     
                 / 設置希望時期 (:period)
                 .col-12
                   label.form-label.hero-main-label
                     | 設置希望時期 
                     span.required-badge 必須
-                  = f.select :period, [["すぐにでも","すぐにでも"], ["１ヶ月以内","１ヶ月以内"], ["３ヶ月以内","３ヶ月以内"]], { include_blank: "選択してください" }, { class: 'form-control hero-main-input', required: true }
+                  = f.select :period, [["すぐにでも","すぐにでも"], ["１ヶ月以内","１ヶ月以内"], ["３ヶ月以内","３ヶ月以内"]], { include_blank: "選択してください" }, { class: 'form-control hero-main-input' }
     
                 / 要望・備考 (:remarks)
                 .col-12
@@ -736,7 +740,6 @@
     
                 / 確認画面ボタン
                 .col-12
-                  = f.submit "確認画面", class: 'btn hero-main-submit w-100'              
+                  = f.submit "送信する", class: 'btn hero-main-submit w-100'              
     script[src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"]
     script[src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"]
-    script[src="js/script.js"]
