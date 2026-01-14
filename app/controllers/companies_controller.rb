@@ -32,7 +32,7 @@ class CompaniesController < ApplicationController
   def update
     @company = Company.find(params[:id])
     if @company.update(company_params)
-        redirect_to "/clients/#{current_client.id}"(current_client) # または適切なパスに変更
+        redirect_to "/clients/#{current_client.id}"
     else
         render :edit
     end
